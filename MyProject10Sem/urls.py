@@ -19,11 +19,14 @@ from IssuePermitApplication import views
 from MyPermitSysApplication import views
 from RequestSysApplication import views
 
-urlpatterns = patterns('',
-                        url(r'^/?$', views.main_page),
-                        url(r'^admin?$', admin.site.urls),
-                        url(r'^request_subsystem?$', views.request_subsystem),
-                        url(r'^permit_subsystem?$', views.permit_subsystem),
-                        url(r'^issue_subsystem?$', views.issue_subsystem)
 
-)
+urlpatterns = [
+    #url(r'^signin/?$', views.signin),
+    url(r'^$', views.main_page),
+    #url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
+    #url(r'^request_subsystem?$', views.request_subsystem),
+    #url(r'^permit_subsystem?$', views.permit_subsystem),
+    #url(r'^issue_subsystem?$', views.issue_subsystem)
+
+]

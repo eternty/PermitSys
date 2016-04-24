@@ -1,0 +1,40 @@
+{% extends "base_nav.html" %}
+{% block title%}АСУ изготовления пропусков{% endblock %}
+
+
+{% block nav_brand %}Подсистема принятия заявок{% endblock %}
+{% block navbar-menu %}
+    <li class="active"><a href="main1.1.html">Заявки</a></li>
+    <li><a href="main1.2.html">Отделы и Должности</a></li>
+{% endblock %}
+{% block butn-before-table %}
+    <h1>Форма заявки</h1>
+{% endblock %}
+{% block bodycontent %}
+    <form>
+		<div class="col-md-6">
+              <h5>ФИО: <input type="text" class="form-control" placeholder="текст"></h5>
+              <h5>Паспорт: <input type="text" class="form-control" placeholder="серия"><input type="text" class="form-control" placeholder="номер"></h5>
+              <h5>Срок действия: <input type="text" class="form-control" placeholder="text"></h5>
+              <h5>Контактное лицо: <input type="text" class="form-control" placeholder="text"></h5>
+              <h5>Телефон: <input type="text" class="form-control" placeholder="text"></h5>
+              <h5>Должность:
+                    <select class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                    </select></h5>
+              <h5>Отдел:
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+              </h5>
+              <h5>Дата регистрации: </h5>
+              <input type="text" class="form-control" placeholder="text">
+		      <br/>
+		      <a class="btn btn-default" href="#" role="button">Сохранить</a>
+		</div>
+    </form>
+{% endblock %}

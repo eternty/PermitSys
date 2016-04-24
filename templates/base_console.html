@@ -1,0 +1,20 @@
+{% extends "base_nav.html" %}
+{% block bodycontent %}
+
+    <br/>
+	    {% block butn-before-table %}{% endblock %}
+    <br/><br/>
+    <table class="table table-hover table-condensed">
+        <thead>
+        <tr class="active">
+            {% block thead %}{% endblock %}
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% block trow %}{% endblock %}
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock  %}
