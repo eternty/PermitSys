@@ -15,18 +15,28 @@ Including another URLconf
 """
 from django.conf.urls import url,patterns, include
 from django.contrib import admin
-from IssuePermitApplication import views
-from MyPermitSysApplication import views
+
 from RequestSysApplication import views
+#from MyPermitSysApplication import views
 
 
 urlpatterns = [
     #url(r'^signin/?$', views.signin),
-    url(r'^$', views.main_page),
+    url(r'^$', views.index),
     #url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/', admin.site.urls),
-    #url(r'^request_subsystem?$', views.request_subsystem),
-    #url(r'^permit_subsystem?$', views.permit_subsystem),
+    url(r'^request_sys?$', views.request_sys),
+    url(r'^permit_sys?$', views.permit_sys),
+    url(r'^depart?$', views.depart),
+
+    url(r'^new_request?$', views.request),
+    url(r'^new_permit?$', views.permit),
+    url(r'^new_person?$', views.person),
+    url(r'^(?P<pk>[0-9]+)/request/?$', views.request),
+
+    url(r'^permit_sys_req?$', views.permit_sys_req),
+    url(r'^permit_sys_permits?$', views.permit_sys_permits),
+    url(r'^permit_sys_persons?$', views.permit_sys_persons),
     #url(r'^issue_subsystem?$', views.issue_subsystem)
 
 ]
