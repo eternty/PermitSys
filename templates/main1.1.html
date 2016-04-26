@@ -25,7 +25,7 @@
 
 {% block trow %}
     {% for req in requests %}
-    <tr style="cursor: pointer" onclick="window.location.replace('/{{ req.id }}/request')">
+    <tr style="cursor: pointer" onclick="window.location.replace('/request/{{ req.id }}/')">
 
             <td>{{ req.id }}</td>
             <td>{{ req.firstname }}</td>

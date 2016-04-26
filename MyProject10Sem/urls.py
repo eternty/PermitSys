@@ -26,13 +26,15 @@ urlpatterns = [
     #url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^request_sys?$', views.request_sys),
+    #url(r'^request/(?P<pk>[0-9]+)/request_sys?$', views.request_sys),
     url(r'^permit_sys?$', views.permit_sys),
+
     url(r'^depart?$', views.depart),
 
-    url(r'^new_request?$', views.request),
+    url(r'^new_request?$', views.new_request),
     url(r'^new_permit?$', views.permit),
     url(r'^new_person?$', views.person),
-    url(r'^(?P<pk>[0-9]+)/request/?$', views.request),
+    url(r'^request/(?P<pk>[0-9]+)/?$', views.request),
 
     url(r'^permit_sys_req?$', views.permit_sys_req),
     url(r'^permit_sys_permits?$', views.permit_sys_permits),
