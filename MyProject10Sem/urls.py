@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'^permit_sys?$', views.permit_sys),
 
     url(r'^depart?$', views.depart),
-
+    url(r'^new_depart?$', views.new_depart),
     url(r'^new_request?$', views.new_request),
     url(r'^new_permit?$', views.permit),
     url(r'^new_person?$', views.person),

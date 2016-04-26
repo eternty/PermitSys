@@ -1,7 +1,10 @@
+import copy
+
 from django.http import HttpResponse
 from django.shortcuts import render
-from RequestSysApplication.models import Request
-from RequestSysApplication.forms import RequestForm
+from RequestSysApplication.models import Request, Department
+from RequestSysApplication.forms import RequestForm, DepartmentForm, DepForm
+from RequestSysApplication.prototype import Prototype
 
 # Create your views here.
 def index(request):
@@ -18,8 +21,49 @@ def request_sys(request):
 def permit_sys(request):
     return render(request, 'main2.1.html')
 
+def new_depart(request):
+    if request.method == "POST":
+        our_form = DepartmentForm(request.POST)
+
+        new_obj = our_form.save(commit=False)
+        if our_form.is_valid():
+            if new_obj.number == u'ИУ1' or u'ИУ2' or u'ИУ3' or u'ИУ4' or u'ИУ5':
+
+                kafedra = Department.objects.create()
+                kafedra.name = u'Кафедра'
+                kafedra.number = u'ИУ5'
+                kafedra.phone_number = u'+4953453434'
+                prototype = Prototype()                                 #PROTOTYPE FOR Kafedra Department
+                prototype.register_object('kafedra', kafedra)
+                depart_obj = prototype.clone('kafedra', number = new_obj.number,
+                                             phone_number = new_obj.phone_number)
+
+
+            else:
+                depart_obj = our_form.save(commit=False)
+            depart_obj.save()
+            context = {
+                'depart_obj': depart_obj,
+                'form': our_form
+            }
+            return render(request, 'main1.2.html')
+        else:
+            return HttpResponse("Error!")
+
+    else:
+        depart_form = DepartmentForm()
+        context = {
+            'form': depart_form
+        }
+        return render(request, 'new_depart.html', context)
+
 def depart(request):
-    return render(request, 'main1.2.html')
+    departs = Department.objects.all()
+    context = {
+        'departs': departs
+
+    }
+    return render(request, 'main1.2.html',context)
 
 def permit(request):
     return render(request, 'new_permit.html')
@@ -57,6 +101,17 @@ def request(request,pk):
         }
     return render(request, 'request.html', context)
 
+def creation(request, form):
+    if request.method == "POST":
+        our_form = RequestForm(request.POST)
+        if our_form.is_valid():
+            our_request = our_form.save(commit=False)
+            our_request.save()
+        else:
+            return HttpResponse("Error!")
+
+    return our_request
+
 def new_request(request):
     if request.method == "POST":
         our_form = RequestForm(request.POST)
@@ -65,8 +120,12 @@ def new_request(request):
             our_request = our_form.save(commit=False)
             our_request.save()
 
-            pk = our_request.id
-            return render(request, 'request.html', pk )
+
+            context = {
+                'reqobject': our_request,
+                'form': our_form
+            }
+            return render(request, 'request.html', context )
         else:
             return HttpResponse("Error!")
 
@@ -74,6 +133,7 @@ def new_request(request):
         request_form = RequestForm()
         context = {
             'form': request_form
+
         }
         return render(request, 'new_request.html',context)
 

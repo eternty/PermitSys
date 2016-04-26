@@ -8,14 +8,14 @@
     <li><a href="depart">Отделы и Должности</a></li>
 {% endblock %}
 {% block butn-before-table %}
-    <h1>Форма заявки</h1>
+    <h1>Форма отдела</h1>
 {% endblock %}
 {% block bodycontent %}
-    <form action="/new_request" method="post">
-         <table class="table table-responsive">
-             {% csrf_token %}
-             {{ form.as_table }}
-         </table>
-         <input type="submit" value="Сохранить" />
+    <form action="/new_depart" method="post">
+            <table class="table table-responsive">
+                {% csrf_token %}
+                {{ form.as_table }}
+            </table>
+            <input type="submit" value="Submit" />
      </form>
 {% endblock %}

@@ -6,15 +6,30 @@
     <li><a href="request_sys">Заявки</a></li>
     <li class="active"><a href="depart">Отделы и Должности</a></li>
 {% endblock %}
+{% block butn-before-table %}
+    <a class="btn btn-default" href="new_depart" role="button">Добавить отдел</a>
+{% endblock %}
 {% block thead %}
     <th>Отдел</th>
-    <th>Руководитель отдела</th>
-    <th>Должность</th>
-    <th>ФИО сотрудника</th>
+    <th>Тип</th>
+    <th>Название</th>
     <th>Телефон отдела</th>
+
 {% endblock %}
 {% block trow %}
+    {% for dep in departs %}
+    <tr>
+            <td>{{ dep.id }}</td>
+            <td>{{ dep.name }}</td>
+            <td>{{ dep.number }}</td>
+            <td>{{ dep.phone_number }}</td>
+    </tr>
+    {% empty %}
+        <tr>
+            <td colspan="6">We have no departments yet </td>
+        </tr>
 
+    {% endfor %}
 {% endblock %}
 
   
