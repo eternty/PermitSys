@@ -17,10 +17,10 @@ def request_sys(request):
     context = {
         'requests': requests,
     }
-    return render (request, 'main1.1.html', context)
+    return render (request, 'req_system_requests.html', context)
 
 def permit_sys(request):
-    return render(request, 'main2.1.html')
+    return render(request, 'permit_system_requests.html')
 
 def new_depart(request):
     if request.method == "POST":
@@ -66,7 +66,7 @@ def depart(request):
         'departs': departs
 
     }
-    return render(request, 'main1.2.html',context)
+    return render(request, 'req_system_departs.html', context)
 
 def permit(request):
     return render(request, 'new_permit.html')
@@ -163,17 +163,36 @@ def request_proceed(request,pk,choice):
     context = {
         'requests': requests,
     }
-    return render(request,'main1.1.html', context)
+    return render(request, 'req_system_requests.html', context)
 
 
 def person(request):
     return render(request, 'new_person.html')
 
 def permit_sys_req(request):
-    return render(request, 'main2.1.html')
+    requests = MyRequest.objects.filter(status = 'APR')
+    context={
+        'requests':requests,
+    }
+
+    return render(request, 'permit_system_requests.html', context)
+
+
+def permit_sys_сontrol(request, pk, choice):            #SERVICE LAYER FOR PERMIT_SYS_REQ
+    if choice == u'1':
+
+        #open request page
+    if choice == u'2':
+        #create permit
+    requests = MyRequest.objects.filter(status='APR')
+    context = {
+        'requests': requests,
+    }
+    else:
+        return render(request, 'permit_system_requests.html', context)
 
 def permit_sys_permits(request):
-    return render(request, 'main2.2.html')
+    return render(request, 'permit_system_permits.html')
 
 def permit_sys_persons(request):
-    return render(request, 'main2.3.html')
+    return render(request, 'permit_system_persons.html')

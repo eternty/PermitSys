@@ -1,0 +1,47 @@
+{% extends "base_console.html" %}
+{% block title %}АСУ изготовления пропусков{% endblock %}
+{% block nav_brand %}Подсистема подготовки пропусков{% endblock %}
+{% block navbar-menu %}
+    <li class="active"><a href="permit_sys_req">Заявки</a></li>
+    <li><a href="permit_sys_permits">Пропуска</a></li>
+    <li><a href="permit_sys_persons">Персоны</a></li>
+{% endblock %}
+{% block thead %}
+    <th>№</th>
+    <th>Фамилия</th>
+    <th>Имя</th>
+    <th>Отчество</th>
+    <th>Должность</th>
+    <th>Отдел</th>
+    <th>Дата</th>
+    <th>Срок действия</th>
+    <th>Статус</th>
+    <th>Создать пропуск</th>
+
+{% endblock %}
+
+{% block trow %}
+    {% for req in requests %}
+    <tr >
+
+            <td style="cursor: pointer" onclick="window.location.replace('/permit_sys_сontrol/{{ req.id }}/1')">{{ req.id }}</td>
+            <td>{{ req.lastname }}</td>
+            <td>{{ req.firstname }}</td>
+            <td>{{ req.position }}</td>
+            <td>{{ req.department }}</td>
+            <td>{{ req.patronymic }}</td>
+            <td>{{ req.registration_date}}</td>
+
+            <td>{{ req.status }}</td>
+            <td>        <!--DOMAIN LOGIC-->
+                <a class="btn btn-default" href= '/permit_sys_сontrol/{{ req.id }}/2'>Создать пропуск</a>
+            </td>
+
+    </tr>
+    {% empty %}
+        <tr>
+            <td colspan="6">У нас нет активных заявок</td>
+        </tr>
+
+    {% endfor %}
+{% endblock %}

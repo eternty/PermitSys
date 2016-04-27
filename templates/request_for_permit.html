@@ -1,0 +1,20 @@
+{% extends "base_nav.html"%}
+{% block title  %}АСУ заявок и пропусков{% endblock %}
+{% block nav_brand %}Подсистема подготовки пропусков{% endblock %}
+{% block navbar-menu %}
+    <li class="active"><a href="permit_sys_req">Заявки</a></li>
+    <li><a href="permit_sys_permits">Пропуска</a></li>
+    <li><a href="permit_sys_persons">Персоны</a></li>
+{% endblock %}
+{% block bodycontent %}
+     <form action="/request_for_permit/{{ reqobject.id }}/" method="post">
+         <table class="table table-responsive ">
+             {% csrf_token %}
+             {{ form.as_table }}
+         </table>
+         <input type="submit" value="Сохранить" />
+     </form>
+    <ul></ul>
+
+
+{% endblock %}

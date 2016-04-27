@@ -33,9 +33,11 @@ urlpatterns = [
     url(r'^new_depart?$', views.new_depart),
     url(r'^new_request?$', views.new_request),
     url(r'^new_permit?$', views.permit),
-    url(r'^new_person?$', views.person),
+    url(r'^new_person?$', views.person, name="new_person"),
     url(r'^request/(?P<pk>[0-9]+)/?$', views.request),
     url(r'^request_proceed/(?P<pk>[0-9]+)/(?P<choice>[0-9]+)?$', views.request_proceed),
+    url(r'^perm_sys_req/(?P<pk>[0-9]+)/(?P<choice>[0-9]+)?$', views.permit_sys_сontrol),
+
 
     url(r'^permit_sys_req?$', views.permit_sys_req),
     url(r'^permit_sys_permits?$', views.permit_sys_permits),
