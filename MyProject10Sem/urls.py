@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^new_permit?$', views.permit),
     url(r'^new_person?$', views.person),
     url(r'^request/(?P<pk>[0-9]+)/?$', views.request),
+    url(r'^request_proceed/(?P<pk>[0-9]+)/(?P<choice>[0-9]+)?$', views.request_proceed),
 
     url(r'^permit_sys_req?$', views.permit_sys_req),
     url(r'^permit_sys_permits?$', views.permit_sys_permits),

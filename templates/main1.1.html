@@ -4,11 +4,11 @@
 
 {% block nav_brand %}Подсистема принятия заявок{% endblock %}
 {% block navbar-menu %}
-    <li class="active"><a href="request_sys">Заявки</a></li>
-    <li><a href="depart">Отделы и Должности</a></li>
+    <li class="active"><a href="/request_sys">Заявки</a></li>
+    <li><a href="/depart">Отделы и Должности</a></li>
 {% endblock %}
 {% block butn-before-table %}
-	<a class="btn btn-default" href="new_request" role="button">Добавить заявку</a>
+	<a class="btn btn-default" href="/new_request" role="button">Добавить заявку</a>
 {% endblock %}
 {% block thead %}
     <th>№</th>
@@ -25,9 +25,9 @@
 
 {% block trow %}
     {% for req in requests %}
-    <tr style="cursor: pointer" onclick="window.location.replace('/request/{{ req.id }}/')">
+    <tr >
 
-            <td>{{ req.id }}</td>
+            <td style="cursor: pointer" onclick="window.location.replace('/request/{{ req.id }}/')">{{ req.id }}</td>
             <td>{{ req.firstname }}</td>
             <td>{{ req.lastname }}</td>
             <td>{{ req.patronymic }}</td>
@@ -35,8 +35,15 @@
             <td>{{ req.position }}</td>
             <td>{{ req.department }}</td>
             <td>{{ req.status }}</td>
-            <td><a class="btn btn-default">Подтвердить</a></td>
-            <td><a class="btn btn-default">Отклонить</a></td>
+            <td>        <!--DOMAIN LOGIC-->
+                <a class="btn btn-default" href= '/request_proceed/{{ req.id }}/1'>Подтвердить</a>
+            </td>
+            <td style="cursor: pointer" onclick="window.location.replace('/request_proceed/{{ req.id }}/2')">
+                <a class="btn btn-default">Отклонить</a>
+            </td>
+            <td>
+                <a class="btn btn-default" href= '/request_proceed/{{ req.id }}/3'>Удалить</a>
+            </td>
     </tr>
     {% empty %}
         <tr>

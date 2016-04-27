@@ -1,5 +1,5 @@
 import copy
-from RequestSysApplication.models import Request, Department
+from RequestSysApplication.models import MyRequest, Department
 
 class Prototype:
     def __init__(self):

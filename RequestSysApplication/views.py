@@ -1,9 +1,10 @@
 import copy
 
 from django.http import HttpResponse
-from django.shortcuts import render
-from RequestSysApplication.models import Request, Department
-from RequestSysApplication.forms import RequestForm, DepartmentForm, DepForm
+from django.shortcuts import render,redirect
+from RequestSysApplication.models import MyRequest, Department
+from RequestSysApplication.forms import RequestForm, NewRequestForm
+from RequestSysApplication.forms import DepartmentForm, DepForm
 from RequestSysApplication.prototype import Prototype
 
 # Create your views here.
@@ -12,7 +13,7 @@ def index(request):
 
 def request_sys(request):
     #usertype = request.user.usertype.name
-    requests = Request.objects.exclude(status ="DON")
+    requests = MyRequest.objects.exclude(status ="DON")
     context = {
         'requests': requests,
     }
@@ -25,9 +26,9 @@ def new_depart(request):
     if request.method == "POST":
         our_form = DepartmentForm(request.POST)
 
-        new_obj = our_form.save(commit=False)
+       # new_obj = our_form.save(commit=False)
         if our_form.is_valid():
-            if new_obj.number == u'ИУ1' or u'ИУ2' or u'ИУ3' or u'ИУ4' or u'ИУ5':
+            if our_form.cleaned_data['number'] == u'ИУ1' or u'ИУ2' or u'ИУ3' or u'ИУ4' or u'ИУ5':
 
                 kafedra = Department.objects.create()
                 kafedra.name = u'Кафедра'
@@ -35,8 +36,8 @@ def new_depart(request):
                 kafedra.phone_number = u'+4953453434'
                 prototype = Prototype()                                 #PROTOTYPE FOR Kafedra Department
                 prototype.register_object('kafedra', kafedra)
-                depart_obj = prototype.clone('kafedra', number = new_obj.number,
-                                             phone_number = new_obj.phone_number)
+                depart_obj = prototype.clone('kafedra', number = our_form.cleaned_data['number'],
+                                             phone_number = our_form.cleaned_data['phone_number'])
 
 
             else:
@@ -46,7 +47,9 @@ def new_depart(request):
                 'depart_obj': depart_obj,
                 'form': our_form
             }
-            return render(request, 'main1.2.html')
+            return redirect(request, depart)
+
+
         else:
             return HttpResponse("Error!")
 
@@ -70,21 +73,11 @@ def permit(request):
 
 def request(request,pk):
     if request.method== 'POST':
-        our_request = Request.objects.get(id=pk)
-
+        our_request = MyRequest.objects.get(id=pk)
         our_form = RequestForm(request.POST)
         if our_form.is_valid():
-            our_request.firstname = our_form.cleaned_data['firstname']
-            our_request.lastname = our_form.cleaned_data['lastname']
-            our_request.patronymic = our_form.cleaned_data['patronymic']
-            our_request.department = our_form.cleaned_data['department']
-            our_request.position = our_form.cleaned_data['position']
-            our_request.end_date = our_form.cleaned_data['end_date']
-            our_request.passport_number = our_form.cleaned_data['passport_number']
-            our_request.passport_serial = our_form.cleaned_data['passport_serial']
-            our_request.phone_number = our_form.cleaned_data['phone_number']
-            our_request.status = our_form.cleaned_data['status']
-            our_request.save()
+            our_request.update_info(our_form)
+
             request_form = RequestForm(instance=our_request)
             context = {
                 'reqobject': our_request,
@@ -93,7 +86,7 @@ def request(request,pk):
         else:
             return HttpResponse("Error!")
     else:
-        reqobject = Request.objects.get(id=pk)
+        reqobject = MyRequest.objects.get(id=pk)
         our_form = RequestForm(instance=reqobject)
         context={
             'reqobject': reqobject,
@@ -101,41 +94,77 @@ def request(request,pk):
         }
     return render(request, 'request.html', context)
 
-def creation(request, form):
-    if request.method == "POST":
-        our_form = RequestForm(request.POST)
-        if our_form.is_valid():
-            our_request = our_form.save(commit=False)
-            our_request.save()
-        else:
-            return HttpResponse("Error!")
+def request_creation(request, form):
+    form = RequestForm(request.POST)
+    if form.is_valid():
+        our_request = form.save(commit=False)
+        our_request.save()
+    else:
+        return None
 
     return our_request
 
+
+def parse_form(request, our_form):
+    lastname = our_form.cleaned_data['lastname'],
+    firstname = our_form.cleaned_data['firstname'],
+    patronymic = our_form.cleaned_data['patronymic'],
+    department = our_form.cleaned_data['department'],
+    position = our_form.cleaned_data['position'],
+    passport_serial = our_form.cleaned_data['passport_serial'],
+    passport_number = our_form.cleaned_data['passport_number'],
+    phone_number = our_form.cleaned_data['phone_number'],
+    end_date = our_form.cleaned_data['end_date']
+    context = {
+        'lastname': lastname,
+        'firstname': firstname,
+        'patronymic': patronymic,
+        'passport_number': passport_number,
+        'passport_serial': passport_serial,
+        'phone_number': phone_number,
+        'department': department,
+        'position': position,
+        'end_date': end_date
+    }
+    return context
+
+
 def new_request(request):
     if request.method == "POST":
-        our_form = RequestForm(request.POST)
+
+        our_form = NewRequestForm(request.POST)
         if our_form.is_valid():
 
-            our_request = our_form.save(commit=False)
-            our_request.save()
-
-
-            context = {
+            our_request = MyRequest.creation(our_form)
+            context2 = {
                 'reqobject': our_request,
                 'form': our_form
             }
-            return render(request, 'request.html', context )
+            return render(request, 'request.html', context2)
         else:
-            return HttpResponse("Error!")
+            HttpResponse ("Error!")
 
     else:
-        request_form = RequestForm()
+        request_form = NewRequestForm()
         context = {
             'form': request_form
-
         }
-        return render(request, 'new_request.html',context)
+        return render(request, 'new_request.html', context)
+
+
+def request_proceed(request,pk,choice):
+    reqobject = MyRequest.objects.get(id = pk)
+    if choice==u'3':
+        MyRequest.deletion(pk)
+    else:
+        reqobject.request_proceed(choice)
+
+    requests = MyRequest.objects.exclude(status="DON")
+    context = {
+        'requests': requests,
+    }
+    return render(request,'main1.1.html', context)
+
 
 def person(request):
     return render(request, 'new_person.html')

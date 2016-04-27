@@ -19,4 +19,4 @@ class RequestAdmin(admin.ModelAdmin):
 
 admin.site.register(Position, PositionAdmin),
 admin.site.register(Department, DepartmentAdmin),
-admin.site.register(Request, RequestAdmin)
+admin.site.register(MyRequest, RequestAdmin)
