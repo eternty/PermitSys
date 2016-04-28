@@ -1,35 +1,73 @@
-{% extends "base_console.html" %}
+{% extends "base_nav.html" %}
 {% block title %}АСУ изготовления пропусков{% endblock %}
 
 {% block nav_brand %}Подсистема принятия заявок{% endblock %}
 {% block navbar-menu %}
-    <li><a href="request_sys">Заявки</a></li>
-    <li class="active"><a href="depart">Отделы и Должности</a></li>
+    <li><a href="/request_sys">Заявки</a></li>
+    <li class="active"><a href="/depart">Отделы и Должности</a></li>
 {% endblock %}
-{% block butn-before-table %}
-    <a class="btn btn-default" href="new_depart" role="button">Добавить отдел</a>
-{% endblock %}
-{% block thead %}
-    <th>Отдел</th>
-    <th>Тип</th>
-    <th>Название</th>
-    <th>Телефон отдела</th>
+{% block bodycontent %}
+    <br/>
+    <a class="btn btn-default" href="/new_depart" role="button">Добавить отдел</a>
+    <a class = "btn btn-default" href ="/new_position" role = "button">Добавить должность</a>
+    <br/><br/>
+    <div class="row-fluid">
+        <div class="col-md-6">
+            <table class="table table-hover table-responsive">
+                <thead>
+                    <tr class="active">
+                        <th>Отдел</th>
+                        <th>Тип</th>
+                        <th>Название</th>
+                        <th>Телефон отдела</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dep in departs %}
+                        <tr>
+                            <td>{{ dep.id }}</td>
+                            <td>{{ dep.name }}</td>
+                            <td>{{ dep.number }}</td>
+                            <td>{{ dep.phone_number }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6">We have no departments yet </td>
+                        </tr>
 
-{% endblock %}
-{% block trow %}
-    {% for dep in departs %}
-    <tr>
-            <td>{{ dep.id }}</td>
-            <td>{{ dep.name }}</td>
-            <td>{{ dep.number }}</td>
-            <td>{{ dep.phone_number }}</td>
-    </tr>
-    {% empty %}
-        <tr>
-            <td colspan="6">We have no departments yet </td>
-        </tr>
+                    {% endfor %}
 
-    {% endfor %}
+                 </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-6">
+                <table class="table table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Номер</th>
+                            <th>Название</th>
+                            <th>Информация</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pos in positions %}
+                            <tr style="cursor: pointer" onclick="window.location.replace('/position/{{ pos.id }}/')">
+                                <td>{{ pos.id }}</td>
+                                <td>{{ pos.name }}</td>
+                                <td>{{ pos.info }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="6">Нет должностей </td>
+                            </tr>
+                        {% endfor %}
+                     </tbody>
+                </table>
+            </div>
+
+    </div>
+
 {% endblock %}
 
   

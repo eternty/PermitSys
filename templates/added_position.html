@@ -1,0 +1,29 @@
+{% extends "base_console.html" %}
+{% block title%}АСУ изготовления пропусков{% endblock %}
+
+
+{% block nav_brand %}Подсистема принятия заявок{% endblock %}
+{% block navbar-menu %}
+    <li class="active"><a href="/request_sys">Заявки</a></li>
+    <li><a href="/depart">Отделы и Должности</a></li>
+{% endblock %}
+{% block butn-before-table %}
+	<a class="btn btn-default" href="/depart" role="button">Назад</a>
+    <br/><br/><br/><br/>
+    <h3>Должность успешно добавлена</h3><br/><br/>
+{% endblock %}
+
+{% block thead %}
+    <th>№</th>
+    <th>Название</th>
+    <th>Описание</th>
+
+{% endblock %}
+
+{% block trow %}
+    <tr >
+        <td>{{ id }}</td>
+        <td>{{ name }}</td>
+        <td>{{ info }}</td>
+    </tr>
+{% endblock %}

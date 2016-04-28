@@ -15,4 +15,21 @@ class PositionGateWay(object):                         #GATEWAY
         new_position = Position()
         new_position.name = name
         new_position.info = info
-        return new_position
+        new_position.save()
+        return new_position.id
+
+    @staticmethod
+    def get(id):
+        position = Position.objects.get(id =id)
+        fieldes = {
+            'name': position.name,
+            'info': position.info
+        }
+        return fieldes
+    @staticmethod
+    def update_info(id,name,info):
+        position = Position.objects.get(id=id)
+        position.name = name
+        position.info = info
+        position.save()
+        return id

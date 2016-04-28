@@ -1,0 +1,21 @@
+{% extends "base_nav.html" %}
+{% block title%}АСУ изготовления пропусков{% endblock %}
+
+
+{% block nav_brand %}Подсистема принятия заявок{% endblock %}
+{% block navbar-menu %}
+    <li class="active"><a href="/request_sys">Заявки</a></li>
+    <li><a href="/depart">Отделы и Должности</a></li>
+{% endblock %}
+{% block butn-before-table %}
+    <h1>Форма отдела</h1>
+{% endblock %}
+{% block bodycontent %}
+    <form action="/new_position" method="post">
+            <table class="table table-responsive">
+                {% csrf_token %}
+                {{ form.as_table }}
+            </table>
+            <input type="submit" value="Submit" />
+     </form>
+{% endblock %}

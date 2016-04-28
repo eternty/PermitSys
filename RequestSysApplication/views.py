@@ -4,11 +4,12 @@ from MyPermitSysApplication.classes import PermitSystemServiceLayer, PersonGateW
 from MyPermitSysApplication.models import Permit
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
-from RequestSysApplication.models import MyRequest, Department
-from RequestSysApplication.forms import RequestForm, NewRequestForm
+from RequestSysApplication.models import MyRequest, Department, Position
+from RequestSysApplication.forms import RequestForm, NewRequestForm, PositionForm, PositionFForm
 from RequestSysApplication.forms import DepartmentForm, DepForm
 from RequestSysApplication.prototype import Prototype
-from RequestSysApplication.classes import RequestServiceLayer
+from RequestSysApplication.classes import RequestServiceLayer, PositionGateWay
+
 
 # Create your views here.
 def index(request):
@@ -24,6 +25,64 @@ def request_sys(request):
 
 def permit_sys(request):
     return render(request, 'permit_system_requests.html')
+
+def new_position(request):
+    if request.method == "POST":
+        form = PositionForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            info = form.cleaned_data['info']
+            new_positionid = PositionGateWay.create(name,info)
+            fieldes = PositionGateWay.get(new_positionid)            #GATEWAY
+            name = fieldes['name']
+            info =fieldes['info']
+            context ={
+                'name':name,
+                'info': info,
+                'id': new_positionid
+            }
+            return render(request, "added_position.html", context)
+        else:
+            return HttpResponse("Error!")
+
+    else:
+        position_form = PositionForm()
+        context = {
+            'form': position_form
+        }
+        return render(request, 'new_position.html', context)
+def position(request,pk):
+    position = Position.objects.get(id =pk)
+
+    if request.method == 'POST':
+
+        form = PositionForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            info = form.cleaned_data['info']
+            PositionGateWay.update_info(pk,name,info)
+            fieldes = PositionGateWay.get(pk)  # GATEWAY
+            name = fieldes['name']
+            info = fieldes['info']
+            context = {
+                'name': name,
+                'info': info,
+                'id': pk,
+                'form':form
+            }
+            return render(request, "position.html", context)
+        else:
+            return HttpResponse("Error!")
+    else:
+        fields = PositionGateWay.get(pk)
+        name = fields['name']
+        info = fields['info']
+        form = PositionForm(pk,name,info)
+        context = {
+            'id': pk,
+            'form': form
+        }
+    return render(request, 'position.html', context)
 
 def new_depart(request):
     if request.method == "POST":
@@ -65,9 +124,11 @@ def new_depart(request):
 
 def depart(request):
     departs = Department.objects.all()
-    context = {
-        'departs': departs
 
+    positions = Position.objects.all()
+    context = {
+        'departs': departs,
+        'positions': positions
     }
     return render(request, 'req_system_departs.html', context)
 
@@ -169,8 +230,7 @@ def permit_console(request,pk,choice):
     PermitSystemServiceLayer.parse(request, choice, reqobject)
     return PermitSystemServiceLayer.parse(request, choice, reqobject)
 
-def new_view_Denis(request):
-    return permit(request)
+
 
 def person(request):
     return render(request, 'new_person.html')

@@ -16,6 +16,10 @@ class DepForm(forms.Form):
     number = forms.CharField(label=u'Номер отдела', max_length=20)
     phone_number = forms.CharField(label=u'Номер телефона', max_length=15)
 
+class PositionFForm(forms.Form):
+    class Meta:
+        model = Position
+        fiels = [ 'name', 'info']
 
 class RequestForm(ModelForm):
 
@@ -32,3 +36,8 @@ class NewRequestForm(ModelForm):
         model = MyRequest
         fields = ['firstname', 'lastname', 'patronymic', 'passport_serial', 'passport_number', 'phone_number',
                   'position', 'department', 'end_date']
+
+class PositionForm(forms.Form):
+    #id = forms.IntegerField(label=u'Номер')
+    name = forms.CharField(label=u'Название должности', max_length=30)
+    info = forms.CharField(label=u'Описание', max_length=200)
