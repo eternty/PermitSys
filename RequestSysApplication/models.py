@@ -18,15 +18,17 @@ class Department(models.Model):
         verbose_name = u'Отдел'
         verbose_name_plural = u'Отделы'
 
-    def __unicode__(self):
-        return self.name
-
     def __str__(self):
-        return self.name
+        full_name = '%s %s' % (self.name, self.number)
+        return full_name.strip()
 
     def get_name(self):
-        return self.name
+        full_name = '%s %s' % (self.name, self.number)
+        return full_name.strip()
 
+    def __unicode__(self):
+        full_name = '%s %s' % (self.name, self.number)
+        return full_name.strip()
 
 class Position(models.Model):
     name = models.CharField(max_length=30)
@@ -61,10 +63,10 @@ class MyRequest(models.Model):
     # passport_serial = models.IntegerField(validators=[passport_serial_regex], blank=True)
     # passport_number = models.IntegerField(validators=[passport_number_regex], blank=True)
 
-    passport_serial = models.IntegerField(blank=True, null=True)
-    passport_number = models.IntegerField(blank=True, null=True)
+    passport_serial = models.IntegerField(blank=True)
+    passport_number = models.IntegerField(blank=True)
     registration_date = models.DateField(auto_now_add=True, verbose_name="Дата создания заявки")
-    end_date = models.DateField(verbose_name="Срок действия пропуска", null=True, blank=True)
+    end_date = models.DateField(verbose_name="Срок действия пропуска", default='2016-08-30')
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
                                  message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
     phone_number = models.CharField(max_length=15, validators=[phone_regex], blank=True,
@@ -98,9 +100,9 @@ class MyRequest(models.Model):
         return 0
 
     def request_proceed(self,choice):
-        if choice == u'1':
+        if choice == u'approve':
             self.status = u'APR'
-        if choice == u'2':
+        if choice == u'decline':
             self.status = u'DEC'
         self.save()
         return self

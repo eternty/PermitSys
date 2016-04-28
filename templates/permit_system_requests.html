@@ -24,7 +24,7 @@
     {% for req in requests %}
     <tr >
 
-            <td style="cursor: pointer" onclick="window.location.replace('/permit_sys_сontrol/{{ req.id }}/1')">{{ req.id }}</td>
+            <td style="cursor: pointer" onclick="window.location.replace('/permit_sys_сontrol/{{ req.id }}/show')">{{ req.id }}</td>
             <td>{{ req.lastname }}</td>
             <td>{{ req.firstname }}</td>
             <td>{{ req.position }}</td>
@@ -34,13 +34,14 @@
 
             <td>{{ req.status }}</td>
             <td>        <!--DOMAIN LOGIC-->
-                <a class="btn btn-default" href= '/permit_sys_сontrol/{{ req.id }}/2'>Создать пропуск</a>
+                <a class="btn btn-default" href= '/permit_sys_control/{{ req.id }}/createtemp'>Создать временный пропуск</a>
+                <a class="btn btn-default" href= '/permit_sys_control/{{ req.id }}/createcont'>Создать постоянный пропуск</a>
             </td>
 
     </tr>
     {% empty %}
         <tr>
-            <td colspan="6">У нас нет активных заявок</td>
+            <td colspan="6">нет активных заявок</td>
         </tr>
 
     {% endfor %}

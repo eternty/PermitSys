@@ -44,9 +44,13 @@ class Permit(models.Model):
 
     person = models.ForeignKey(Person, related_name="Персона")
     begin_date = models.DateField(auto_now_add=True, verbose_name="Дата создания пропуска")
-    end_date = models.DateField(verbose_name="Срок действия пропуска")
+    end_date = models.DateField(verbose_name="Срок действия пропуска", default='2016-08-30')
     is_active = models.BooleanField(default=True)
-
+    lastname = models.CharField(max_length=20)
+    firstname = models.CharField(max_length=20)
+    patronymic = models.CharField(max_length=20, blank=True, null=True)
+    position = models.ForeignKey(Position, verbose_name="Должность", null=True, blank=True)
+    department = models.ForeignKey(Department, verbose_name="Отдел")
     NEW = 'NEW'
     PRINTED = 'PRI'
     PERSON = 'PER'

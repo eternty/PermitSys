@@ -1,11 +1,14 @@
 import copy
 
+from MyPermitSysApplication.classes import PermitSystemServiceLayer, PersonGateWay
+from MyPermitSysApplication.models import Permit
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from RequestSysApplication.models import MyRequest, Department
 from RequestSysApplication.forms import RequestForm, NewRequestForm
 from RequestSysApplication.forms import DepartmentForm, DepForm
 from RequestSysApplication.prototype import Prototype
+from RequestSysApplication.classes import RequestServiceLayer
 
 # Create your views here.
 def index(request):
@@ -154,17 +157,20 @@ def new_request(request):
 
 def request_proceed(request,pk,choice):
     reqobject = MyRequest.objects.get(id = pk)
-    if choice==u'3':
-        MyRequest.deletion(pk)
-    else:
-        reqobject.request_proceed(choice)
-
+    RequestServiceLayer.parse(choice,reqobject,pk)               #SERVICE LAYER
     requests = MyRequest.objects.exclude(status="DON")
     context = {
         'requests': requests,
     }
     return render(request, 'req_system_requests.html', context)
 
+def permit_console(request,pk,choice):
+    reqobject = MyRequest.objects.get(id=pk)
+    PermitSystemServiceLayer.parse(request, choice, reqobject)
+    return PermitSystemServiceLayer.parse(request, choice, reqobject)
+
+def new_view_Denis(request):
+    return permit(request)
 
 def person(request):
     return render(request, 'new_person.html')
@@ -178,21 +184,13 @@ def permit_sys_req(request):
     return render(request, 'permit_system_requests.html', context)
 
 
-def permit_sys_сontrol(request, pk, choice):            #SERVICE LAYER FOR PERMIT_SYS_REQ
-    if choice == u'1':
-
-        #open request page
-    if choice == u'2':
-        #create permit
-    requests = MyRequest.objects.filter(status='APR')
-    context = {
-        'requests': requests,
-    }
-    else:
-        return render(request, 'permit_system_requests.html', context)
-
 def permit_sys_permits(request):
-    return render(request, 'permit_system_permits.html')
+    permits = Permit.objects.filter.all()
+    PersonGateWay.get_by_id(permit.person)
+    context = {
+        'permits': permits,
+    }
+    return render(request, 'permit_system_permits.html', context)
 
 def permit_sys_persons(request):
     return render(request, 'permit_system_persons.html')

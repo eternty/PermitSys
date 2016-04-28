@@ -36,13 +36,13 @@
             <td>{{ req.department }}</td>
             <td>{{ req.status }}</td>
             <td>        <!--DOMAIN LOGIC-->
-                <a class="btn btn-default" href= '/request_proceed/{{ req.id }}/1'>Подтвердить</a>
+                <a class="btn btn-default" href= '/request_proceed/{{ req.id }}/approve'>Подтвердить</a>
             </td>
-            <td style="cursor: pointer" onclick="window.location.replace('/request_proceed/{{ req.id }}/2')">
+            <td style="cursor: pointer" onclick="window.location.replace('/request_proceed/{{ req.id }}/decline')">
                 <a class="btn btn-default">Отклонить</a>
             </td>
             <td>
-                <a class="btn btn-default" href= '/request_proceed/{{ req.id }}/3'>Удалить</a>
+                <a class="btn btn-default" href= '/request_proceed/{{ req.id }}/delete'>Удалить</a>
             </td>
     </tr>
     {% empty %}

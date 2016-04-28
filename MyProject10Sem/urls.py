@@ -19,7 +19,7 @@ from django.contrib import admin
 from RequestSysApplication import views
 #from MyPermitSysApplication import views
 
-
+from RequestSysApplication.views import new_view_Denis
 urlpatterns = [
     #url(r'^signin/?$', views.signin),
     url(r'^$', views.index),
@@ -27,7 +27,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^request_sys?$', views.request_sys),
     #url(r'^request/(?P<pk>[0-9]+)/request_sys?$', views.request_sys),
-    url(r'^permit_sys?$', views.permit_sys),
 
     url(r'^depart?$', views.depart),
     url(r'^new_depart?$', views.new_depart),
@@ -35,9 +34,8 @@ urlpatterns = [
     url(r'^new_permit?$', views.permit),
     url(r'^new_person?$', views.person, name="new_person"),
     url(r'^request/(?P<pk>[0-9]+)/?$', views.request),
-    url(r'^request_proceed/(?P<pk>[0-9]+)/(?P<choice>[0-9]+)?$', views.request_proceed),
-    url(r'^perm_sys_req/(?P<pk>[0-9]+)/(?P<choice>[0-9]+)?$', views.permit_sys_сontrol),
-
+    url(r'^request_proceed/(?P<pk>[0-9]+)/(?P<choice>[a-z]+)?$', views.request_proceed),
+    url(r'^permit_sys_control/(?P<pk>[0-9]+)/(?P<choice>[a-z]+)?$', views.permit_console),
 
     url(r'^permit_sys_req?$', views.permit_sys_req),
     url(r'^permit_sys_permits?$', views.permit_sys_permits),

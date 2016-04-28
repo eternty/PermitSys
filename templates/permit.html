@@ -2,32 +2,33 @@
 {% block title  %}АСУ заявок и пропусков{% endblock %}
 {% block nav_brand %}Подсистема подготовки пропусков{% endblock %}
 {% block navbar-menu %}
-    <li class="active"><a href="permit_sys_req">Заявки</a></li>
-    <li><a href="permit_sys_permits">Пропуска</a></li>
-    <li><a href="permit_sys_persons">Персоны</a></li>
+    <li class="active"><a href="/permit_sys_req">Заявки</a></li>
+    <li><a href="/permit_sys_permits">Пропуска</a></li>
+    <li><a href="/permit_sys_persons">Персоны</a></li>
 {% endblock %}
 {% block bodycontent %}
-     <form action="/request_for_permit/{{ reqobject.id }}/" method="post">
-         <table class="table table-responsive ">
-             <tr>
+    <br/><br/><br/>
+     <table>
+
+        <tr>
             <td>Фамилия</td>
-            <td>{{ lastname }}</td>
+            <td>{{ permit.lastname }}</td>
         </tr>
         <tr>
             <td>Имя</td>
-            <td>{{ firstname }}</td>
+            <td>{{ permit.firstname }}</td>
         </tr>
         <tr>
             <td>Отчество</td>
-            <td>{{ patronymic }}</td>
+            <td>{{ permit.patronymic }}</td>
         </tr>
          <tr>
             <td>Должность</td>
-            <td>{{ position }}</td>
+            <td>{{ permit.position }}</td>
         </tr>
         <tr>
             <td>Отдел</td>
-            <td>{{ department }}</td>
+            <td>{{ permit.department }}</td>
         </tr>
         <tr>
             <td>Тип</td>
@@ -41,10 +42,8 @@
             <td>Cрок действия</td>
             <td>{{ permit.end_date }}</td>
         </tr>
-         </table>
-         <input type="submit" value="Сохранить" />
-     </form>
-    <ul></ul>
+
+     </table>
 
 
 {% endblock %}
