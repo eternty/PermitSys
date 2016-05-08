@@ -1,4 +1,5 @@
 import abc
+from django.http import HttpResponse, HttpResponseRedirect
 
 from MyPermitSysApplication.models import Permit, Person
 from RequestSysApplication.models import MyRequest
@@ -122,6 +123,7 @@ class PermitSystemServiceLayer(object):               #SERVICE_LAYER
         if choice == u'show':
             return render(request, 'request_for_permit.html',reqobject)
         if choice == u'createtemp':
+
             id = PersonGateWay.create(reqobject)
             begin= reqobject.registration_date
             end = reqobject.end_date
@@ -133,10 +135,9 @@ class PermitSystemServiceLayer(object):               #SERVICE_LAYER
             permit = TemporaryPermitEmplementation.create_permit(id, begin, end,lastname,firstname,patronymic, position, department)
 
             context = {
-
                 'permit': permit
             }
-            return render(request, 'permit.html', context)
+            return HttpResponseRedirect('permit')
 
         if choice == u'createcont':
             id = PersonGateWay.create(reqobject)                #ROW DATA GATEWAY

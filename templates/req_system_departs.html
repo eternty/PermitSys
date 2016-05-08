@@ -3,17 +3,18 @@
 
 {% block nav_brand %}Подсистема принятия заявок{% endblock %}
 {% block navbar-menu %}
-    <li><a href="/request_sys">Заявки</a></li>
-    <li class="active"><a href="/depart">Отделы и Должности</a></li>
+    <li><a href="request_sys">Заявки</a></li>
+    <li class="active"><a href="depart">Отделы и Должности</a></li>
 {% endblock %}
 {% block bodycontent %}
     <br/>
-    <a class="btn btn-default" href="/new_depart" role="button">Добавить отдел</a>
-    <a class = "btn btn-default" href ="/new_position" role = "button">Добавить должность</a>
+    <a class="btn btn-default" href="new_depart" role="button">Добавить отдел</a>
+    <a class = "btn btn-default" href ="new_position" role = "button">Добавить должность</a>
     <br/><br/>
     <div class="row-fluid">
         <div class="col-md-6">
-            <table class="table table-hover table-responsive">
+            <table class="table table-hover table-responsive pre-scrollable">
+                <caption class="text-center">Отделы</caption>
                 <thead>
                     <tr class="active">
                         <th>Отдел</th>
@@ -43,6 +44,7 @@
 
         <div class="col-md-6">
                 <table class="table table-hover table-responsive">
+                    <caption class="text-center">Должности</caption>
                     <thead>
                         <tr>
                             <th>Номер</th>
@@ -52,7 +54,7 @@
                     </thead>
                     <tbody>
                         {% for pos in positions %}
-                            <tr style="cursor: pointer" onclick="window.location.replace('/position/{{ pos.id }}/')">
+                            <tr style="cursor: pointer" onclick="window.location.replace('position/{{ pos.id }}/')">
                                 <td>{{ pos.id }}</td>
                                 <td>{{ pos.name }}</td>
                                 <td>{{ pos.info }}</td>

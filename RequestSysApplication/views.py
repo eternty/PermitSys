@@ -2,13 +2,13 @@ import copy
 
 from MyPermitSysApplication.classes import PermitSystemServiceLayer, PersonGateWay
 from MyPermitSysApplication.models import Permit
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
 from RequestSysApplication.models import MyRequest, Department, Position
 from RequestSysApplication.forms import RequestForm, NewRequestForm, PositionForm, PositionFForm
 from RequestSysApplication.forms import DepartmentForm, DepForm
 from RequestSysApplication.prototype import Prototype
-from RequestSysApplication.classes import RequestServiceLayer, PositionGateWay
+from RequestSysApplication.classes import RequestServiceLayer, PositionGateWay, PositionGateway
 
 
 # Create your views here.
@@ -23,25 +23,20 @@ def request_sys(request):
     }
     return render (request, 'req_system_requests.html', context)
 
-def permit_sys(request):
-    return render(request, 'permit_system_requests.html')
-
 def new_position(request):
     if request.method == "POST":
         form = PositionForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            info = form.cleaned_data['info']
-            new_positionid = PositionGateWay.create(name,info)
-            fieldes = PositionGateWay.get(new_positionid)            #GATEWAY
-            name = fieldes['name']
-            info =fieldes['info']
-            context ={
-                'name':name,
-                'info': info,
-                'id': new_positionid
+            position_object = PositionGateway(name=form.cleaned_data['name'],
+                               info=form.cleaned_data['info'])
+            position_object.save()
+            departs = Department.objects.all()
+            positions = Position.objects.all()
+            context = {
+                'departs': departs,
+                'positions': positions
             }
-            return render(request, "added_position.html", context)
+            return render(request, 'req_system_departs.html', context)
         else:
             return HttpResponse("Error!")
 
@@ -51,23 +46,20 @@ def new_position(request):
             'form': position_form
         }
         return render(request, 'new_position.html', context)
+
 def position(request,pk):
-    position = Position.objects.get(id =pk)
 
     if request.method == 'POST':
-
         form = PositionForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            info = form.cleaned_data['info']
-            PositionGateWay.update_info(pk,name,info)
-            fieldes = PositionGateWay.get(pk)  # GATEWAY
-            name = fieldes['name']
-            info = fieldes['info']
+            position_id = pk
+            position = PositionGateway.find_by_id(position_id)
+            position.name = form.cleaned_data['name']
+            position.info = form.cleaned_data['info']
+            position.save()
             context = {
-                'name': name,
-                'info': info,
-                'id': pk,
+                'name': position.name,
+                'info': position.info,
                 'form':form
             }
             return render(request, "position.html", context)
@@ -81,6 +73,7 @@ def position(request,pk):
         context = {
             'id': pk,
             'form': form
+            'name':
         }
     return render(request, 'position.html', context)
 
@@ -90,7 +83,7 @@ def new_depart(request):
 
        # new_obj = our_form.save(commit=False)
         if our_form.is_valid():
-            if our_form.cleaned_data['number'] == u'ИУ1' or u'ИУ2' or u'ИУ3' or u'ИУ4' or u'ИУ5':
+            if our_form.cleaned_data['number'] == u'ИУ1' or u'ИУ2' or u'ИУ3' or u'ИУ4' or u'ИУ5' or u'ИУ6':
 
                 kafedra = Department.objects.create()
                 kafedra.name = u'Кафедра'
@@ -105,11 +98,14 @@ def new_depart(request):
             else:
                 depart_obj = our_form.save(commit=False)
             depart_obj.save()
+            departs = Department.objects.all()
+
+            positions = Position.objects.all()
             context = {
-                'depart_obj': depart_obj,
-                'form': our_form
+                'departs': departs,
+                'positions': positions
             }
-            return redirect(request, depart)
+            return render(request, 'req_system_departs.html', context)
 
 
         else:
@@ -131,9 +127,6 @@ def depart(request):
         'positions': positions
     }
     return render(request, 'req_system_departs.html', context)
-
-def permit(request):
-    return render(request, 'new_permit.html')
 
 def request(request,pk):
     if request.method== 'POST':
@@ -168,7 +161,6 @@ def request_creation(request, form):
 
     return our_request
 
-
 def parse_form(request, our_form):
     lastname = our_form.cleaned_data['lastname'],
     firstname = our_form.cleaned_data['firstname'],
@@ -192,10 +184,8 @@ def parse_form(request, our_form):
     }
     return context
 
-
 def new_request(request):
     if request.method == "POST":
-
         our_form = NewRequestForm(request.POST)
         if our_form.is_valid():
 
@@ -215,7 +205,6 @@ def new_request(request):
         }
         return render(request, 'new_request.html', context)
 
-
 def request_proceed(request,pk,choice):
     reqobject = MyRequest.objects.get(id = pk)
     RequestServiceLayer.parse(choice,reqobject,pk)               #SERVICE LAYER
@@ -223,34 +212,7 @@ def request_proceed(request,pk,choice):
     context = {
         'requests': requests,
     }
-    return render(request, 'req_system_requests.html', context)
-
-def permit_console(request,pk,choice):
-    reqobject = MyRequest.objects.get(id=pk)
-    PermitSystemServiceLayer.parse(request, choice, reqobject)
-    return PermitSystemServiceLayer.parse(request, choice, reqobject)
+    return HttpResponseRedirect('/requestsystem/')
 
 
 
-def person(request):
-    return render(request, 'new_person.html')
-
-def permit_sys_req(request):
-    requests = MyRequest.objects.filter(status = 'APR')
-    context={
-        'requests':requests,
-    }
-
-    return render(request, 'permit_system_requests.html', context)
-
-
-def permit_sys_permits(request):
-    permits = Permit.objects.filter.all()
-    PersonGateWay.get_by_id(permit.person)
-    context = {
-        'permits': permits,
-    }
-    return render(request, 'permit_system_permits.html', context)
-
-def permit_sys_persons(request):
-    return render(request, 'permit_system_persons.html')

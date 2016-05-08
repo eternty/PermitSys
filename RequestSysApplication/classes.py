@@ -1,5 +1,7 @@
+import datetime
 from RequestSysApplication.models import MyRequest, Position
-
+from MyProject10Sem.gateway import Gateway
+from MyProject10Sem.utils import Connection
 
 class RequestServiceLayer(object):                 #SERVICE LAYER
     @staticmethod
@@ -9,6 +11,7 @@ class RequestServiceLayer(object):                 #SERVICE LAYER
         else:
             reqobject.request_proceed(choice)      #DOMAIN
         return
+
 class PositionGateWay(object):                         #GATEWAY
     @staticmethod
     def create(name, info):
@@ -17,6 +20,11 @@ class PositionGateWay(object):                         #GATEWAY
         new_position.info = info
         new_position.save()
         return new_position.id
+
+    @staticmethod
+    def delete(id):
+        Position.objects.get(id = id).dele()
+        return
 
     @staticmethod
     def get(id):
@@ -33,3 +41,11 @@ class PositionGateWay(object):                         #GATEWAY
         position.info = info
         position.save()
         return id
+
+class PositionGateway(Gateway):
+    TABLE_NAME = 'RequestSysApplication_position'
+    FIELDS = {
+        'id',
+        'name',
+        'info'
+    }

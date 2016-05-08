@@ -16,33 +16,14 @@ Including another URLconf
 from django.conf.urls import url,patterns, include
 from django.contrib import admin
 
+from MyProject10Sem import views
 from RequestSysApplication import views
-#from MyPermitSysApplication import views
-
 
 urlpatterns = [
     #url(r'^signin/?$', views.signin),
     url(r'^$', views.index),
-    #url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/', admin.site.urls),
-    url(r'^request_sys?$', views.request_sys),
-    #url(r'^request/(?P<pk>[0-9]+)/request_sys?$', views.request_sys),
-
-    url(r'^depart?$', views.depart),
-    url(r'^new_depart?$', views.new_depart),
-    url(r'^new_request?$', views.new_request),
-    url(r'^new_permit?$', views.permit),
-    url(r'^new_person?$', views.person, name="new_person"),
-    url(r'^new_position?$', views.new_position),
-    url(r'^request/(?P<pk>[0-9]+)/?$', views.request),
-    url(r'^request_proceed/(?P<pk>[0-9]+)/(?P<choice>[a-z]+)?$', views.request_proceed),
-    url(r'^permit_sys_control/(?P<pk>[0-9]+)/(?P<choice>[a-z]+)?$', views.permit_console),
-
-    url(r'^position/(?P<pk>[0-9]+)/?$', views.position),
-
-    url(r'^permit_sys_req?$', views.permit_sys_req),
-    url(r'^permit_sys_permits?$', views.permit_sys_permits),
-    url(r'^permit_sys_persons?$', views.permit_sys_persons),
-    #url(r'^issue_subsystem?$', views.issue_subsystem)
+    url(r'^requestsystem/', include('RequestSysApplication.urls')),
+    url(r'^permitsystem/', include('MyPermitSysApplication.urls')),
 
 ]

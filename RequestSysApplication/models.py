@@ -74,7 +74,6 @@ class MyRequest(models.Model):
     department = models.ForeignKey(Department, verbose_name="Отдел", null=True)
     position = models.ForeignKey(Position, verbose_name="Должность", null=True)
 
-
     #def creation(lastname, firstname, patronymic, department, position, passport_number, passport_serial, phone_number, end_date):
         #reqobject = Request.objects.create()
         #reqobject = MyRequest.objects.create()

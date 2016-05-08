@@ -2,11 +2,11 @@
 {% block title  %}АСУ заявок и пропусков{% endblock %}
 {% block nav_brand %}Подсистема принятия заявок{% endblock %}
 {% block navbar-menu %}
-    <li class="active"><a href="/request_sys">Заявки</a></li>
-    <li><a href="/depart">Отделы и Должности</a></li>
+    <li class="active"><a href="/requestsystem">Заявки</a></li>
+    <li><a href="depart">Отделы и Должности</a></li>
 {% endblock %}
 {% block bodycontent %}
-     <form action="/request/{{ reqobject.id }}/" method="post">
+     <form action="request/{{ reqobject.id }}/" method="post">
          <table class="table table-responsive">
              {% csrf_token %}
              {{ form.as_table }}

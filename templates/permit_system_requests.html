@@ -2,9 +2,9 @@
 {% block title %}АСУ изготовления пропусков{% endblock %}
 {% block nav_brand %}Подсистема подготовки пропусков{% endblock %}
 {% block navbar-menu %}
-    <li class="active"><a href="permit_sys_req">Заявки</a></li>
-    <li><a href="permit_sys_permits">Пропуска</a></li>
-    <li><a href="permit_sys_persons">Персоны</a></li>
+    <li class="active"><a href="/permitsystem">Заявки</a></li>
+    <li><a href="/permitsystem/permit_sys_permits">Пропуска</a></li>
+    <li><a href="/permitsystem/permit_sys_persons">Персоны</a></li>
 {% endblock %}
 {% block thead %}
     <th>№</th>
@@ -24,7 +24,7 @@
     {% for req in requests %}
     <tr >
 
-            <td style="cursor: pointer" onclick="window.location.replace('/permit_sys_сontrol/{{ req.id }}/show')">{{ req.id }}</td>
+            <td style="cursor: pointer" onclick="window.location.replace('permit_sys_сontrol/{{ req.id }}/show')">{{ req.id }}</td>
             <td>{{ req.lastname }}</td>
             <td>{{ req.firstname }}</td>
             <td>{{ req.position }}</td>
@@ -34,8 +34,8 @@
 
             <td>{{ req.status }}</td>
             <td>        <!--DOMAIN LOGIC-->
-                <a class="btn btn-default" href= '/permit_sys_control/{{ req.id }}/createtemp'>Создать временный пропуск</a>
-                <a class="btn btn-default" href= '/permit_sys_control/{{ req.id }}/createcont'>Создать постоянный пропуск</a>
+                <a class="btn btn-default" href= 'permit_sys_control/{{ req.id }}/createtemp'>Создать временный пропуск</a>
+                <a class="btn btn-default" href= 'permit_sys_control/{{ req.id }}/createcont'>Создать постоянный пропуск</a>
             </td>
 
     </tr>
