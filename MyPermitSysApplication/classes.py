@@ -5,7 +5,7 @@ from MyPermitSysApplication.models import Permit, Person
 from RequestSysApplication.models import MyRequest
 from django.shortcuts import render
 from datetime import timedelta
-
+from MyProject10Sem.gateway import Gateway
 class PersonGateWay(object):                                        #ROW DATA GATEWAY
     @staticmethod
     def create(reqobject):
@@ -65,7 +65,6 @@ class PersonGateWay(object):                                        #ROW DATA GA
         person = Person.objects.get(id=id)
         return person.position.id
 
-
 class PermitAbstractFabric(metaclass=abc.ABCMeta):                                #ABSTRACTFABRIC
 
     @staticmethod
@@ -115,44 +114,70 @@ class ContinuousPermitEmplementation(PermitAbstractFabric):               #ABSTR
         new_permit.save()
         return new_permit
 
-
+class PersonGateway(Gateway):
+    TABLE_NAME = 'MyPermitSysApplication_person'
+    FIELDS = {
+        'id',
+        'lastname',
+        'firstname',
+        'patronymic',
+        'phone_number',
+        'passport_serial',
+        'passport_number',
+        'position',
+        'department'
+    }
 
 class PermitSystemServiceLayer(object):               #SERVICE_LAYER
     @staticmethod
     def parse(request,choice, reqobject):
         if choice == u'show':
             return render(request, 'request_for_permit.html',reqobject)
-        if choice == u'createtemp':
-
-            id = PersonGateWay.create(reqobject)
-            begin= reqobject.registration_date
-            end = reqobject.end_date
-            lastname = PersonGateWay.get_lastname(id)
-            firstname = PersonGateWay.get_firstname(id)
-            patronymic = PersonGateWay.get_patronymic(id)
-            position = PersonGateWay.get_position(id)
-            department = PersonGateWay.get_department(id)                          #ABSTRACTFABRIC
-            permit = TemporaryPermitEmplementation.create_permit(id, begin, end,lastname,firstname,patronymic, position, department)
-
-            context = {
-                'permit': permit
-            }
-            return HttpResponseRedirect('permit')
-
-        if choice == u'createcont':
-            id = PersonGateWay.create(reqobject)                #ROW DATA GATEWAY
+        else:
+            person = PersonGateway(lastname = reqobject.lastname, firstname = reqobject.firstname, patronymic = reqobject.patronymic,
+                                   position = reqobject.position, department = reqobject.department, passport_serial = reqobject.passport_serial,
+                                   passport_number = reqobject.passport_number, phone_number = reqobject.phone_number)
+            person.save()
             begin = reqobject.registration_date
             end = reqobject.end_date
-            lastname = PersonGateWay.get_lastname(id)             #ROW DATA GATEWAY
+            lastname = PersonGateWay.get_lastname(id)  # ROW DATA GATEWAY
             firstname = PersonGateWay.get_firstname(id)
             patronymic = PersonGateWay.get_patronymic(id)
             position = PersonGateWay.get_position(id)
-            department = PersonGateWay.get_department(id)                       #ABSTRACTFABRIC
-            permit = ContinuousPermitEmplementation.create_permit(id, begin, end,lastname,firstname,patronymic,position,department)
+            department = PersonGateWay.get_department(id)
+            if choice == u'createtemp':                    #ABSTRACTFABRIC
+                permit = TemporaryPermitEmplementation.create_permit(person.id, begin, end,lastname,firstname,patronymic,
+                                                                     position, department)
+                context = {
 
-            context = {
+                    'permit': permit
+                }
+                return render(request, 'permit.html', context)
 
-                'permit':permit
-            }
-            return render(request, 'permit.html', context)
+            if choice == u'createcont':
+                permit = ContinuousPermitEmplementation.create_permit(person.id, begin, end, lastname, firstname, patronymic,
+                                                                  position, department)
+                context = {
 
+                    'permit': permit
+                }
+                return render(request, 'permit.html', context)
+            #return HttpResponseRedirect('permit')
+
+
+class ManagerUIService(object):
+
+   @staticmethod
+   def  permit_sys():
+       from MyPermitSysApplication.views import  permit_sys
+       return HttpResponseRedirect('/permitsystem/permit_sys')
+
+   @staticmethod
+   def get_order_update_view():
+       from cargo_manager.views import OrderUpdateView
+       return OrderUpdateView.as_view()
+
+   @staticmethod
+   def change_order_status_view():
+       from cargo_manager.views import OrderChangeStatusView
+       return OrderChangeStatusView.as_view()

@@ -1,9 +1,12 @@
 import copy
 
-from MyPermitSysApplication.classes import PermitSystemServiceLayer, PersonGateWay
+from MyPermitSysApplication.classes import PermitSystemServiceLayer, PersonGateWay, PersonGateway
+#from MyPermitSysApplication.forms import PersonForm
 from MyPermitSysApplication.models import Permit, Person
+from django.http import HttpResponse
 from django.shortcuts import render
-from RequestSysApplication.models import MyRequest
+from RequestSysApplication.models import MyRequest, Department, Position
+
 
 def permit_sys(request):
     return render(request, 'permit_system_requests.html')
@@ -39,8 +42,66 @@ def permit_console(request,pk,choice):
     PermitSystemServiceLayer.parse(request, choice, reqobject)
     return PermitSystemServiceLayer.parse(request, choice, reqobject)
 
-def person(request):
-    return render(request, 'new_person.html')
+"""def new_person(request):
+    if request.method == "POST":
+        form = PersonForm(request.POST)
+        if form.is_valid():
+            person_object = PersonGateway(lastname=form.cleaned_data['lastname']
+                               )
+            person_object.save()
+            departs = Department.objects.all()
+            positions = Position.objects.all()
+            context = {
+                'departs': departs,
+                'positions': positions
+            }
+            return render(request, 'req_system_departs.html', context)
+        else:
+            return HttpResponse("Error!")
+
+    else:
+        position_form = Form()
+        context = {
+            'form': position_form
+        }
+        return render(request, 'new_position.html', context)
+
+def person(request,pk):
+
+    if request.method == 'POST':
+        form = PersonForm(request.POST)
+        if form.is_valid():
+            position_id = pk
+            position = PersonGateway.find_by_id(position_id)
+            position.name = form.cleaned_data['name']
+            position.info = form.cleaned_data['info']
+            position.save()
+            context = {
+                # 'name': position.name,
+                # 'info': position.info,
+                'form': form
+            }
+            return render(request, 'position.html', context)
+
+        else:
+            return HttpResponse("Error!")
+    else:
+        position_id = pk
+        position = PersonGateway.find_by_id(position_id)
+        data = {
+            'id': pk,
+            'name': position.name,
+            'info': position.info
+        }
+        form = PersonForm(data)
+        position.save()
+        context = {
+            #'name': position.name,
+            #'info': position.info,
+            'form': form,
+            'id': pk
+            }
+        return render(request, 'position.html', context) """
 
 def permit_sys_req(request):
     print(0)
@@ -54,7 +115,7 @@ def permit_sys_req(request):
 
 def permit_sys_permits(request):
     permits = Permit.objects.filter.all()
-    print(1)
+
     context = {
         'permits': permits,
     }

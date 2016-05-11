@@ -18,6 +18,7 @@ class DepForm(forms.Form):
 
 class PositionFForm(forms.Form):
     class Meta:
+
         model = Position
         fiels = [ 'name', 'info']
 
@@ -38,6 +39,6 @@ class NewRequestForm(ModelForm):
                   'position', 'department', 'end_date']
 
 class PositionForm(forms.Form):
-    #id = forms.IntegerField(label=u'Номер')
+    id = forms.IntegerField(label=u'Номер')
     name = forms.CharField(label=u'Название должности', max_length=30)
     info = forms.CharField(label=u'Описание', max_length=200)

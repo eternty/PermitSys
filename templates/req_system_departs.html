@@ -46,7 +46,7 @@
                 <table class="table table-hover table-responsive">
                     <caption class="text-center">Должности</caption>
                     <thead>
-                        <tr>
+                        <tr class="active">
                             <th>Номер</th>
                             <th>Название</th>
                             <th>Информация</th>
@@ -54,10 +54,13 @@
                     </thead>
                     <tbody>
                         {% for pos in positions %}
-                            <tr style="cursor: pointer" onclick="window.location.replace('position/{{ pos.id }}/')">
+                            <tr style="cursor: pointer" onclick="window.location.replace('/requestsystem/position/{{ pos.id }}/')">
                                 <td>{{ pos.id }}</td>
                                 <td>{{ pos.name }}</td>
                                 <td>{{ pos.info }}</td>
+                                <td>        <!--DOMAIN LOGIC-->
+                                    <a class="btn btn-default" href= '/requestsystem/position_delete/{{ pos.id }}/createtemp'>Удалить</a>
+                                </td>
                             </tr>
                         {% empty %}
                             <tr>

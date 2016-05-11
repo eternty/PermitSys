@@ -58,24 +58,36 @@ def position(request,pk):
             position.info = form.cleaned_data['info']
             position.save()
             context = {
-                'name': position.name,
-                'info': position.info,
-                'form':form
+                # 'name': position.name,
+                # 'info': position.info,
+                'form': form
             }
-            return render(request, "position.html", context)
+            return render(request, 'position.html', context)
+
         else:
             return HttpResponse("Error!")
     else:
-        fields = PositionGateWay.get(pk)
-        name = fields['name']
-        info = fields['info']
-        form = PositionForm(pk,name,info)
-        context = {
+        position_id = pk
+        position = PositionGateway.find_by_id(position_id)
+        data = {
             'id': pk,
-            'form': form
-            'name':
+            'name': position.name,
+            'info': position.info
         }
-    return render(request, 'position.html', context)
+        form = PositionForm(data)
+        position.save()
+        context = {
+            #'name': position.name,
+            #'info': position.info,
+            'form': form,
+            'id': pk
+            }
+        return render(request, 'position.html', context)
+def position_delete(request,pk):
+    position_id = pk
+    position = PositionGateway.find_by_id(position_id)
+    position.delete()
+    return HttpResponseRedirect('/requestsystem/depart')
 
 def new_depart(request):
     if request.method == "POST":

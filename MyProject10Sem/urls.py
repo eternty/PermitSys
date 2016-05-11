@@ -25,5 +25,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^requestsystem/', include('RequestSysApplication.urls')),
     url(r'^permitsystem/', include('MyPermitSysApplication.urls')),
+   # url(r'^signin/?$', views.signin),
+    #url(r'^logout/?$', views.logout_view),
 
 ]
+

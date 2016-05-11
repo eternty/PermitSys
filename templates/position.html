@@ -4,21 +4,22 @@
 
 {% block nav_brand %}Подсистема принятия заявок{% endblock %}
 {% block navbar-menu %}
-    <li class="active"><a href="request_sys">Заявки</a></li>
-    <li><a href="depart">Отделы и Должности</a></li>
+    <li class="active"><a href="/requestsystem/request_sys">Заявки</a></li>
+    <li><a href="/requestsystem/depart">Отделы и Должности</a></li>
 {% endblock %}
 {% block butn-before-table %}
-	<a class="btn btn-default" href="depart" role="button">Назад</a>
+	<a class="btn btn-default" href="/requestsystem/depart" role="button">Назад</a>
     <br/><br/><br/><br/>
     <h1>Форма отдела</h1><br/><br/>
 {% endblock %}
 
 {% block bodycontent %}
-    <form action="/position/{{ id }}/" method="post">
+    <form action="/requestsystem/position/{{ id }}/" method="post">
             <table class="table table-responsive">
                 {% csrf_token %}
                 {{ form.as_table }}
             </table>
             <input type="submit" value="Submit" />
+
      </form>
 {% endblock %}
