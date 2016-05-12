@@ -1,6 +1,7 @@
 import copy
 
-from MyPermitSysApplication.ServiceLayer import PermitSystemServiceLayer
+from MyPermitSysApplication.ServiceLayer import PermitSystemServiceLayer, PermitSystemServiceLayerPerson, \
+    PermitSystemSLRequests, PermitSystemSLPermits, PermitSystemSLPersons
 from MyPermitSysApplication.classes import   PersonGateway
 #from MyPermitSysApplication.forms import PersonForm
 from MyPermitSysApplication.forms import PersonForm
@@ -50,62 +51,22 @@ def permit_console(request,pk,choice):
 
 
 def person(request,pk):
+    context = PermitSystemServiceLayerPerson.person(request,pk)
 
-    if request.method == 'POST':
-        form = PersonForm(request.POST)
-        if form.is_valid():
-            position_id = pk
-            position = PersonGateway.find_by_id(position_id)
-            position.name = form.cleaned_data['name']
-            position.info = form.cleaned_data['info']
-            position.save()
-            context = {
-                # 'name': position.name,
-                # 'info': position.info,
-                'form': form
-            }
-            return render(request, 'position.html', context)
-
-        else:
-            return HttpResponse("Error!")
+    if context['error'] == 1:
+        return HttpResponse("Error!")
     else:
-        position_id = pk
-        position = PersonGateway.find_by_id(position_id)
-        data = {
-            'id': pk,
-            'name': position.name,
-            'info': position.info
-        }
-        form = PersonForm(data)
-        position.save()
-        context = {
-            #'name': position.name,
-            #'info': position.info,
-            'form': form,
-            'id': pk
-            }
         return render(request, 'position.html', context)
 
 def permit_sys_req(request):
-
-    requests = MyRequest.objects.filter(status = 'APR')
-    context={
-        'requests':requests,
-    }
-
+    context = PermitSystemSLRequests.requests(request)
     return render(request, 'permit_system_requests.html', context)
 
 
 def permit_sys_permits(request):
-    permits = Permit.objects.all()
-    context = {
-        'permits': permits,
-    }
+    context = PermitSystemSLPermits.permits(request)
     return render(request, 'permit_system_permits.html', context)
 
 def permit_sys_persons(request):
-    persons = Person.objects.all()
-    context = {
-        'persons': persons,
-    }
+    context = PermitSystemSLPersons.persons(request)
     return render(request, 'permit_system_persons.html', context)

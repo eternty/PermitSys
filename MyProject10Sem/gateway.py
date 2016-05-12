@@ -123,7 +123,7 @@ class Gateway(object):
               """.format(self.TABLE_NAME, insert_sql, insert_sql_values),
                       insert_args)
             self.conn.commit()
-            self._id = c.lastrowid
+            setattr(self, 'id', c.lastrowid)
             self.__exists__ = True
 
     ##

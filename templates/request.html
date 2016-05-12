@@ -3,7 +3,7 @@
 {% block nav_brand %}Подсистема принятия заявок{% endblock %}
 {% block navbar-menu %}
     <li class="active"><a href="/requestsystem">Заявки</a></li>
-    <li><a href="/requestsystem/depart">Отделы и Должности</a></li>
+    <li><a href="/requestsystem/departs">Отделы и Должности</a></li>
 {% endblock %}
 {% block bodycontent %}
      <form action="/requestsystem/request/{{ reqobject.id }}/" method="post">

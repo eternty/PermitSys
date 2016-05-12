@@ -1,8 +1,13 @@
 import abc
+
+
 from django.http import HttpResponse, HttpResponseRedirect
 
 from MyPermitSysApplication.models import Permit, Person
 from MyProject10Sem.gateway import Gateway
+import datetime
+
+
 class PersonGateWay(object):                                        #ROW DATA GATEWAY
     @staticmethod
     def create(reqobject):
@@ -66,48 +71,30 @@ class PermitAbstractFabric(metaclass=abc.ABCMeta):                              
 
     @staticmethod
     @abc.abstractmethod
-    def create_permit(person_id, begin, end,lastname,firstname,patronymic,position_id, department_id):
-        new_permit = Permit.objects.create()
-        new_permit.begin_date = begin
-        new_permit.end_date = end
-        new_permit.person_id = person_id
-        new_permit.lastname = lastname
-        new_permit.firstname = firstname
-        new_permit.patronymic = patronymic
-        new_permit.department_id = department_id
-        new_permit.position_id = position_id
+    def create_permit(person_id, begin, end,lastname,firstname,   patronymic,position_id, department_id):
+        new_permit = PermitGateway(person_id = person_id, begin_date = datetime.datetime.now(),end_date = end, lastname = lastname, firstname = firstname,
+                                   patronymic = patronymic, position_id = position_id, department_id = department_id, is_active = True, status = u'NEW', type = u'000' )
         new_permit.save()
         return new_permit
 
 class TemporaryPermitEmplementation(PermitAbstractFabric):                 #ABSTRACTFABRIC
     @staticmethod
-    def create_permit(id, begin, end,lastname,firstname,patronymic, position, department):
-        new_permit = Permit()
-        new_permit.begin_date = begin
-        new_permit.end_date = end
-        new_permit.person_id = id
+    def create_permit(person_id, begin, end,lastname,firstname,patronymic, position_id, department_id):
+        new_permit = PermitGateway(person_id=person_id, begin_date = datetime.datetime.now(), end_date=end, lastname=lastname, firstname=firstname,
+                                   patronymic=patronymic, position_id=position_id, department_id=department_id, is_active = True, status = u'NEW', type = u'000')
         new_permit.type = 'TEM'
-        new_permit.lastname = lastname
-        new_permit.firstname = firstname
-        new_permit.patronymic = patronymic
-        new_permit.department_id = department
-        new_permit.position_id = position
         new_permit.save()
 
         return new_permit
 
 class ContinuousPermitEmplementation(PermitAbstractFabric):               #ABSTRACTFABRIC
     @staticmethod
-    def create_permit(id, begin, end,lastname,firstname,patronymic, position, department):
-        new_permit = Permit()
-        new_permit.begin_date = begin
-        new_permit.end_date = end
-        new_permit.person_id = id
+    def create_permit(person_id, begin, end, lastname, firstname, patronymic, position_id, department_id):
+        new_permit = PermitGateway(person_id=person_id,begin_date = datetime.datetime.now(), end_date=end, lastname=lastname, firstname=firstname,
+                                   patronymic=patronymic, position_id=position_id, department_id=department_id, is_active = True, status = u'NEW', type = u'000')
         new_permit.type = 'CON'
-        new_permit.lastname = lastname
-        new_permit.firstname = firstname
-        new_permit.patronymic = patronymic
         new_permit.save()
+
         return new_permit
 
 class PersonGateway(Gateway):
@@ -128,15 +115,15 @@ class PermitGateway(Gateway):
     TABLE_NAME = 'MyPermitSysApplication_permit'
     FIELDS = {
         'id',
-        'person',
+        'person_id',
         'begin_date',
         'end_date',
         'is_active',
         'lastname',
         'firstname',
         'patronymic',
-        'position',
-        'department',
+        'position_id',
+        'department_id',
         'status',
         'type'
     }

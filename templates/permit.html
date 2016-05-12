@@ -8,6 +8,13 @@
 {% endblock %}
 {% block bodycontent %}
     <br/><br/><br/>
+    {% if permit.type == 'TEM'  %}
+    <p>Временный пропуск</p>
+    {% endif %}
+    {% if permit.type == 'CON' %}
+    <p>Постоянный пропуск</p>
+    {% endif %}
+
      <table>
 
         <tr>
@@ -24,16 +31,13 @@
         </tr>
          <tr>
             <td>Должность</td>
-            <td>{{ permit.position }}</td>
+            <td>{{ position }}</td>
         </tr>
         <tr>
             <td>Отдел</td>
-            <td>{{ permit.department }}</td>
+            <td>{{department}}</td>
         </tr>
-        <tr>
-            <td>Тип</td>
-            <td>{{ permit.type }}</td>
-        </tr>
+
         <tr>
             <td>Статус</td>
             <td>{{ permit.status }}</td>

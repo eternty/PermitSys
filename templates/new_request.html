@@ -5,13 +5,13 @@
 {% block nav_brand %}Подсистема принятия заявок{% endblock %}
 {% block navbar-menu %}
     <li class="active"><a href="/requestsystem">Заявки</a></li>
-    <li><a href="depart">Отделы и Должности</a></li>
+    <li><a href="/requestsystem/departs">Отделы и Должности</a></li>
 {% endblock %}
 {% block butn-before-table %}
     <h1>Форма заявки</h1>
 {% endblock %}
 {% block bodycontent %}
-    <form action="new_request" method="post">
+    <form action="/requestsystem/new_request/" method="post">
          <table class="table table-responsive">
              {% csrf_token %}
              {{ form.as_table }}
