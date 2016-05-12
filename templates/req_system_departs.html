@@ -50,6 +50,7 @@
                             <th>Номер</th>
                             <th>Название</th>
                             <th>Информация</th>
+                            <!-- <th>Действие</th>-->
                         </tr>
                     </thead>
                     <tbody>
@@ -58,9 +59,9 @@
                                 <td>{{ pos.id }}</td>
                                 <td>{{ pos.name }}</td>
                                 <td>{{ pos.info }}</td>
-                                <td>        <!--DOMAIN LOGIC-->
-                                    <a class="btn btn-default" href= '/requestsystem/position_delete/{{ pos.id }}/createtemp'>Удалить</a>
-                                </td>
+                                <!-- <td>        <!--DOMAIN LOGIC-->
+                                 <!--   <a class="btn btn-default" href= '/requestsystem/position_delete/{{ pos.id }}'>Удалить</a> -->
+                                <!--</td> -->
                             </tr>
                         {% empty %}
                             <tr>

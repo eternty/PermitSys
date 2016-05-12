@@ -2,9 +2,6 @@ import abc
 from django.http import HttpResponse, HttpResponseRedirect
 
 from MyPermitSysApplication.models import Permit, Person
-from RequestSysApplication.models import MyRequest
-from django.shortcuts import render
-from datetime import timedelta
 from MyProject10Sem.gateway import Gateway
 class PersonGateWay(object):                                        #ROW DATA GATEWAY
     @staticmethod
@@ -69,16 +66,16 @@ class PermitAbstractFabric(metaclass=abc.ABCMeta):                              
 
     @staticmethod
     @abc.abstractmethod
-    def create_permit(id, begin, end,lastname,firstname,patronymic,position, department):
+    def create_permit(person_id, begin, end,lastname,firstname,patronymic,position_id, department_id):
         new_permit = Permit.objects.create()
         new_permit.begin_date = begin
         new_permit.end_date = end
-        new_permit.person_id = id
+        new_permit.person_id = person_id
         new_permit.lastname = lastname
         new_permit.firstname = firstname
         new_permit.patronymic = patronymic
-        new_permit.department_id = department
-        new_permit.position_id = position
+        new_permit.department_id = department_id
+        new_permit.position_id = position_id
         new_permit.save()
         return new_permit
 
@@ -98,7 +95,6 @@ class TemporaryPermitEmplementation(PermitAbstractFabric):                 #ABST
         new_permit.save()
 
         return new_permit
-
 
 class ContinuousPermitEmplementation(PermitAbstractFabric):               #ABSTRACTFABRIC
     @staticmethod
@@ -124,60 +120,23 @@ class PersonGateway(Gateway):
         'phone_number',
         'passport_serial',
         'passport_number',
-        'position',
-        'department'
+        'position_id',
+        'department_id',
+        'is_active'
     }
-
-class PermitSystemServiceLayer(object):               #SERVICE_LAYER
-    @staticmethod
-    def parse(request,choice, reqobject):
-        if choice == u'show':
-            return render(request, 'request_for_permit.html',reqobject)
-        else:
-            person = PersonGateway(lastname = reqobject.lastname, firstname = reqobject.firstname, patronymic = reqobject.patronymic,
-                                   position = reqobject.position, department = reqobject.department, passport_serial = reqobject.passport_serial,
-                                   passport_number = reqobject.passport_number, phone_number = reqobject.phone_number)
-            person.save()
-            begin = reqobject.registration_date
-            end = reqobject.end_date
-            lastname = PersonGateWay.get_lastname(id)  # ROW DATA GATEWAY
-            firstname = PersonGateWay.get_firstname(id)
-            patronymic = PersonGateWay.get_patronymic(id)
-            position = PersonGateWay.get_position(id)
-            department = PersonGateWay.get_department(id)
-            if choice == u'createtemp':                    #ABSTRACTFABRIC
-                permit = TemporaryPermitEmplementation.create_permit(person.id, begin, end,lastname,firstname,patronymic,
-                                                                     position, department)
-                context = {
-
-                    'permit': permit
-                }
-                return render(request, 'permit.html', context)
-
-            if choice == u'createcont':
-                permit = ContinuousPermitEmplementation.create_permit(person.id, begin, end, lastname, firstname, patronymic,
-                                                                  position, department)
-                context = {
-
-                    'permit': permit
-                }
-                return render(request, 'permit.html', context)
-            #return HttpResponseRedirect('permit')
-
-
-class ManagerUIService(object):
-
-   @staticmethod
-   def  permit_sys():
-       from MyPermitSysApplication.views import  permit_sys
-       return HttpResponseRedirect('/permitsystem/permit_sys')
-
-   @staticmethod
-   def get_order_update_view():
-       from cargo_manager.views import OrderUpdateView
-       return OrderUpdateView.as_view()
-
-   @staticmethod
-   def change_order_status_view():
-       from cargo_manager.views import OrderChangeStatusView
-       return OrderChangeStatusView.as_view()
+class PermitGateway(Gateway):
+    TABLE_NAME = 'MyPermitSysApplication_permit'
+    FIELDS = {
+        'id',
+        'person',
+        'begin_date',
+        'end_date',
+        'is_active',
+        'lastname',
+        'firstname',
+        'patronymic',
+        'position',
+        'department',
+        'status',
+        'type'
+    }

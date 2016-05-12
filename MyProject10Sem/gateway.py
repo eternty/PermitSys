@@ -59,7 +59,7 @@ class Gateway(object):
     def get_conn(cls):
         return Connection.get_connection()
 
-    ##
+    #
     # @brief find_by_id - Поиск по id
     #
     # Ищет запись текущего класса по id
@@ -168,6 +168,6 @@ class Gateway(object):
         result = []
         for row in res:
             d = Connection.row_to_dict(row, desc)
-            d = cls(__exists__=True, **d)
+            d = cls(__exists__= True, **d)
             result.append(d)
         return result

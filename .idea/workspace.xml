@@ -2,31 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fbe844e4-3b42-44b7-a52c-018c2dcaecb6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/logout.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/signin_page.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MyPermitSysApplication/ServiceLayer.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPermitSysApplication/classes.py" afterPath="$PROJECT_DIR$/MyPermitSysApplication/classes.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPermitSysApplication/forms.py" afterPath="$PROJECT_DIR$/MyPermitSysApplication/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPermitSysApplication/models.py" afterPath="$PROJECT_DIR$/MyPermitSysApplication/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPermitSysApplication/urls.py" afterPath="$PROJECT_DIR$/MyPermitSysApplication/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPermitSysApplication/views.py" afterPath="$PROJECT_DIR$/MyPermitSysApplication/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyProject10Sem/gateway.py" afterPath="$PROJECT_DIR$/MyProject10Sem/gateway.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyProject10Sem/urls.py" afterPath="$PROJECT_DIR$/MyProject10Sem/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyProject10Sem/views.py" afterPath="$PROJECT_DIR$/MyProject10Sem/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RequestSysApplication/classes.py" afterPath="$PROJECT_DIR$/RequestSysApplication/classes.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RequestSysApplication/forms.py" afterPath="$PROJECT_DIR$/RequestSysApplication/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RequestSysApplication/models.py" afterPath="$PROJECT_DIR$/RequestSysApplication/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RequestSysApplication/urls.py" afterPath="$PROJECT_DIR$/RequestSysApplication/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RequestSysApplication/views.py" afterPath="$PROJECT_DIR$/RequestSysApplication/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base_nav.html" afterPath="$PROJECT_DIR$/templates/base_nav.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/permit_system_permits.html" afterPath="$PROJECT_DIR$/templates/permit_system_permits.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/permit_system_persons.html" afterPath="$PROJECT_DIR$/templates/permit_system_persons.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/permit_system_requests.html" afterPath="$PROJECT_DIR$/templates/permit_system_requests.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/position.html" afterPath="$PROJECT_DIR$/templates/position.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/req_system_departs.html" afterPath="$PROJECT_DIR$/templates/req_system_departs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/request.html" afterPath="$PROJECT_DIR$/templates/request.html" />
     </list>
     <ignored path="MyProject10Sem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,106 +57,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/views.py">
+      <file leaf-file-name="ServiceLayer.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/ServiceLayer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="41" column="62" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="62" />
+            <state relative-caret-position="618">
+              <caret line="51" column="39" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
-                <element signature="e#560#1406#0" expanded="false" />
-                <element signature="e#1626#3502#1" expanded="false" />
-                <element signature="e#3758#3912#0" expanded="false" />
-                <element signature="e#3951#4117#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="req_system_departs.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/req_system_departs.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="61" column="133" selection-start-line="61" selection-start-column="133" selection-end-line="61" selection-end-column="133" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#61#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RequestSysApplication/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#34#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="classes.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/classes.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="155" column="0" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#379#2127#0" expanded="false" />
-                <element signature="e#2232#2773#0" expanded="false" />
-                <element signature="e#2870#3406#0" expanded="false" />
-                <element signature="e#3503#3950#0" expanded="false" />
-                <element signature="e#6230#6693#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gateway.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyProject10Sem/gateway.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1203">
-              <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
-              <folding>
-                <marker date="1462974758019" expanded="true" signature="1788:1819" placeholder="SELECT * FRO... missing_value" />
-                <marker date="1462974758019" expanded="true" signature="2828:2859" placeholder="UPDATE missi... " />
-                <marker date="1462974758019" expanded="true" signature="3532:3563" placeholder="INSERT INTO missing_value... " />
-                <marker date="1462974758019" expanded="true" signature="3993:4022" placeholder="DELETE FROM " />
-                <marker date="1462974758019" expanded="true" signature="4791:4818" placeholder="SELECT * FRO... missing_value" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RequestSysApplication/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="75" selection-start-line="15" selection-start-column="75" selection-end-line="15" selection-end-column="75" />
-              <folding>
-                <element signature="e#0#50#0" expanded="true" />
+                <element signature="e#0#48#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -175,18 +72,62 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RequestSysApplication/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="31" selection-end-column="34" />
+            <state relative-caret-position="221">
+              <caret line="83" column="13" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
-                <element signature="e#685#720#0" expanded="false" />
-                <element signature="e#752#963#0" expanded="false" />
-                <element signature="e#1812#2885#0" expanded="false" />
-                <element signature="e#3104#4539#0" expanded="false" />
-                <element signature="e#4815#5506#0" expanded="false" />
-                <element signature="e#5549#5732#0" expanded="false" />
-                <element signature="e#5773#6619#0" expanded="false" />
-                <element signature="e#6651#7214#0" expanded="false" />
+                <element signature="e#540#575#0" expanded="false" />
+                <element signature="e#607#818#0" expanded="false" />
+                <element signature="e#851#1634#0" expanded="false" />
+                <element signature="e#1667#2740#0" expanded="false" />
+                <element signature="e#2975#4410#0" expanded="false" />
+                <element signature="e#4686#5377#0" expanded="false" />
+                <element signature="e#5420#5603#0" expanded="false" />
+                <element signature="e#5644#6490#0" expanded="false" />
+                <element signature="e#6522#7085#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RequestSysApplication/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1666">
+              <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+              <folding>
+                <element signature="e#427#1293#0" expanded="false" />
+                <element signature="e#1329#1683#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="classes.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/classes.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-289">
+              <caret line="76" column="31" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#261#2009#0" expanded="false" />
+                <element signature="e#2778#3314#0" expanded="false" />
+                <element signature="e#3410#3857#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gateway.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyProject10Sem/gateway.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-582">
+              <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+              <folding>
+                <marker date="1463060925620" expanded="true" signature="1787:1818" placeholder="SELECT * FRO... missing_value" />
+                <marker date="1463060925620" expanded="true" signature="2827:2858" placeholder="UPDATE missi... " />
+                <marker date="1463060925620" expanded="true" signature="3531:3562" placeholder="INSERT INTO missing_value... " />
+                <marker date="1463060925620" expanded="true" signature="3992:4021" placeholder="DELETE FROM " />
+                <marker date="1463060925620" expanded="true" signature="4790:4817" placeholder="SELECT * FRO... missing_value" />
               </folding>
             </state>
           </provider>
@@ -195,13 +136,52 @@
       <file leaf-file-name="classes.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RequestSysApplication/classes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
+            <state relative-caret-position="221">
               <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
                 <element signature="e#235#464#0" expanded="false" />
                 <element signature="e#534#1239#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RequestSysApplication/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="req_system_requests.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/req_system_requests.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="6" column="46" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="req_system_departs.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/req_system_departs.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="385">
+              <caret line="71" column="24" selection-start-line="71" selection-start-column="24" selection-end-line="71" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="867">
+              <caret line="54" column="19" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -211,9 +191,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
         <option value="Setup Script" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -223,8 +203,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/main_page.html" />
-        <option value="$PROJECT_DIR$/templates/request_subsystem.html" />
         <option value="$PROJECT_DIR$/templates/permit_subsystem.html" />
         <option value="$PROJECT_DIR$/templates/issue_subsystem.html" />
         <option value="$PROJECT_DIR$/templates/base.html" />
@@ -242,7 +220,6 @@
         <option value="$PROJECT_DIR$/templates/main1.1.html" />
         <option value="$PROJECT_DIR$/templates/main2.1.html" />
         <option value="$PROJECT_DIR$/templates/new_person.html" />
-        <option value="$PROJECT_DIR$/MyPermitSysApplication/models.py" />
         <option value="$PROJECT_DIR$/templates/position.py" />
         <option value="$PROJECT_DIR$/templates/request_for_permit.html" />
         <option value="$PROJECT_DIR$/templates/permit.html" />
@@ -259,21 +236,24 @@
         <option value="$PROJECT_DIR$/templates/logout.html" />
         <option value="$PROJECT_DIR$/MyProject10Sem/urls.py" />
         <option value="$PROJECT_DIR$/RequestSysApplication/models.py" />
-        <option value="$PROJECT_DIR$/MyProject10Sem/gateway.py" />
         <option value="$PROJECT_DIR$/templates/base_nav.html" />
         <option value="$PROJECT_DIR$/RequestSysApplication/forms.py" />
         <option value="$PROJECT_DIR$/MyProject10Sem/views.py" />
-        <option value="$PROJECT_DIR$/templates/permit_system_permits.html" />
-        <option value="$PROJECT_DIR$/templates/permit_system_requests.html" />
         <option value="$PROJECT_DIR$/templates/position.html" />
-        <option value="$PROJECT_DIR$/templates/req_system_departs.html" />
+        <option value="$PROJECT_DIR$/MyPermitSysApplication/forms.py" />
+        <option value="$PROJECT_DIR$/templates/permit_system_permits.html" />
+        <option value="$PROJECT_DIR$/templates/permit_system_persons.html" />
+        <option value="$PROJECT_DIR$/MyPermitSysApplication/urls.py" />
+        <option value="$PROJECT_DIR$/templates/permit_system_requests.html" />
+        <option value="$PROJECT_DIR$/MyPermitSysApplication/views.py" />
+        <option value="$PROJECT_DIR$/MyPermitSysApplication/models.py" />
+        <option value="$PROJECT_DIR$/MyPermitSysApplication/classes.py" />
+        <option value="$PROJECT_DIR$/MyProject10Sem/gateway.py" />
+        <option value="$PROJECT_DIR$/RequestSysApplication/classes.py" />
         <option value="$PROJECT_DIR$/RequestSysApplication/urls.py" />
         <option value="$PROJECT_DIR$/RequestSysApplication/views.py" />
-        <option value="$PROJECT_DIR$/MyPermitSysApplication/urls.py" />
-        <option value="$PROJECT_DIR$/MyPermitSysApplication/views.py" />
-        <option value="$PROJECT_DIR$/RequestSysApplication/classes.py" />
-        <option value="$PROJECT_DIR$/MyPermitSysApplication/forms.py" />
-        <option value="$PROJECT_DIR$/MyPermitSysApplication/classes.py" />
+        <option value="$PROJECT_DIR$/templates/req_system_departs.html" />
+        <option value="$PROJECT_DIR$/MyPermitSysApplication/ServiceLayer.py" />
       </list>
     </option>
   </component>
@@ -313,8 +293,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -394,7 +374,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/GitHub/RequestSystem-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -731,7 +711,14 @@
       <option name="project" value="LOCAL" />
       <updated>1462719768865</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Mine is ok except Domain, Varya`s side in work">
+      <created>1462981668021</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1462981668021</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -740,27 +727,27 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="7" y="0" width="1346" height="735" extended-state="0" />
-    <editor active="false" />
+    <frame x="7" y="0" width="1346" height="735" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962406" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3632" sideWeight="0.4225564" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.376" sideWeight="0.4330827" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3632" sideWeight="0.5774436" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.376" sideWeight="0.5669173" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3984" sideWeight="0.49699247" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="manage.py@MyProject10Sem" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328" sideWeight="0.5345865" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3984" sideWeight="0.49398497" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="manage.py@MyProject10Sem" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328" sideWeight="0.5345865" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328" sideWeight="0.49699247" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -779,14 +766,16 @@
     <MESSAGE value="domain logic and prototype" />
     <MESSAGE value="all but my gateway for position" />
     <MESSAGE value="new gateway for position)create works" />
-    <option name="LAST_COMMIT_MESSAGE" value="new gateway for position)create works" />
+    <MESSAGE value="Mine is ok except Domain, Varya`s side in work" />
+    <MESSAGE value="Person doesnt works in Varya" />
+    <option name="LAST_COMMIT_MESSAGE" value="Person doesnt works in Varya" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="11" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Python.DjangoServer">
@@ -795,7 +784,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/main3.1.html" />
     <entry file="file://$PROJECT_DIR$/templates/main3.2.html" />
     <entry file="file://$PROJECT_DIR$/RequestSysApplication/migrations/0007_auto_20160424_1952.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -833,29 +821,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35/Lib/selectors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5117">
-          <caret line="305" column="0" selection-start-line="305" selection-start-column="0" selection-end-line="305" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/virtualenv/Lib/site-packages/django/utils/autoreload.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4726">
-          <caret line="289" column="0" selection-start-line="289" selection-start-column="0" selection-end-line="289" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/position.py" />
     <entry file="uml://Python/#D:/MyProject10Sem/RequestSysApplication" />
-    <entry file="file://$PROJECT_DIR$/templates/permit_system_persons.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/new_person.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-77">
@@ -891,13 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/request_for_permit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -909,7 +869,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -932,7 +891,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="7" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -940,7 +898,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -956,14 +913,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/permit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -984,19 +933,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/req_system_requests.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255">
-          <caret line="6" column="46" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/logout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1005,7 +945,7 @@
         <state relative-caret-position="272">
           <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
           <folding>
-            <element signature="e#647#697#0" expanded="true" />
+            <element signature="e#647#697#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1014,7 +954,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1023,19 +962,6 @@
         <state relative-caret-position="170">
           <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RequestSysApplication/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-            <element signature="e#427#1293#0" expanded="false" />
-            <element signature="e#1329#1683#0" expanded="false" />
-            <element signature="e#1721#5513#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1051,38 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#291#822#0" expanded="false" />
-            <element signature="e#854#910#0" expanded="false" />
-            <element signature="e#973#2528#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/permit_system_permits.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="33" column="32" selection-start-line="6" selection-start-column="4" selection-end-line="33" selection-end-column="32" />
-          <folding>
-            <element signature="e#1943#3390#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/permit_system_requests.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="36" column="17" selection-start-line="33" selection-start-column="12" selection-end-line="36" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1094,28 +988,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/req_system_departs.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="61" column="133" selection-start-line="61" selection-start-column="133" selection-end-line="61" selection-end-column="133" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RequestSysApplication/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="34" />
           <folding>
-            <element signature="e#0#34#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1125,90 +1003,191 @@
         <state relative-caret-position="85">
           <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
           <folding>
-            <element signature="e#0#61#0" expanded="true" />
+            <element signature="e#0#61#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RequestSysApplication/classes.py">
+    <entry file="file://$PROJECT_DIR$/templates/permit_system_permits.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#235#464#0" expanded="false" />
-            <element signature="e#534#1239#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="480">
+          <caret line="44" column="14" selection-start-line="22" selection-start-column="0" selection-end-line="44" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RequestSysApplication/views.py">
+    <entry file="file://$PROJECT_DIR$/templates/permit_system_persons.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="31" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#685#720#0" expanded="false" />
-            <element signature="e#752#963#0" expanded="false" />
-            <element signature="e#1812#2885#0" expanded="false" />
-            <element signature="e#3104#4539#0" expanded="false" />
-            <element signature="e#4815#5506#0" expanded="false" />
-            <element signature="e#5549#5732#0" expanded="false" />
-            <element signature="e#5773#6619#0" expanded="false" />
-            <element signature="e#6651#7214#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="663">
+          <caret line="39" column="16" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RequestSysApplication/urls.py">
+    <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="75" selection-start-line="15" selection-start-column="75" selection-end-line="15" selection-end-column="75" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="85">
+          <caret line="6" column="115" selection-start-line="6" selection-start-column="115" selection-end-line="6" selection-end-column="115" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyProject10Sem/gateway.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35/Lib/selectors.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1203">
-          <caret line="83" column="36" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
-          <folding>
-            <marker date="1462974758019" expanded="true" signature="1788:1819" placeholder="SELECT * FRO... missing_value" />
-            <marker date="1462974758019" expanded="true" signature="2828:2859" placeholder="UPDATE missi... " />
-            <marker date="1462974758019" expanded="true" signature="3532:3563" placeholder="INSERT INTO missing_value... " />
-            <marker date="1462974758019" expanded="true" signature="3993:4022" placeholder="DELETE FROM " />
-            <marker date="1462974758019" expanded="true" signature="4791:4818" placeholder="SELECT * FRO... missing_value" />
-          </folding>
+        <state relative-caret-position="5117">
+          <caret line="305" column="0" selection-start-line="305" selection-start-column="0" selection-end-line="305" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/virtualenv/Lib/site-packages/django/utils/autoreload.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4454">
+          <caret line="273" column="0" selection-start-line="273" selection-start-column="0" selection-end-line="273" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/permit_system_requests.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="34" column="108" selection-start-line="34" selection-start-column="108" selection-end-line="34" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/request_for_permit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/permit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-489">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="41" column="62" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="62" />
+        <state relative-caret-position="221">
+          <caret line="47" column="54" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#560#1406#0" expanded="false" />
-            <element signature="e#1626#3502#1" expanded="false" />
-            <element signature="e#3758#3912#0" expanded="false" />
-            <element signature="e#3951#4117#0" expanded="false" />
+            <element signature="e#652#1498#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/classes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="155" column="0" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+        <state relative-caret-position="-289">
+          <caret line="76" column="31" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#379#2127#0" expanded="false" />
-            <element signature="e#2232#2773#0" expanded="false" />
-            <element signature="e#2870#3406#0" expanded="false" />
-            <element signature="e#3503#3950#0" expanded="false" />
-            <element signature="e#6230#6693#0" expanded="false" />
+            <element signature="e#261#2009#0" expanded="false" />
+            <element signature="e#2778#3314#0" expanded="false" />
+            <element signature="e#3410#3857#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="54" column="19" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RequestSysApplication/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1666">
+          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+          <folding>
+            <element signature="e#427#1293#0" expanded="false" />
+            <element signature="e#1329#1683#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RequestSysApplication/classes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding>
+            <element signature="e#235#464#0" expanded="false" />
+            <element signature="e#534#1239#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/req_system_requests.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="6" column="46" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RequestSysApplication/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RequestSysApplication/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="83" column="13" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
+          <folding>
+            <element signature="e#540#575#0" expanded="false" />
+            <element signature="e#607#818#0" expanded="false" />
+            <element signature="e#851#1634#0" expanded="false" />
+            <element signature="e#1667#2740#0" expanded="false" />
+            <element signature="e#2975#4410#0" expanded="false" />
+            <element signature="e#4686#5377#0" expanded="false" />
+            <element signature="e#5420#5603#0" expanded="false" />
+            <element signature="e#5644#6490#0" expanded="false" />
+            <element signature="e#6522#7085#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/req_system_departs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="71" column="24" selection-start-line="71" selection-start-column="24" selection-end-line="71" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyProject10Sem/gateway.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-582">
+          <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+          <folding>
+            <marker date="1463060925620" expanded="true" signature="1787:1818" placeholder="SELECT * FRO... missing_value" />
+            <marker date="1463060925620" expanded="true" signature="2827:2858" placeholder="UPDATE missi... " />
+            <marker date="1463060925620" expanded="true" signature="3531:3562" placeholder="INSERT INTO missing_value... " />
+            <marker date="1463060925620" expanded="true" signature="3992:4021" placeholder="DELETE FROM " />
+            <marker date="1463060925620" expanded="true" signature="4790:4817" placeholder="SELECT * FRO... missing_value" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/ServiceLayer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="618">
+          <caret line="51" column="39" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
           </folding>
         </state>
       </provider>

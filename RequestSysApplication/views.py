@@ -1,7 +1,3 @@
-import copy
-
-from MyPermitSysApplication.classes import PermitSystemServiceLayer, PersonGateWay
-from MyPermitSysApplication.models import Permit
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
 from RequestSysApplication.models import MyRequest, Department, Position
@@ -83,7 +79,9 @@ def position(request,pk):
             'id': pk
             }
         return render(request, 'position.html', context)
+
 def position_delete(request,pk):
+    print(000)
     position_id = pk
     position = PositionGateway.find_by_id(position_id)
     position.delete()
