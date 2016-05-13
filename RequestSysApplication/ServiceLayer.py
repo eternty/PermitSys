@@ -1,4 +1,4 @@
-from RequestSysApplication.classes import PositionGateway, RequestServiceLayer
+from RequestSysApplication.classes import PositionGateway, RequestServiceLayer, RequestGateway
 from RequestSysApplication.forms import PositionForm, DepartmentForm, RequestForm, NewRequestForm
 from RequestSysApplication.models import MyRequest, Department, Position
 from RequestSysApplication.prototype import Prototype
@@ -170,11 +170,12 @@ class RequestSystemSLRequest(object):
     @staticmethod
     def request(request, pk):
         if request.method == 'POST':
-            our_request = MyRequest.objects.get(id=pk)
-            our_form = RequestForm(request.POST)
-            if our_form.is_valid():
-                our_request.update_info(our_form)
-
+            form = RequestForm(request.POST)
+            our_request = RequestGateway.find_by_id(id = pk)
+            if form.is_valid():
+                our_request.update_info()
+            #our_request = MyRequest.objects.get(id=pk)
+            #our_form = RequestForm(request.POST)
                 request_form = RequestForm(instance=our_request)
                 context = {
                     'reqobject': our_request,
@@ -188,7 +189,7 @@ class RequestSystemSLRequest(object):
                 }
                 return context
         else:
-            reqobject = MyRequest.objects.get(id=pk)
+            reqobject = RequestGateway.find_by_id(id = pk)
             our_form = RequestForm(instance=reqobject)
             context = {
                 'reqobject': reqobject,
@@ -202,7 +203,13 @@ class RequestSystemSLRequest(object):
     def request_creation(request, form):
         form = RequestForm(request.POST)
         if form.is_valid():
-            our_request = form.save(commit=False)
+            our_request = RequestGateway.create(lastname =form.cleaned_data['lastname'], firstname =  form.cleaned_data['firstname'],
+                            patronymic =form.cleaned_data['patronymic'],department = form.cleaned_data['department'],
+                            position = form.cleaned_data['position'],end_date = form.cleaned_data['end_date'],
+                            passport_number = form.cleaned_data['passport_number'],
+                            passport_serial = form.cleaned_data['passport_serial'],
+                            phone_number = form.cleaned_data['phone_number'],
+                            status = form.cleaned_data['status'])
             our_request.save()
         else:
             return None
@@ -214,8 +221,7 @@ class RequestSystemSLRequest(object):
         if request.method == "POST":
             form = NewRequestForm(request.POST)
             if form.is_valid():
-
-                our_request = MyRequest.creation(form)
+                our_request = RequestGateway.creation(form)
                 context = {
                     'reqobject': our_request,
                     'form': form,
@@ -243,10 +249,10 @@ class RequestSystemSLRequest(object):
 
     @staticmethod
     def request_proceed(request, pk, choice):
-        reqobject = MyRequest.objects.get(id=pk)
-        RequestServiceLayer.parse(choice, reqobject, pk)  # SERVICE LAYER
+        reqobject = RequestGateway.find_by_id(id=pk)
+        #RequestServiceLayer.parse(choice, reqobject, pk)  # SERVICE LAYER
         if choice == u'delete':
-            MyRequest.deletion(pk)  # DOMAIN
+            RequestGateway.deletion(pk)  # DOMAIN
         else:
             reqobject.request_proceed(choice)  # DOMAIN
 

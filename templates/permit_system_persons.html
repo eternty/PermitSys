@@ -26,9 +26,14 @@
             <td>{{ per.patronymic }}</td>
             <td>{{ per.position }}</td>
             <td>{{ per.department }}</td>
-            <td>{{ per.is_active }}</td>
+            {% if per.is_active %}
+                <td>Активен</td>
+            {% else %}
+                <td>Нективен</td>
+            {% endif %}
+
             <td><a class="btn btn-default" href="/permitsystem/person.html" role="button">Редактировать</a></td>
-            <td><a class="btn btn-default" href="permits_of_person.html" role="button">Показать пропуск</a></td>td>
+            <td><a class="btn btn-default" href="permits_of_person.html" role="button">Показать пропуск</a></td>
             <td><a class="btn btn-default" href="person_delete.html" role="button">Удалить</a></td>
     </tr>
     {% empty %}

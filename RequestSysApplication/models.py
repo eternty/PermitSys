@@ -67,9 +67,11 @@ class MyRequest(models.Model):
     passport_number = models.IntegerField(blank=True)
     registration_date = models.DateField(auto_now_add=True, verbose_name="Дата создания заявки")
     end_date = models.DateField(verbose_name="Срок действия пропуска", default='2016-08-30')
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
-                                 message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-    phone_number = models.CharField(max_length=15, validators=[phone_regex], blank=True,
+    #phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
+     #                            message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    #phone_number = models.CharField(max_length=15, validators=[phone_regex], blank=True,
+    #                                null=True)  # validators should be a list
+    phone_number = models.CharField(max_length=15,  blank=True,
                                     null=True)  # validators should be a list
     department = models.ForeignKey(Department, verbose_name="Отдел", null=True)
     position = models.ForeignKey(Position, verbose_name="Должность", null=True)

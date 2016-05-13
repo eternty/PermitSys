@@ -5,7 +5,7 @@ from RequestSysApplication.models import MyRequest, Department, Position
 from RequestSysApplication.forms import RequestForm, NewRequestForm, PositionForm, PositionFForm
 from RequestSysApplication.forms import DepartmentForm, DepForm
 from RequestSysApplication.prototype import Prototype
-from RequestSysApplication.classes import RequestServiceLayer, PositionGateWay, PositionGateway
+from RequestSysApplication.classes import PositionGateWay, PositionGateway
 
 
 # Create your views here.
@@ -102,7 +102,6 @@ def new_request(request):
             return HttpResponseRedirect('/requestsystem/')
         if context['method'] == 'get':
             return render(request, 'new_request.html', context)
-
 
 def request_proceed(request,pk,choice):
     context = RequestSystemSLRequest.request_proceed(request,pk,choice)
