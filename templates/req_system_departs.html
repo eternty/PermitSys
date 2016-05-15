@@ -25,11 +25,13 @@
                 </thead>
                 <tbody>
                     {% for dep in departs %}
-                        <tr>
+                        <tr style="cursor: pointer" onclick="window.location.replace('/requestsystem/department/{{ dep.id }}/')">
                             <td>{{ dep.id }}</td>
                             <td>{{ dep.name }}</td>
                             <td>{{ dep.number }}</td>
                             <td>{{ dep.phone_number }}</td>
+                            <td>        <!--DOMAIN LOGIC-->
+                                    <a class="btn btn-default" href= '/requestsystem/department_delete/{{ dep.id }}'>Удалить</a></td>
                         </tr>
                     {% empty %}
                         <tr>
@@ -59,9 +61,9 @@
                                 <td>{{ pos.id }}</td>
                                 <td>{{ pos.name }}</td>
                                 <td>{{ pos.info }}</td>
-                                <!-- <td>        <!--DOMAIN LOGIC-->
-                                 <!--   <a class="btn btn-default" href= '/requestsystem/position_delete/{{ pos.id }}'>Удалить</a> -->
-                                <!--</td> -->
+                                <td>        <!--DOMAIN LOGIC-->
+                                    <a class="btn btn-default" href= '/requestsystem/position_delete/{{ pos.id }}'>Удалить</a></td>
+
                             </tr>
                         {% empty %}
                             <tr>

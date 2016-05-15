@@ -28,16 +28,27 @@ def new_position(request):
         else:
             return render(request, 'new_position.html', context)
 
+
 def position(request,pk):
     context = RequestSystemSLPosition.position(request,pk)
     if context['error'] == 1:
         return HttpResponse("Error!")
     else:
-        return render(request, 'position.html', context)
+        return render(request, 'new_position.html', context)
+
 
 def position_delete(request,pk):
     context = RequestSystemSLPosition.position_delete(request, pk)
     return HttpResponseRedirect('/requestsystem/depart')
+
+
+def department(request,pk):
+    context = RequestSystemSLDepart.department(request,pk)
+    if context['error'] == 1:
+        return HttpResponse("Error!")
+    else:
+        return render(request, 'new_depart.html', context)
+
 
 def new_depart(request):
     context = RequestSystemSLDepart.new_depart(request)
@@ -52,6 +63,10 @@ def new_depart(request):
 def departs(request):
     context = RequestSystemSLDepart.departs(request)
     return render(request, 'req_system_departs.html', context)
+
+def department_delete(request,pk):
+    context = RequestSystemSLDepart.department_delete(request, pk)
+    return HttpResponseRedirect('/requestsystem/depart')
 
 def request(request,pk):
     context = RequestSystemSLRequest.request(request,pk)

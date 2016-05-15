@@ -11,7 +11,12 @@
     <h1>Форма отдела</h1>
 {% endblock %}
 {% block bodycontent %}
-    <form action="/requestsystem/new_position" method="post">
+    {% if name_of_url == 'position' %}
+        <form action="/requestsystem/position/{{ id }}/" method="post">
+    {% endif %}
+    {% if name_of_url == 'new_position' %}
+        <form action="/requestsystem/new_position" method="post">
+    {% endif %}
             <table class="table table-responsive">
                 {% csrf_token %}
                 {{ form.as_table }}

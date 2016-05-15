@@ -48,10 +48,29 @@ class DepartGateway(Gateway):
         'id',
         'name',
         'info',
-        'phone'
+        'phone_number'
     }
 
+    @staticmethod
+    def creation(form):
+        myrequest = form.save()
+        return myrequest
 
+    @staticmethod
+    def deletion(pk):
+        reqobject = RequestGateway.find_by_id(pk)
+        # print(reqobject.id)
+        reqobject.delete()
+        # MyRequest.objects.get(id=req_id).delete()
+        return 0
+
+    def update_info(self, our_form):
+        self.name = our_form.cleaned_data['name']
+        self.number = our_form.cleaned_data['number']
+        self.phone_number = our_form.cleaned_data['phone_number']
+        self.info = our_form.cleaned_data['info']
+        self.save()
+        return self
 
 class RequestGateway(Gateway):
     TABLE_NAME = 'RequestSysApplication_myrequest'
@@ -73,8 +92,8 @@ class RequestGateway(Gateway):
     }
     @staticmethod
     def creation(form):
-        myrequest = form.save()
-        return myrequest
+        depart = form.save()
+        return depart
 
     @staticmethod
     def deletion(pk):
@@ -115,6 +134,12 @@ class PositionGateway(Gateway):
         'name',
         'info'
     }
+
+    def update_info(self, our_form):
+        self.name = our_form.cleaned_data['name']
+        self.info = our_form.cleaned_data['info']
+        self.save()
+        return self
 
 
 

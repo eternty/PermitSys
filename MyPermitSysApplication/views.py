@@ -57,7 +57,8 @@ def person(request,pk):
     if context['error'] == 1:
         return HttpResponse("Error!")
     else:
-        return render(request, 'position.html', context)
+        return render(request, 'new_person.html', context)
+
 
 def permit_sys_req(request):
     context = PermitSystemSLRequests.requests(request)
@@ -67,6 +68,7 @@ def permit_sys_req(request):
 def permit_sys_permits(request):
     context = PermitSystemSLPermits.permits(request)
     return render(request, 'permit_system_permits.html', context)
+
 
 def permit_sys_persons(request):
     context = PermitSystemSLPersons.persons(request)

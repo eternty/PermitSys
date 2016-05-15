@@ -1,7 +1,8 @@
-from RequestSysApplication.classes import PositionGateway, RequestServiceLayer, RequestGateway
+from RequestSysApplication.classes import PositionGateway, RequestServiceLayer, RequestGateway, DepartGateway
 from RequestSysApplication.forms import PositionForm, DepartmentForm, RequestForm, NewRequestForm
 from RequestSysApplication.models import MyRequest, Department, Position
 from RequestSysApplication.prototype import Prototype
+from RequestSysApplication.values import kafedras, prot_for_kafedra
 
 
 class RequestSystemServiceLayer(object):
@@ -24,13 +25,14 @@ class RequestSystemSLPosition(object):
                 position_object = PositionGateway(name=form.cleaned_data['name'],
                                                   info=form.cleaned_data['info'])
                 position_object.save()
-                departs = Department.objects.all()
-                positions = Position.objects.all()
+                departs = DepartGateway.all()
+                positions = PositionGateway.all()
                 context = {
                     'departs': departs,
                     'positions': positions,
                     'method': 'post',
-                    'error': 0
+                    'error': 0,
+                    'name_of_url': 'new_position'
                 }
                 return context
             else:
@@ -44,7 +46,8 @@ class RequestSystemSLPosition(object):
             context = {
                 'form': position_form,
                 'error': 0,
-                'method': u'get'
+                'method': u'get',
+                'name_of_url': u'new_position'
             }
             return context
 
@@ -64,7 +67,8 @@ class RequestSystemSLPosition(object):
                     # 'info': position.info,
                     'form': form,
                     'error': 0,
-                    'method': 'post'
+                    'method': 'post',
+                    'name_of_url': 'position'
                 }
                 return context
 
@@ -72,7 +76,8 @@ class RequestSystemSLPosition(object):
                 context = {
 
                     'form': form,
-                    'error': 1
+                    'error': 1,
+                    'name_of_url': 'position'
                 }
                 return context
         else:
@@ -81,7 +86,8 @@ class RequestSystemSLPosition(object):
             data = {
                 'id': pk,
                 'name': position.name,
-                'info': position.info
+                'info': position.info,
+
             }
             form = PositionForm(data)
             position.save()
@@ -91,7 +97,8 @@ class RequestSystemSLPosition(object):
                 'form': form,
                 'id': pk,
                 'error': 0,
-                'method': 'get'
+                'method': 'get',
+                'name_of_url': u'position'
             }
             return context
 
@@ -108,24 +115,23 @@ class RequestSystemSLDepart(object):
     def new_depart(request):
         if request.method == "POST":
             our_form = DepartmentForm(request.POST)
-
-            # new_obj = our_form.save(commit=False)
             if our_form.is_valid():
-                if our_form.cleaned_data['number'] == u'ИУ1' or u'ИУ2' or u'ИУ3' or u'ИУ4' or u'ИУ5' or u'ИУ6':
-
-                    kafedra = Department.objects.create()
-                    kafedra.name = u'Кафедра'
-                    kafedra.number = u'ИУ5'
-                    kafedra.phone_number = u'+4953453434'
+                print('valid')
+                number = our_form.cleaned_data['number']
+                print (number)
+                if number in kafedras:
+                    print('need kaf')
                     prototype = Prototype()  # PROTOTYPE FOR Kafedra Department
-                    prototype.register_object('kafedra', kafedra)
-                    depart_obj = prototype.clone('kafedra', number=our_form.cleaned_data['number'],
+                    prototype.register_object('kafedra', prot_for_kafedra)
+                    depart_obj = prototype.clone('kafedra', number=number,
                                                  phone_number=our_form.cleaned_data['phone_number'])
-
-
+                    depart_obj.save()
                 else:
-                    depart_obj = our_form.save(commit=False)
-                depart_obj.save()
+                    print ('dont need kaf')
+                    depart_obj = DepartGateway(name=our_form.cleaned_data['name'], number=our_form.cleaned_data['number'],
+                                                phone_number=our_form.cleaned_data['phone_number'], info=our_form.cleaned_data['info'])
+                    depart_obj.save()
+
                 departs = Department.objects.all()
 
                 positions = Position.objects.all()
@@ -133,7 +139,8 @@ class RequestSystemSLDepart(object):
                     'departs': departs,
                     'positions': positions,
                     'error': 0,
-                    'method': 'post'
+                    'method': 'post',
+                    'name_of_url': u'new_depart'
                 }
                 return context
 
@@ -150,7 +157,53 @@ class RequestSystemSLDepart(object):
             context = {
                 'form': depart_form,
                 'method': 'get',
-                'error': 0
+                'error': 0,
+                'name_of_url': u'new_depart'
+            }
+            return context
+
+    @staticmethod
+    def department(request, pk):
+        depart_id = pk
+        if request.method == 'POST':
+            form = DepartmentForm(request.POST)
+
+            if form.is_valid():
+
+                depart = DepartGateway.find_by_id(depart_id)
+                depart.update_info(form)     #DOMAIN
+                context = {
+                    'form': form,
+                    'error': 0,
+                    'method': 'post',
+                    'name_of_url': u'depart'
+                }
+                return context
+
+            else:
+                context = {
+
+                    'form': form,
+                    'error': 1,
+                    'name_of_url': u'depart'
+                }
+                return context
+        else:
+
+            depart = DepartGateway.find_by_id(depart_id)
+            data = {
+                'id': pk,
+                'name': depart.name,
+                'info': depart.info
+            }
+            form = DepartmentForm(data)
+            depart.save()
+            context = {
+                'form': form,
+                'id': pk,
+                'error': 0,
+                'method': 'get',
+                'name_of_url': u'depart'
             }
             return context
 
@@ -164,6 +217,13 @@ class RequestSystemSLDepart(object):
             'positions': positions,
         }
         return context
+
+    @staticmethod
+    def department_delete(request, pk):
+        department_id = pk
+        depart = DepartGateway.find_by_id(department_id)
+        depart.delete()
+        return 1
 
 
 class RequestSystemSLRequest(object):

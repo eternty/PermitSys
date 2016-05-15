@@ -10,7 +10,7 @@ class DepartmentForm(ModelForm):
     class Meta:
 
         model = Department
-        fields = ['name', 'number', 'phone_number']
+        fields = ['name', 'number', 'phone_number', 'info']
 
 
 class DepForm(forms.Form):
