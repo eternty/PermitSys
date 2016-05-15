@@ -50,9 +50,9 @@ class Position(models.Model):
 
 
 class MyRequest(models.Model):
-    class Meta:
-        verbose_name = u'Заявка'
-        verbose_name_plural = u'Заявки'
+    #class Meta:
+     #   verbose_name = u'Заявка'
+      #  verbose_name_plural = u'Заявки'
     firstname = models.CharField(max_length=20)
     lastname = models.CharField(max_length=20)
     patronymic = models.CharField(max_length=20, blank=True, null=True)

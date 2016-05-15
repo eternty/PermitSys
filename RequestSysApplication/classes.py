@@ -42,13 +42,16 @@ class PositionGateWay(object):                         #GATEWAY
         position.save()
         return id
 
-class PositionGateway(Gateway):
-    TABLE_NAME = 'RequestSysApplication_position'
+class DepartGateway(Gateway):
+    TABLE_NAME = 'RequestSysApplication_department'
     FIELDS = {
         'id',
         'name',
-        'info'
+        'info',
+        'phone'
     }
+
+
 
 class RequestGateway(Gateway):
     TABLE_NAME = 'RequestSysApplication_myrequest'
@@ -65,7 +68,8 @@ class RequestGateway(Gateway):
         'department_id',
         'position_id',
         'createtime',
-        'status'
+        'status',
+
     }
     @staticmethod
     def creation(form):
@@ -85,6 +89,7 @@ class RequestGateway(Gateway):
             self.status = u'APR'
         if choice == u'decline':
             self.status = u'DEC'
+        print(self.status)
         self.save()
         return self
 
@@ -103,7 +108,13 @@ class RequestGateway(Gateway):
         self.save()
         return self
 
-
+class PositionGateway(Gateway):
+    TABLE_NAME = 'RequestSysApplication_position'
+    FIELDS = {
+        'id',
+        'name',
+        'info'
+    }
 
 
 

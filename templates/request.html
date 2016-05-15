@@ -6,7 +6,7 @@
     <li><a href="/requestsystem/departs">Отделы и Должности</a></li>
 {% endblock %}
 {% block bodycontent %}
-     <form action="/requestsystem/request/{{ reqobject.id }}/" method="post">
+     <form action="/requestsystem/request/{{ id }}/" method="post">
          <table class="table table-responsive">
              {% csrf_token %}
              {{ form.as_table }}

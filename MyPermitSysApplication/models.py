@@ -38,7 +38,7 @@ class Permit(models.Model):
     def __unicode__(self):
         return self.name
 
-    class Meta:
+    #class Meta:
         verbose_name = u'Пропуск'
         verbose_name_plural = u'Пропуска'
 

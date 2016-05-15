@@ -17,6 +17,7 @@ from RequestSysApplication.models import MyRequest, Department, Position
 def permit(request):
     return render(request, 'new_permit.html')
 
+
 def parse_form(request, our_form):
     lastname = our_form.cleaned_data['lastname'],
     firstname = our_form.cleaned_data['firstname'],
@@ -40,6 +41,7 @@ def parse_form(request, our_form):
     }
     return context
 
+
 def permit_console(request,pk,choice):
     print(0)
     context = PermitSystemServiceLayer.parse(choice, pk)
@@ -47,7 +49,6 @@ def permit_console(request,pk,choice):
         return render(request, 'request_for_permit.html', context)
     else:
         return render(request, 'permit.html', context)
-
 
 
 def person(request,pk):

@@ -33,7 +33,7 @@ def position(request,pk):
     if context['error'] == 1:
         return HttpResponse("Error!")
     else:
-        return render(request, 'new_position.html', context)
+        return render(request, 'position.html', context)
 
 def position_delete(request,pk):
     context = RequestSystemSLPosition.position_delete(request, pk)
@@ -104,7 +104,7 @@ def new_request(request):
             return render(request, 'new_request.html', context)
 
 def request_proceed(request,pk,choice):
-    context = RequestSystemSLRequest.request_proceed(request,pk,choice)
+    RequestSystemSLRequest.request_proceed(request,pk,choice)
     return HttpResponseRedirect('/requestsystem/')
 
 

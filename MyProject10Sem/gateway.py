@@ -68,13 +68,13 @@ class Gateway(object):
     #
     #
     @classmethod
-    def find_by_id(cls, id):
+    def find_by_id(cls, _id):
         c = cls.get_conn().cursor()
-        res = c.execute("SELECT * FROM {} WHERE `id` = ?".format(cls.TABLE_NAME), [id])
+        res = c.execute("SELECT * FROM {} WHERE `id` = ?".format(cls.TABLE_NAME), [_id])
         desc = Connection.get_cursor_description(res)
         row = res.fetchone()
         if row is None:
-            raise cls().DoesNotExist(id)
+            raise cls().DoesNotExist(_id)
         d = Connection.row_to_dict(row, desc)
         return cls(__exists__=True, **d)
 
@@ -88,7 +88,7 @@ class Gateway(object):
     #
     def save(self):
         if self.__exists__:
-            if self.id is None:
+            if self._id is None:
                 raise self.DoesNotExist()
 
             if len(self.__dirty__) > 0:
@@ -98,7 +98,7 @@ class Gateway(object):
                     update_sql.append('{} = ?'.format(attr))
                     update_args.append(self._fields[attr])
                 update_sql = ','.join(update_sql)
-                update_args.append(self.id)
+                update_args.append(self._id)
 
                 self.conn.execute("""
                   UPDATE {} SET {} WHERE `id` = ?
@@ -123,7 +123,9 @@ class Gateway(object):
               """.format(self.TABLE_NAME, insert_sql, insert_sql_values),
                       insert_args)
             self.conn.commit()
-            setattr(self, 'id', c.lastrowid)
+            #setattr(self, 'id', c.lastrowid)
+            self._id = c.lastrowid
+            self._fields['id'] = c.lastrowid
             self.__exists__ = True
 
     ##
@@ -131,10 +133,10 @@ class Gateway(object):
     #
     #
     def delete(self, *args, **kwargs):
-        if not self.__exists__ or self.id is None:
+        if not self.__exists__ or self._id is None:
             raise self.DoesNotExist()
 
-        self.conn.execute("DELETE FROM {} WHERE `id` = ?".format(self.TABLE_NAME), [self.id])
+        self.conn.execute("DELETE FROM {} WHERE `id` = ?".format(self.TABLE_NAME), [self._id])
         self.conn.commit()
         self.__exists__ = False
 

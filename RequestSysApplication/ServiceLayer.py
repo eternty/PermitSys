@@ -169,19 +169,24 @@ class RequestSystemSLDepart(object):
 class RequestSystemSLRequest(object):
     @staticmethod
     def request(request, pk):
+        id=pk
+
         if request.method == 'POST':
             form = RequestForm(request.POST)
-            our_request = RequestGateway.find_by_id(id = pk)
+            our_request = RequestGateway.find_by_id(_id = pk)
             if form.is_valid():
-                our_request.update_info()
-            #our_request = MyRequest.objects.get(id=pk)
-            #our_form = RequestForm(request.POST)
-                request_form = RequestForm(instance=our_request)
+                our_request.update_info(form)
+                #our_request = MyRequest.objects.get(id=pk)
+                #our_form = RequestForm(request.POST)
+                req = MyRequest.objects.get(id = id)
+                request_form = RequestForm(instance=req)
+
                 context = {
                     'reqobject': our_request,
                     'form': request_form,
                     'error': 0,
-                    'method': 'post'
+                    'method': 'post',
+                    'id': id
                 }
             else:
                 context = {
@@ -189,13 +194,15 @@ class RequestSystemSLRequest(object):
                 }
                 return context
         else:
-            reqobject = RequestGateway.find_by_id(id = pk)
-            our_form = RequestForm(instance=reqobject)
+            reqobject = RequestGateway.find_by_id(_id = pk)
+            our_form = RequestForm(instance=MyRequest.objects.get(id =id))
             context = {
                 'reqobject': reqobject,
                 'form': our_form,
                 'error': 0,
-                'method': 'get'
+                'method': 'get',
+                'id': id
+
             }
         return context
 
@@ -249,7 +256,7 @@ class RequestSystemSLRequest(object):
 
     @staticmethod
     def request_proceed(request, pk, choice):
-        reqobject = RequestGateway.find_by_id(id=pk)
+        reqobject = RequestGateway.find_by_id(_id=pk)
         #RequestServiceLayer.parse(choice, reqobject, pk)  # SERVICE LAYER
         if choice == u'delete':
             RequestGateway.deletion(pk)  # DOMAIN

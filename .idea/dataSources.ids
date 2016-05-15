@@ -368,14 +368,14 @@
       <column name="firstname" sqlType="VARCHAR(20)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="lastname" sqlType="VARCHAR(20)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="patronymic" sqlType="VARCHAR(20)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
-      <column name="department_id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="position_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="department_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
       <primary-key columns="id"/>
-      <foreign-key name="#FAKE_MyPermitSysApplication_permit_1" columns="position_id" ref-table="RequestSysApplication_position" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="#FAKE_MyPermitSysApplication_permit_2" columns="department_id" ref-table="RequestSysApplication_department" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_MyPermitSysApplication_permit_1" columns="department_id" ref-table="RequestSysApplication_department" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="#FAKE_MyPermitSysApplication_permit_2" columns="position_id" ref-table="RequestSysApplication_position" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="#FAKE_MyPermitSysApplication_permit_3" columns="person_id" ref-table="MyPermitSysApplication_person" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <index name="MyPermitSysApplication_permit_bce5bd07" unique="true" columns="position_id"/>
       <index name="MyPermitSysApplication_permit_bf691be4" unique="true" columns="department_id"/>
+      <index name="MyPermitSysApplication_permit_bce5bd07" unique="true" columns="position_id"/>
       <index name="MyPermitSysApplication_permit_a8452ca7" unique="true" columns="person_id"/>
     </table>
     <table name="MyPermitSysApplication_person" schema="" catalog="" type="TABLE">
@@ -407,15 +407,15 @@
       <column name="firstname" sqlType="VARCHAR(20)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="lastname" sqlType="VARCHAR(20)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="patronymic" sqlType="VARCHAR(20)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="passport_serial" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="passport_number" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="registration_date" sqlType="DATE" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="end_date" sqlType="DATE" precision="0" scale="-1" nullable="false" jdbcType="12"/>
-      <column name="phone_number" sqlType="VARCHAR(15)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="createtime" sqlType="DATETIME" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="status" sqlType="VARCHAR(3)" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="department_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
       <column name="position_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
-      <column name="passport_serial" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="phone_number" sqlType="VARCHAR(15)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <primary-key columns="id"/>
       <foreign-key name="#FAKE_RequestSysApplication_myrequest_1" columns="position_id" ref-table="RequestSysApplication_position" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <foreign-key name="#FAKE_RequestSysApplication_myrequest_2" columns="department_id" ref-table="RequestSysApplication_department" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
