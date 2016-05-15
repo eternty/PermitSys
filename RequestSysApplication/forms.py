@@ -24,13 +24,15 @@ class PositionFForm(forms.Form):
         model = Position
         fiels = [ 'name', 'info']
 
+
 class RequestForm(ModelForm):
 
     class Meta:
 
         model = MyRequest
-        fields = ['id','firstname', 'lastname', 'patronymic', 'passport_serial', 'passport_number', 'phone_number',
+        fields = ['id','lastname','firstname',  'patronymic', 'passport_serial', 'passport_number', 'phone_number',
                   'position', 'department', 'end_date', 'status']
+
 
 class NewRequestForm(ModelForm):
 
@@ -40,10 +42,12 @@ class NewRequestForm(ModelForm):
         fields = ['firstname', 'lastname', 'patronymic', 'passport_serial', 'passport_number', 'phone_number',
                   'position', 'department', 'end_date']
 
+
 class PositionForm(forms.Form):
     id = forms.IntegerField(label=u'Номер')
     name = forms.CharField(label=u'Название должности', max_length=30)
     info = forms.CharField(label=u'Описание', max_length=200)
+
 
 class RequestMyForm(forms.Form):
     id = forms.IntegerField(label=u'Номер')

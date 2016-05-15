@@ -1,10 +1,7 @@
 import abc
-
-
 from django.http import HttpResponse, HttpResponseRedirect
-
-from MyPermitSysApplication.models import Permit, Person
-from MyProject10Sem.gateway import Gateway
+from MyPermitSysApplication.models import  Person
+from MyPermitSysApplication.gateway import Gateway
 import datetime
 
 
@@ -111,6 +108,9 @@ class PersonGateway(Gateway):
         'department_id',
         'is_active'
     }
+
+
+
 class PermitGateway(Gateway):
     TABLE_NAME = 'MyPermitSysApplication_permit'
     FIELDS = {
@@ -127,3 +127,4 @@ class PermitGateway(Gateway):
         'status',
         'type'
     }
+

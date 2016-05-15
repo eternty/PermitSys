@@ -15,27 +15,28 @@
     <th>Отдел</th>
     <th>Дата</th>
     <th>Статус</th>
-    <th>Действие</th>
+    <th></th>
 
 {% endblock %}
 
 {% block trow %}
     {% for req in requests %}
-    <tr >
+        {% if req.status == 'APR' %}
+            <tr >
 
-            <td style="cursor: pointer" onclick="window.location.replace('/permitsystem/permit_sys_сontrol/{{ req.id }}/show')">{{ req.id }}</td>
-            <td>{{ req.lastname }}</td>
-            <td>{{ req.firstname }}</td>
-            <td>{{ req.patronymic }}</td>
-            <td>{{ req.position }}</td>
-            <td>{{ req.department }}</td>
-            <td>{{ req.registration_date}}</td>
-            <td>{{ req.status }}</td>
-            <td>        <!--DOMAIN LOGIC-->
-                <a class="btn btn-default" href= '/permitsystem/permit_sys_control/{{ req.id }}/createtemp' >Создать временный пропуск</a>
-                <a class="btn btn-default" href= '/permitsystem/permit_sys_control/{{ req.id }}/createcont'>Создать постоянный пропуск</a>
-            </td>
+                <td style="cursor: pointer" onclick="window.location.replace('/permitsystem/permit_sys_сontrol/{{ req.id }}/show')">{{ req.id }}</td>
+                <td>{{ req.lastname }}</td>
+                <td>{{ req.firstname }}</td>
+                <td>{{ req.patronymic }}</td>
+                <td>{{ req.position.name }}</td>
+                <td>{{ req.depart }}</td>
+                <td>{{ req.registration_date}}</td>
+                <td>{{ req.status }}</td>
+                <td>        <!--DOMAIN LOGIC-->
 
+                    <a class="btn btn-default" href= '/permitsystem/permit_sys_control/{{ req.id }}/createcont'>Создать постоянный пропуск</a>
+                </td>
+        {% endif %}
     </tr>
     {% empty %}
         <tr>

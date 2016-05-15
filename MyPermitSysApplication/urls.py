@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'permit_sys_persons/?$', views.permit_sys_persons, name="persons"),
     url(r'$', views.permit_sys_req, name="permit_sys_req"),
     url(r'new_permit?$', views.permit, name = "new_permit"),
+    url(r'request_for_permit/(?P<pk>[0-9]+)', views.request_for_permit, name="request_for_permit")
     #url(r'new_person?$', views.person, name="new_person"),
 
 

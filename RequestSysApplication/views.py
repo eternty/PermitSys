@@ -1,11 +1,7 @@
 from RequestSysApplication.ServiceLayer import *
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render,redirect
-from RequestSysApplication.models import MyRequest, Department, Position
-from RequestSysApplication.forms import RequestForm, NewRequestForm, PositionForm, PositionFForm
-from RequestSysApplication.forms import DepartmentForm, DepForm
-from RequestSysApplication.prototype import Prototype
-from RequestSysApplication.classes import PositionGateWay, PositionGateway
+from django.shortcuts import render
+from RequestSysApplication.forms import RequestForm
 
 
 # Create your views here.
@@ -15,7 +11,7 @@ def index(request):
 def request_sys(request):
     #usertype = request.user.usertype.name
 
-    context = RequestSystemServiceLayer.request_sys(request)
+    context = RequestSystemSLRequest.request_sys(request)
     return render (request, 'req_system_requests.html', context)
 
 def new_position(request):

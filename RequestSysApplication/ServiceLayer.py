@@ -1,4 +1,4 @@
-from RequestSysApplication.classes import PositionGateway, RequestServiceLayer, RequestGateway, DepartGateway
+from RequestSysApplication.classes import PositionGateway,  RequestGateway, DepartGateway
 from RequestSysApplication.forms import PositionForm, DepartmentForm, RequestForm, NewRequestForm
 from RequestSysApplication.models import MyRequest, Department, Position
 from RequestSysApplication.prototype import Prototype
@@ -6,14 +6,7 @@ from RequestSysApplication.values import kafedras, prot_for_kafedra
 
 
 class RequestSystemServiceLayer(object):
-    @staticmethod
-    def request_sys(request):
-        # usertype = request.user.usertype.name
-        requests = MyRequest.objects.exclude(status="DON")
-        context = {
-            'requests': requests,
-        }
-        return context
+   pass
 
 
 class RequestSystemSLPosition(object):
@@ -118,7 +111,7 @@ class RequestSystemSLDepart(object):
             if our_form.is_valid():
                 print('valid')
                 number = our_form.cleaned_data['number']
-                print (number)
+                print(number)
                 if number in kafedras:
                     print('need kaf')
                     prototype = Prototype()  # PROTOTYPE FOR Kafedra Department
@@ -128,7 +121,8 @@ class RequestSystemSLDepart(object):
                     depart_obj.save()
                 else:
                     print ('dont need kaf')
-                    depart_obj = DepartGateway(name=our_form.cleaned_data['name'], number=our_form.cleaned_data['number'],
+
+                    depart_obj = DepartGateway(name=our_form.cleaned_data['name'], number=number,
                                                 phone_number=our_form.cleaned_data['phone_number'], info=our_form.cleaned_data['info'])
                     depart_obj.save()
 
@@ -194,7 +188,9 @@ class RequestSystemSLDepart(object):
             data = {
                 'id': pk,
                 'name': depart.name,
-                'info': depart.info
+                'info': depart.info,
+                'number': depart.number,
+                'phone_number': depart.phone_number
             }
             form = DepartmentForm(data)
             depart.save()
@@ -227,6 +223,18 @@ class RequestSystemSLDepart(object):
 
 
 class RequestSystemSLRequest(object):
+    def request_sys(request):
+        # usertype = request.user.usertype.name
+        requests = RequestGateway.all()
+        for req in requests:
+            req.position = PositionGateway.find_by_id(_id=req.position_id)
+            depart = DepartGateway.find_by_id(_id=req.department_id)
+            req.depart = depart.full_name()
+        context = {
+            'requests': requests,
+        }
+        return context
+
     @staticmethod
     def request(request, pk):
         id=pk
@@ -235,10 +243,15 @@ class RequestSystemSLRequest(object):
             form = RequestForm(request.POST)
             our_request = RequestGateway.find_by_id(_id = pk)
             if form.is_valid():
+                print(form.cleaned_data['department'])
+
+                our_request.save()
                 our_request.update_info(form)
+
                 #our_request = MyRequest.objects.get(id=pk)
                 #our_form = RequestForm(request.POST)
                 req = MyRequest.objects.get(id = id)
+
                 request_form = RequestForm(instance=req)
 
                 context = {

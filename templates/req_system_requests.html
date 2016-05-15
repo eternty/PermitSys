@@ -19,8 +19,9 @@
     <th>Должность</th>
     <th>Отдел</th>
     <th>Статус</th>
-    <th>Подтвердить</th>
-    <th>Отклонить</th>
+    <th></th>
+    <th></th>
+    <th></th>
 {% endblock %}
 
 {% block trow %}
@@ -31,8 +32,8 @@
             <td>{{ req.lastname }}</td>
             <td>{{ req.patronymic }}</td>
             <td>{{ req.registration_date}}</td>
-            <td>{{ req.position }}</td>
-            <td>{{ req.department }}</td>
+            <td>{{ req.position.name }}</td>
+            <td>{{ req.depart }}</td>
             <td>{{ req.status }}</td>
             <td>        <!--DOMAIN LOGIC-->
                 <a class="btn btn-default" href= 'request_proceed/{{ req.id }}/approve'>Подтвердить</a>

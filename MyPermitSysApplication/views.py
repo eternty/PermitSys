@@ -6,6 +6,7 @@ from MyPermitSysApplication.classes import   PersonGateway
 #from MyPermitSysApplication.forms import PersonForm
 from MyPermitSysApplication.forms import PersonForm
 from MyPermitSysApplication.models import Permit, Person
+from RequestSysApplication.classes import RequestGateway
 from django.http import HttpResponse
 from django.shortcuts import render
 from RequestSysApplication.models import MyRequest, Department, Position
@@ -44,12 +45,16 @@ def parse_form(request, our_form):
 
 def permit_console(request,pk,choice):
     print(0)
-    context = PermitSystemServiceLayer.parse(choice, pk)
-    if context['answer'] == u'show':
+    context = PermitSystemServiceLayer.show_createcont(choice, pk)
+    if choice == u'show':
         return render(request, 'request_for_permit.html', context)
     else:
         return render(request, 'permit.html', context)
 
+def request_for_permit(request, pk):
+
+    context = PermitSystemSLRequests.request_for_permit(pk)
+    return render(request, 'request_for_permit.html', context)
 
 def person(request,pk):
     context = PermitSystemServiceLayerPerson.person(request,pk)
