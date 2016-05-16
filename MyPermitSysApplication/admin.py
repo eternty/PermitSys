@@ -8,7 +8,7 @@ class PersonAdmin(admin.ModelAdmin):
                      'phone_number', 'is_active')
 
 class PermitAdmin(admin.ModelAdmin):
-    list_display = ('person','begin_date','end_date', 'is_active', 'status', 'type')
+    list_display = ('person_id','begin_date','end_date', 'is_active', 'status', 'type')
 
 admin.site.register(Permit, PermitAdmin),
 

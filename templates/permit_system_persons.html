@@ -14,8 +14,10 @@
     <th>Должность</th>
     <th>Отдел</th>
     <th>Активный доступ</th>
-    <th>Редактировать</th>
-    <th>Показать пропуск</th>
+    <th></th>
+    <th></th>
+    <th></th>
+
 {% endblock %}
 {% block trow %}
     {% for per in persons %}
@@ -31,10 +33,8 @@
             {% else %}
                 <td>Нективен</td>
             {% endif %}
-
-            <td><a class="btn btn-default" href="/permitsystem/person.html" role="button">Редактировать</a></td>
-            <td><a class="btn btn-default" href="permits_of_person.html" role="button">Показать пропуск</a></td>
-            <td><a class="btn btn-default" href="person_delete.html" role="button">Удалить</a></td>
+            <td><a class="btn btn-default" href='/permitsystem/permits_of_person/{{ per.id }}' role="button">Показать пропуск</a></td>
+            <td><a class="btn btn-default" href='/permitsystem/person_delete/{{ per.id }}' role="button">Удалить</a></td>
     </tr>
     {% empty %}
         <tr>

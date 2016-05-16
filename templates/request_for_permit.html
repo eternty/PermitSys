@@ -7,27 +7,26 @@
     <li><a href="/permitsystem/permit_sys_persons">Персоны</a></li>
 {% endblock %}
 {% block bodycontent %}
-     <form action="/permitsystem/request_for_permit/{{ reqobject.id }}/" method="post">
          <table class="table table-responsive ">
              <tr>
             <td>Фамилия</td>
-            <td>{{ lastname }}</td>
+            <td>{{ reqobject.lastname }}</td>
         </tr>
         <tr>
             <td>Имя</td>
-            <td>{{ firstname }}</td>
+            <td>{{ reqobject.firstname }}</td>
         </tr>
         <tr>
             <td>Отчество</td>
-            <td>{{ patronymic }}</td>
+            <td>{{ reqobject.patronymic }}</td>
         </tr>
          <tr>
             <td>Должность</td>
-            <td>{{ position }}</td>
+            <td>{{ reqobject.position }}</td>
         </tr>
         <tr>
             <td>Отдел</td>
-            <td>{{ department }}</td>
+            <td>{{ reqobject.department }}</td>
         </tr>
         <tr>
             <td>Тип</td>
@@ -35,15 +34,15 @@
         </tr>
         <tr>
             <td>Статус</td>
-            <td>{{ permit.status }}</td>
+            <td>{{ reqobject.status }}</td>
         </tr>
         <tr>
             <td>Cрок действия</td>
-            <td>{{ permit.end_date }}</td>
+            <td>{{ reqobject.end_date }}</td>
         </tr>
          </table>
-         <input type="submit" value="Сохранить" />
-     </form>
+
+        <a class="btn btn-default" href= '/permitsystem/permit_sys_control/{{ req.id }}/createcont'>Создать постоянный пропуск</a>
     <ul></ul>
 
 

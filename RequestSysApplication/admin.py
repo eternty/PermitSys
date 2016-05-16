@@ -8,7 +8,7 @@ class PositionAdmin(admin.ModelAdmin):
 
 
 class DepartmentAdmin(admin.ModelAdmin):
-    list_display = ('name','phone_number')
+    list_display = ('name','number','phone_number', 'info')
 
 
 class RequestAdmin(admin.ModelAdmin):

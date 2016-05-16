@@ -1,0 +1,45 @@
+{% extends "base_console.html" %}
+{% block title %}АСУ изготовления пропусков{% endblock %}
+{% block nav_brand %}Подсистема подготовки пропусков{% endblock %}
+{% block navbar-menu %}
+    <li ><a href="/permitsystem">Заявки</a></li>
+    <li class="active"><a href="/permitsystem/permit_sys_permits">Пропуска</a></li>
+    <li><a href="/permitsystem/permit_sys_persons">Персоны</a></li>
+{% endblock %}
+{% block thead %}
+    <th>№</th>
+    <th>Фамилия</th>
+    <th>Имя</th>
+    <th>Отчество</th>
+    <th>Должность</th>
+    <th>Отдел</th>
+    <th>Срок действия</th>
+    <th>Тип пропуска</th>
+    <th>Статус</th>
+
+
+{% endblock %}
+
+{% block trow %}
+    {% for per in permits %}
+    <tr >
+            <td >{{ per.id }}</td>
+            <td>{{ per.lastname }}</td>
+            <td>{{ per.firstname }}</td>
+            <td>{{ per.patronymic }}</td>
+            <td>{{ per.position }}</td>
+            <td>{{ per.department }}</td>
+            <td>{{ per.end_date }}</td>
+            <td>{{ per.type }}</td>
+            <td>{{ per.status }}</td>
+
+
+
+    </tr>
+    {% empty %}
+        <tr>
+            <td colspan="6">нет пропусков</td>
+        </tr>
+
+    {% endfor %}
+{% endblock %}

@@ -26,25 +26,27 @@
 
 {% block trow %}
     {% for req in requests %}
-    <tr >
-            <td style="cursor: pointer" onclick="window.location.replace('request/{{ req.id }}/')">{{ req.id }}</td>
-            <td>{{ req.firstname }}</td>
-            <td>{{ req.lastname }}</td>
-            <td>{{ req.patronymic }}</td>
-            <td>{{ req.registration_date}}</td>
-            <td>{{ req.position.name }}</td>
-            <td>{{ req.depart }}</td>
-            <td>{{ req.status }}</td>
-            <td>        <!--DOMAIN LOGIC-->
-                <a class="btn btn-default" href= 'request_proceed/{{ req.id }}/approve'>Подтвердить</a>
-            </td>
-            <td style="cursor: pointer" onclick="window.location.replace('request_proceed/{{ req.id }}/decline')">
-                <a class="btn btn-default">Отклонить</a>
-            </td>
-            <td>
-                <a class="btn btn-default" href= 'request_proceed/{{ req.id }}/delete'>Удалить</a>
-            </td>
-    </tr>
+        {% if req.status != 'DON'%}
+            <tr >
+                    <td style="cursor: pointer" onclick="window.location.replace('request/{{ req.id }}/')">{{ req.id }}</td>
+                    <td>{{ req.firstname }}</td>
+                    <td>{{ req.lastname }}</td>
+                    <td>{{ req.patronymic }}</td>
+                    <td>{{ req.registration_date}}</td>
+                    <td>{{ req.position.name }}</td>
+                    <td>{{ req.depart }}</td>
+                    <td>{{ req.status }}</td>
+                    <td>        <!--DOMAIN LOGIC-->
+                        <a class="btn btn-default" href= 'request_proceed/{{ req.id }}/approve'>Подтвердить</a>
+                    </td>
+                    <td style="cursor: pointer" onclick="window.location.replace('request_proceed/{{ req.id }}/decline')">
+                        <a class="btn btn-default">Отклонить</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-default" href= 'request_proceed/{{ req.id }}/delete'>Удалить</a>
+                    </td>
+            </tr>
+        {% endif %}
     {% empty %}
         <tr>
             <td colspan="6">We have no active requests </td>

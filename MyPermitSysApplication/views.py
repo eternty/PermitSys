@@ -1,15 +1,8 @@
-import copy
-
 from MyPermitSysApplication.ServiceLayer import PermitSystemServiceLayer, PermitSystemServiceLayerPerson, \
     PermitSystemSLRequests, PermitSystemSLPermits, PermitSystemSLPersons
-from MyPermitSysApplication.classes import   PersonGateway
-#from MyPermitSysApplication.forms import PersonForm
-from MyPermitSysApplication.forms import PersonForm
-from MyPermitSysApplication.models import Permit, Person
-from RequestSysApplication.classes import RequestGateway
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from RequestSysApplication.models import MyRequest, Department, Position
+
 
 
 """def permit_sys(request):
@@ -46,7 +39,7 @@ def parse_form(request, our_form):
 def permit_console(request,pk,choice):
     print(0)
     context = PermitSystemServiceLayer.show_createcont(choice, pk)
-    if choice == u'show':
+    if context['answer'] == 1:
         return render(request, 'request_for_permit.html', context)
     else:
         return render(request, 'permit.html', context)
@@ -78,3 +71,11 @@ def permit_sys_permits(request):
 def permit_sys_persons(request):
     context = PermitSystemSLPersons.persons(request)
     return render(request, 'permit_system_persons.html', context)
+
+def permits_of_person(request,pk):
+    context = PermitSystemServiceLayerPerson.permits_of_person(pk)
+    return render(request, 'permits_of_person.html', context)
+
+def person_delete(request,pk):
+    context = PermitSystemSLPersons.peson_delete(pk)
+    return HttpResponseRedirect('/permitsystem/persons')

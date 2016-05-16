@@ -3,7 +3,8 @@ from MyPermitSysApplication.models import Person, Permit
 from RequestSysApplication.classes import RequestGateway, PositionGateway, DepartGateway
 from RequestSysApplication.models import MyRequest, Position, Department
 from MyPermitSysApplication.classes import PersonGateway, PersonGateWay, TemporaryPermitEmplementation, \
-    ContinuousPermitEmplementation
+    ContinuousPermitEmplementation, PermitGateway
+
 
 class PermitSystemServiceLayer(object):               #SERVICE_LAYER
     @staticmethod
@@ -11,9 +12,12 @@ class PermitSystemServiceLayer(object):               #SERVICE_LAYER
         reqobject = RequestGateway.find_by_id(_id=pk)
         print(reqobject.lastname)
         if choice == u'show':
+            print(0)
+            reqobject.department = DepartGateway.find_by_id(reqobject.department_id).full_name()
+            reqobject.position=PositionGateway.find_by_id(reqobject.position_id).name
             context = {
                 'reqobject': reqobject,
-                'answer': u'show'
+                'answer': 1
             }
             return context
 
@@ -38,7 +42,12 @@ class PermitSystemServiceLayer(object):               #SERVICE_LAYER
 
             permit = ContinuousPermitEmplementation.create_permit(person.id, reqobject.registration_date, reqobject.end_date,
                                                                   lastname, firstname, patronymic,
-                                                                  position_id, department_id)
+                                                             position_id, department_id)
+            permit.position = PositionGateway.find_by_id(_id = permit.position_id).name
+            permit.department = DepartGateway.find_by_id(_id= permit.department_id).full_name()
+
+            reqobject.done()          #DOMAIN in request system
+
             context = {
 
                 'permit': permit,
@@ -48,6 +57,23 @@ class PermitSystemServiceLayer(object):               #SERVICE_LAYER
 
 
 class PermitSystemServiceLayerPerson(object):
+    @staticmethod
+    def permits_of_person(pk):
+        person = PersonGateway.find_by_id(_id = pk)
+        person.department = DepartGateway.find_by_id(_id= person.department_id).full_name()
+        person.position = PositionGateway.find_by_id(_id = person.position_id).name
+        permits = PermitGateway.find_by_fields(person = person)
+        for permit in permits:
+            permit.department = DepartGateway.find_by_id(_id= permit.department_id).full_name()
+            permit.position = PositionGateway.find_by_id(_id = permit.position_id).name
+
+        context = {
+            'permits': permits,
+            'person': person
+        }
+        return context
+
+
     @staticmethod
     def person(request, pk):
         if request.method == 'POST':
@@ -91,6 +117,7 @@ class PermitSystemServiceLayerPerson(object):
             return  context
 
 class PermitSystemSLRequests:
+
     @staticmethod
     def requests(request):
         requests = RequestGateway.all()
@@ -119,7 +146,11 @@ class PermitSystemSLPermits:
 class PermitSystemSLPersons:
     @staticmethod
     def persons(request):
-        persons = Person.objects.all()
+        persons = PersonGateway.all()
+        #for per in persons:
+            #per.department = DepartGateway.find_by_id(per.department_id).full_name()
+            #per.position = PositionGateway.find_by_id(per.position_id).name
+
         context = {
             'persons': persons,
         }

@@ -89,9 +89,10 @@ class RequestGateway(Gateway):
 
     }
 
-
-
-
+    def done(self):
+        self.status = 'DON'
+        self.save()
+        return self
 
     @staticmethod
     def creation(form):
