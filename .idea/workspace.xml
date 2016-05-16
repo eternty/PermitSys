@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fbe844e4-3b42-44b7-a52c-018c2dcaecb6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/permits_of_person.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPermitSysApplication/ServiceLayer.py" afterPath="$PROJECT_DIR$/MyPermitSysApplication/ServiceLayer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPermitSysApplication/admin.py" afterPath="$PROJECT_DIR$/MyPermitSysApplication/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPermitSysApplication/urls.py" afterPath="$PROJECT_DIR$/MyPermitSysApplication/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPermitSysApplication/views.py" afterPath="$PROJECT_DIR$/MyPermitSysApplication/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RequestSysApplication/admin.py" afterPath="$PROJECT_DIR$/RequestSysApplication/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RequestSysApplication/classes.py" afterPath="$PROJECT_DIR$/RequestSysApplication/classes.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/permit.html" afterPath="$PROJECT_DIR$/templates/permit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/permit_system_persons.html" afterPath="$PROJECT_DIR$/templates/permit_system_persons.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/req_system_requests.html" afterPath="$PROJECT_DIR$/templates/req_system_requests.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/request_for_permit.html" afterPath="$PROJECT_DIR$/templates/request_for_permit.html" />
     </list>
     <ignored path="MyProject10Sem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,8 +46,8 @@
       <file leaf-file-name="ServiceLayer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/ServiceLayer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+            <state relative-caret-position="296">
+              <caret line="71" column="28" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
                 <element signature="e#4709#5195#0" expanded="false" />
@@ -778,7 +766,14 @@
       <option name="project" value="LOCAL" />
       <updated>1463350066952</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="permit system in progress">
+      <created>1463411287506</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1463411287506</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -833,7 +828,8 @@
     <MESSAGE value="all but gateway for depart" />
     <MESSAGE value="some case in prototype" />
     <MESSAGE value="mine is ready" />
-    <option name="LAST_COMMIT_MESSAGE" value="mine is ready" />
+    <MESSAGE value="permit system in progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="permit system in progress" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1303,8 +1299,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MyPermitSysApplication/ServiceLayer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+        <state relative-caret-position="296">
+          <caret line="71" column="28" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
             <element signature="e#4709#5195#0" expanded="false" />
