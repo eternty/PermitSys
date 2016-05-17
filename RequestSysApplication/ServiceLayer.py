@@ -1,4 +1,5 @@
-from RequestSysApplication.classes import PositionGateway,  RequestGateway, DepartGateway
+from RequestSysApplication.domain import PositionGateway,  RequestGateway, DepartGateway, MyRequestt, MyPosition, \
+    MyDepartment
 from RequestSysApplication.forms import PositionForm, DepartmentForm, RequestForm, NewRequestForm
 from RequestSysApplication.models import MyRequest, Department, Position
 from RequestSysApplication.prototype import Prototype
@@ -15,9 +16,7 @@ class RequestSystemSLPosition(object):
         if request.method == "POST":
             form = PositionForm(request.POST)
             if form.is_valid():
-                position_object = PositionGateway(name=form.cleaned_data['name'],
-                                                  info=form.cleaned_data['info'])
-                position_object.save()
+                MyPosition.create(form)
                 departs = DepartGateway.all()
                 positions = PositionGateway.all()
                 context = {
@@ -50,11 +49,8 @@ class RequestSystemSLPosition(object):
         if request.method == 'POST':
             form = PositionForm(request.POST)
             if form.is_valid():
-                position_id = pk
-                position = PositionGateway.find_by_id(position_id)
-                position.name = form.cleaned_data['name']
-                position.info = form.cleaned_data['info']
-                position.save()
+                position = MyPosition.find_by_id(pk)
+                MyPosition.update_info(position, form)
                 context = {
                     # 'name': position.name,
                     # 'info': position.info,
@@ -97,9 +93,7 @@ class RequestSystemSLPosition(object):
 
     @staticmethod
     def position_delete(request, pk):
-        position_id = pk
-        position = PositionGateway.find_by_id(position_id)
-        position.delete()
+        MyPosition.delete(pk)
         return 1
 
 
@@ -121,13 +115,9 @@ class RequestSystemSLDepart(object):
                     depart_obj.save()
                 else:
                     print ('dont need kaf')
-
-                    depart_obj = DepartGateway(name=our_form.cleaned_data['name'], number=number,
-                                                phone_number=our_form.cleaned_data['phone_number'], info=our_form.cleaned_data['info'])
-                    depart_obj.save()
+                    depart_obj = MyDepartment.create(our_form)
 
                 departs = Department.objects.all()
-
                 positions = Position.objects.all()
                 context = {
                     'departs': departs,
@@ -163,9 +153,8 @@ class RequestSystemSLDepart(object):
             form = DepartmentForm(request.POST)
 
             if form.is_valid():
-
-                depart = DepartGateway.find_by_id(depart_id)
-                depart.update_info(form)     #DOMAIN
+                depart = MyDepartment.find_by_id(depart_id)
+                MyDepartment.update_info(depart, form)
                 context = {
                     'form': form,
                     'error': 0,
@@ -184,7 +173,7 @@ class RequestSystemSLDepart(object):
                 return context
         else:
 
-            depart = DepartGateway.find_by_id(depart_id)
+            depart = MyDepartment.find_by_id(depart_id)
             data = {
                 'id': pk,
                 'name': depart.name,
@@ -206,7 +195,6 @@ class RequestSystemSLDepart(object):
     @staticmethod
     def departs(request):
         departs = Department.objects.all()
-
         positions = Position.objects.all()
         context = {
             'departs': departs,
@@ -217,18 +205,18 @@ class RequestSystemSLDepart(object):
     @staticmethod
     def department_delete(request, pk):
         department_id = pk
-        depart = DepartGateway.find_by_id(department_id)
-        depart.delete()
+        depart = MyDepartment.find_by_id(department_id)
+        MyDepartment.delete(depart)
         return 1
 
 
 class RequestSystemSLRequest(object):
     def request_sys(request):
         # usertype = request.user.usertype.name
-        requests = RequestGateway.all()
+        requests = MyRequestt.all()
         for req in requests:
-            req.position = PositionGateway.find_by_id(_id=req.position_id)
-            depart = DepartGateway.find_by_id(_id=req.department_id)
+            req.position = MyPosition.find_by_id(req.position_id)
+            depart = MyDepartment.find_by_id(req.department_id)
             req.depart = depart.full_name()
         context = {
             'requests': requests,
@@ -240,19 +228,13 @@ class RequestSystemSLRequest(object):
         id=pk
         if request.method == 'POST':
             form = RequestForm(request.POST)
-            our_request = RequestGateway.find_by_id(_id = pk)
+            our_request = MyRequestt.find_by_id(pk)
             if form.is_valid():
                 print(form.cleaned_data['department'])
-
-                our_request.save()
-                our_request.update_info(form)
-
-                #our_request = MyRequest.objects.get(id=pk)
-                #our_form = RequestForm(request.POST)
+                MyRequestt.save(our_request)
+                MyRequestt.update_info(our_request, form)
                 req = MyRequest.objects.get(id = id)
-
                 request_form = RequestForm(instance=req)
-
                 context = {
                     'reqobject': our_request,
                     'form': request_form,
@@ -266,7 +248,7 @@ class RequestSystemSLRequest(object):
                 }
                 return context
         else:
-            reqobject = RequestGateway.find_by_id(_id = pk)
+            reqobject = MyRequestt.find_by_id(pk)
             our_form = RequestForm(instance=MyRequest.objects.get(id =id))
             context = {
                 'reqobject': reqobject,
@@ -300,7 +282,7 @@ class RequestSystemSLRequest(object):
         if request.method == "POST":
             form = NewRequestForm(request.POST)
             if form.is_valid():
-                our_request = RequestGateway.creation(form)
+                our_request = MyRequestt.create(form)
                 context = {
                     'reqobject': our_request,
                     'form': form,
@@ -328,12 +310,12 @@ class RequestSystemSLRequest(object):
 
     @staticmethod
     def request_proceed(request, pk, choice):
-        reqobject = RequestGateway.find_by_id(_id=pk)
+        reqobject = MyRequestt.find_by_id(pk)
         #RequestServiceLayer.parse(choice, reqobject, pk)  # SERVICE LAYER
         if choice == u'delete':
-            RequestGateway.deletion(pk)  # DOMAIN
+            MyRequestt.deletion(pk)  # DOMAIN
         else:
-            reqobject.request_proceed(choice)  # DOMAIN
+            reqobject = MyRequestt.request_proceed(reqobject,choice)  # DOMAIN change status
 
         requests = MyRequest.objects.exclude(status="DON")
         context = {

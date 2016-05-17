@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fbe844e4-3b42-44b7-a52c-018c2dcaecb6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/person.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/print_permit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPermitSysApplication/ServiceLayer.py" afterPath="$PROJECT_DIR$/MyPermitSysApplication/ServiceLayer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPermitSysApplication/classes.py" afterPath="$PROJECT_DIR$/MyPermitSysApplication/classes.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPermitSysApplication/forms.py" afterPath="$PROJECT_DIR$/MyPermitSysApplication/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPermitSysApplication/models.py" afterPath="$PROJECT_DIR$/MyPermitSysApplication/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPermitSysApplication/urls.py" afterPath="$PROJECT_DIR$/MyPermitSysApplication/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPermitSysApplication/views.py" afterPath="$PROJECT_DIR$/MyPermitSysApplication/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RequestSysApplication/ServiceLayer.py" afterPath="$PROJECT_DIR$/RequestSysApplication/ServiceLayer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RequestSysApplication/classes.py" afterPath="$PROJECT_DIR$/RequestSysApplication/classes.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RequestSysApplication/urls.py" afterPath="$PROJECT_DIR$/RequestSysApplication/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/permit.html" afterPath="$PROJECT_DIR$/templates/permit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/permit_system_permits.html" afterPath="$PROJECT_DIR$/templates/permit_system_permits.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/permit_system_persons.html" afterPath="$PROJECT_DIR$/templates/permit_system_persons.html" />
-    </list>
+    <list default="true" id="fbe844e4-3b42-44b7-a52c-018c2dcaecb6" name="Default" comment="" />
     <ignored path="MyProject10Sem.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -807,7 +790,14 @@
       <option name="project" value="LOCAL" />
       <updated>1463411375639</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="ok">
+      <created>1463486345682</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1463486345682</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -863,7 +853,8 @@
     <MESSAGE value="some case in prototype" />
     <MESSAGE value="mine is ready" />
     <MESSAGE value="permit system in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="permit system in progress" />
+    <MESSAGE value="ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="ok" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -2,7 +2,7 @@ import datetime
 
 from MyPermitSysApplication.forms import PersonForm, PermitForm
 from MyPermitSysApplication.models import Person, Permit
-from RequestSysApplication.classes import RequestGateway, PositionGateway, DepartGateway
+from RequestSysApplication.domain import RequestGateway, PositionGateway, DepartGateway
 from RequestSysApplication.models import MyRequest, Position, Department
 from MyPermitSysApplication.classes import PersonGateway, PersonGateWay, TemporaryPermitEmplementation, \
     ContinuousPermitEmplementation, PermitGateway
