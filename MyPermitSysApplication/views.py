@@ -1,5 +1,5 @@
 from MyPermitSysApplication.ServiceLayer import PermitSystemServiceLayer, PermitSystemServiceLayerPerson, \
-    PermitSystemSLRequests, PermitSystemSLPermits, PermitSystemSLPersons
+    PermitSystemSLRequests, PermitSystemSLPersons
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
@@ -67,7 +67,7 @@ def permit_sys_req(request):
 
 
 def permit_sys_permits(request):
-    context = PermitSystemSLPermits.permits(request)
+    context = PermitSystemServiceLayer.permits(request)
     return render(request, 'permit_system_permits.html', context)
 
 
@@ -84,16 +84,16 @@ def person_delete(request,pk):
     return HttpResponseRedirect('/permitsystem/permit_sys_persons')
 
 def show_permit(request, pk):
-    context = PermitSystemSLPermits.show_permit(request,pk)
+    context = PermitSystemServiceLayer.show_permit(request,pk)
     if context['error'] == 1:
         return HttpResponse("Error!")
     else:
         return render(request, 'permit.html', context)
 
 def print_permit(request,pk):
-    context = PermitSystemSLPermits.print_permit(pk)
+    context = PermitSystemServiceLayer.print_permit(pk)
     return render(request, 'print_permit.html',context)
 
 def print(request,pk):
-    context = PermitSystemSLPermits.print(request,pk)
+    context = PermitSystemServiceLayer.print(request,pk)
     return HttpResponseRedirect('/permitsystem/permit_sys_permits')

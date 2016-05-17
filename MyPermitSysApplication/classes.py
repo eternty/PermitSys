@@ -4,66 +4,6 @@ from MyPermitSysApplication.models import  Person
 from MyPermitSysApplication.gateway import Gateway
 import datetime
 
-
-class PersonGateWay(object):                                        #ROW DATA GATEWAY
-    @staticmethod
-    def create(reqobject):
-        new_person=Person()
-        new_person.lastname = reqobject.lastname
-        new_person.firstname = reqobject.firstname
-        new_person.patronymic = reqobject.patronymic
-        new_person.phone_number = reqobject.phone_number
-        new_person.passport_number = reqobject.passport_number
-        new_person.passport_serial = reqobject.passport_serial
-        new_person.department = reqobject.department
-        new_person.position = reqobject.position
-        new_person.save()
-        return new_person.id
-
-    @staticmethod
-    def update(person,form):
-        person.save()
-
-    @staticmethod
-    def get_by_id(id):
-        person = Person.objects.get(id=id)
-        info = {
-            'lastname': person.lastname,
-            'firstname': person.firstname,
-            'patronymic': person.patronymic,
-            'passport_serial': person.passport_serial,
-            'passport_number': person.passport_number,
-            'phone_number': person.phone_number,
-            'department': person.department,
-            'position': person.position,
-        }
-        return info
-
-    @staticmethod
-    def get_lastname(id):
-        person = Person.objects.get(id=id)
-        return person.lastname
-
-    @staticmethod
-    def get_firstname(id):
-        person = Person.objects.get(id=id)
-        return person.firstname
-
-    @staticmethod
-    def get_patronymic(id):
-        person = Person.objects.get(id=id)
-        return person.patronymic
-
-    @staticmethod
-    def get_department(id):
-        person = Person.objects.get(id=id)
-        return person.department.id
-
-    @staticmethod
-    def get_position(id):
-        person = Person.objects.get(id=id)
-        return person.position.id
-
 class PermitAbstractFabric(metaclass=abc.ABCMeta):                                #ABSTRACTFABRIC
 
     @staticmethod
@@ -122,10 +62,6 @@ class PersonGateway(Gateway):
         self.phone_number = our_form.cleaned_data['phone_number']
         self.save()
         return self
-
-
-
-
 
 class PermitGateway(Gateway):
     TABLE_NAME = 'MyPermitSysApplication_permit'

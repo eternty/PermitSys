@@ -1,38 +1,7 @@
-from RequestSysApplication.models import  Position
-from RequestSysApplication.gateway import Gateway
+from RequestSysApplication.gateways import *
 
-class PositionGateWay(object):                         #GATEWAY
-    @staticmethod
-    def create(name, info):
-        new_position = Position()
-        new_position.name = name
-        new_position.info = info
-        new_position.save()
-        return new_position.id
 
-    @staticmethod
-    def delete(id):
-        Position.objects.get(id = id).delete()
-        return
-
-    @staticmethod
-    def get(id):
-        position = Position.objects.get(id =id)
-        fieldes = {
-            'name': position.name,
-            'info': position.info
-        }
-        return fieldes
-
-    @staticmethod
-    def update_info(id,name,info):
-        position = Position.objects.get(id=id)
-        position.name = name
-        position.info = info
-        position.save()
-        return id
-
-class MyPosition(object):
+class MyPosition(PositionGateway):
     @staticmethod
     def find_by_id(pk):
         position = PositionGateway.find_by_id(_id = pk)
@@ -63,15 +32,11 @@ class MyPosition(object):
         return 1
 
     @staticmethod
-    def all():
-        pass
+    def all(cls):
+        return RequestGateway.all()
 
 
-class MyRequestt(object):
-    @staticmethod
-    def find_by_id(pk):
-        req = RequestGateway.find_by_id(_id=pk)
-        return req
+class MyRequestt(RequestGateway):
 
     @staticmethod
     def save(req):
@@ -80,34 +45,46 @@ class MyRequestt(object):
 
     @staticmethod
     def done(pk):
-        pass
-
-    @staticmethod
-    def create(form):
-        our_request = RequestGateway.creation(form)
-        return our_request
-
-    @staticmethod
-    def deletion(pk):
-        RequestGateway.deletion(pk)
-        return 1
-
-    @staticmethod
-    def request_proceed(reqobject, choice):
-        context = reqobject.request_proceed(choice)
-        return context
-
-    @staticmethod
-    def update_info(req,form):
-        req.update_info(form)
+        req = MyRequestt.find_by_id(pk)
+        req.status = u'DON'
+        req.save()
         return req
 
     @staticmethod
-    def all():
-        requests = RequestGateway.all()
-        return requests
+    def deletion(pk):
+        reqobject = RequestGateway.find_by_id(pk)
+        reqobject.delete()
+        return 0
 
-class MyDepartment(object):
+    @staticmethod
+    def request_proceed(reqobject, choice):
+        if choice == u'approve':
+            reqobject.status = u'APR'
+        if choice == u'decline':
+            reqobject.status = u'DEC'
+        print(reqobject.status)
+        reqobject.save()
+        return reqobject
+
+    @staticmethod
+    def update_info(req,our_form):
+        req.firstname = our_form.cleaned_data['firstname']
+        req.lastname = our_form.cleaned_data['lastname']
+        req.patronymic = our_form.cleaned_data['patronymic']
+        dep = our_form.cleaned_data['department']
+        pos = our_form.cleaned_data['position']
+        req.department_id = dep.id
+        req.position_id = pos.id
+        req.end_date = our_form.cleaned_data['end_date']
+        req.passport_number = our_form.cleaned_data['passport_number']
+        req.passport_serial = our_form.cleaned_data['passport_serial']
+        req.phone_number = our_form.cleaned_data['phone_number']
+        req.status = our_form.cleaned_data['status']
+        req.save()
+        return req
+
+
+class MyDepartment(DepartGateway):
     @staticmethod
     def find_by_id(pk):
         depart = DepartGateway.find_by_id(pk)
@@ -139,121 +116,7 @@ class MyDepartment(object):
         pass
 
 
-class DepartGateway(Gateway):
-    TABLE_NAME = 'RequestSysApplication_department'
-    FIELDS = {
-        'id',
-        'name',
-        'number',
-        'info',
-        'phone_number'
-    }
 
-    def full_name(self):
-        full_name = '%s %s' % (self.name, self.number)
-        return full_name.strip()
-
-    @staticmethod
-    def creation(form):
-        myrequest = form.save()
-        return myrequest
-
-    @staticmethod
-    def deletion(pk):
-        reqobject = RequestGateway.find_by_id(pk)
-        # print(reqobject.id)
-        reqobject.delete()
-        # MyRequest.objects.get(id=req_id).delete()
-        return 0
-
-    def update_info(self, our_form):
-        self.name = our_form.cleaned_data['name']
-        self.number = our_form.cleaned_data['number']
-        self.phone_number = our_form.cleaned_data['phone_number']
-        self.info = our_form.cleaned_data['info']
-        self.save()
-        return self
-
-class RequestGateway(Gateway):
-    TABLE_NAME = 'RequestSysApplication_myrequest'
-    FIELDS = {
-        'id',
-        'lastname',
-        'firstname',
-        'patronymic',
-        'passport_serial',
-        'passport_number',
-        'phone_number',
-        'registration_date',
-        'end_date',
-        'department_id',
-        'position_id',
-        'createtime',
-        'status',
-
-    }
-    def done(self):
-        self.status = 'DON'
-        self.save()
-        return self
-
-    @staticmethod
-    def creation(form):
-        depart = form.save()
-        return depart
-
-    @staticmethod
-    def deletion(pk):
-        reqobject = RequestGateway.find_by_id(pk)
-        #print(reqobject.id)
-        reqobject.delete()
-        #MyRequest.objects.get(id=req_id).delete()
-        return 0
-
-    def request_proceed(self, choice):
-        if choice == u'approve':
-            self.status = u'APR'
-        if choice == u'decline':
-            self.status = u'DEC'
-        print(self.status)
-        self.save()
-        return self
-
-    def update_info(self, our_form):
-
-        self.firstname = our_form.cleaned_data['firstname']
-        self.lastname = our_form.cleaned_data['lastname']
-        self.patronymic = our_form.cleaned_data['patronymic']
-        dep = our_form.cleaned_data['department']
-        pos = our_form.cleaned_data['position']
-        self.department_id = dep.id
-        self.position_id = pos.id
-        self.end_date = our_form.cleaned_data['end_date']
-        self.passport_number = our_form.cleaned_data['passport_number']
-        self.passport_serial = our_form.cleaned_data['passport_serial']
-        self.phone_number = our_form.cleaned_data['phone_number']
-        self.status = our_form.cleaned_data['status']
-        self.save()
-        return self
-
-class PositionGateway(Gateway):
-    TABLE_NAME = 'RequestSysApplication_position'
-    FIELDS = {
-        'id',
-        'name',
-        'info'
-    }
-
-    def update_info(self, our_form):
-        self.name = our_form.cleaned_data['name']
-        self.info = our_form.cleaned_data['info']
-        self.save()
-        return self
-
-    @staticmethod
-    def position_deletion(id):
-        position = PositionGateway.find_by_id(_id=id)
-        position.delete()
 
 
 
