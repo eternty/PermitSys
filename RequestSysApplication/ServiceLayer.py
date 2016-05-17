@@ -112,8 +112,8 @@ class RequestSystemSLDepart(object):
                     depart_obj.save()
                 else:
                     print ('dont need kaf')
-                    depart_obj = MyDepartment.create(our_form)
-
+                    depart_obj = MyDepartment.creation(our_form)
+                    depart_obj.save()
                 departs = Department.objects.all()
                 positions = Position.objects.all()
                 context = {
@@ -228,7 +228,7 @@ class RequestSystemSLRequest(object):
             our_request = MyRequestt.find_by_id(_id =pk)
             if form.is_valid():
                 print(form.cleaned_data['department'])
-                MyRequestt.save(our_request)
+                our_request.save()
                 MyRequestt.update_info(our_request, form)
                 req = MyRequest.objects.get(id = id)
                 request_form = RequestForm(instance=req)

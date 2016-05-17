@@ -1,4 +1,4 @@
-from RequestSysApplication.domain import MyRequestt
+
 from RequestSysApplication.gateway import Gateway
 
 class DepartGateway(Gateway):
@@ -15,15 +15,6 @@ class DepartGateway(Gateway):
         full_name = '%s %s' % (self.name, self.number)
         return full_name.strip()
 
-    @staticmethod
-    def creation(form):
-        myrequest = form.save()
-        return myrequest
-
-    @staticmethod
-    def deletion(pk):
-        MyRequestt.deletion(pk)
-        return 0
 
     def update_info(self, our_form):
         self.name = our_form.cleaned_data['name']
@@ -74,8 +65,3 @@ class PositionGateway(Gateway):
         self.info = our_form.cleaned_data['info']
         self.save()
         return self
-
-    @staticmethod
-    def position_deletion(id):
-        position = PositionGateway.find_by_id(_id=id)
-        position.delete()

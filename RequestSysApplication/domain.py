@@ -1,3 +1,4 @@
+from MyPermitSysApplication.classes import PermitGateway, PersonGateway
 from RequestSysApplication.gateways import *
 
 
@@ -28,7 +29,19 @@ class MyPosition(PositionGateway):
     def delete(pk):
         position_id = pk
         position = PositionGateway.find_by_id(_id = position_id)
+
         position.delete()
+        requests = RequestGateway.find_by_fields(department=department)
+        permits = PermitGateway.find_by_fields(depart=depart)
+        persons = PersonGateway.find_by_fields(depart=depart)
+        for per in permits:
+            per.department_id = None
+
+        for req in requests:
+            req.department_id = None
+
+        for per in persons:
+            per.department_id = None
         return 1
 
     @staticmethod
@@ -37,11 +50,6 @@ class MyPosition(PositionGateway):
 
 
 class MyRequestt(RequestGateway):
-
-    @staticmethod
-    def save(req):
-        req.save()
-        return req
 
     @staticmethod
     def done(pk):
@@ -85,10 +93,6 @@ class MyRequestt(RequestGateway):
 
 
 class MyDepartment(DepartGateway):
-    @staticmethod
-    def find_by_id(pk):
-        depart = DepartGateway.find_by_id(pk)
-        return depart
 
     @staticmethod
     def update_info(depart, form):
@@ -96,7 +100,7 @@ class MyDepartment(DepartGateway):
         return depart
 
     @staticmethod
-    def create(our_form):
+    def creation(our_form):
         depart_obj = DepartGateway(name=our_form.cleaned_data['name'], number=our_form.cleaned_data['number'],
                                    phone_number=our_form.cleaned_data['phone_number'],
                                    info=our_form.cleaned_data['info'])
@@ -106,14 +110,21 @@ class MyDepartment(DepartGateway):
 
 
     @staticmethod
-    def delete(depart):
-        depart.delete()
+    def deletion(pk):
+        requests = RequestGateway.find_by_fields(department_id=pk)
+        permits = PermitGateway.find_by_fields(department_id=pk)
+        persons = PersonGateway.find_by_fields(department_id=pk)
+        for per in permits:
+            per.department_id = None
+
+        for req in requests:
+            req.department_id = None
+
+        for per in persons:
+            per.department_id = None
+
+        MyRequestt.find_by_id(_id=pk).delete()
         return 1
-
-
-    @staticmethod
-    def all():
-        pass
 
 
 
