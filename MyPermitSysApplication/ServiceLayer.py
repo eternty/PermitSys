@@ -1,4 +1,6 @@
-from MyPermitSysApplication.forms import PersonForm
+import datetime
+
+from MyPermitSysApplication.forms import PersonForm, PermitForm
 from MyPermitSysApplication.models import Person, Permit
 from RequestSysApplication.classes import RequestGateway, PositionGateway, DepartGateway
 from RequestSysApplication.models import MyRequest, Position, Department
@@ -54,7 +56,32 @@ class PermitSystemServiceLayer(object):               #SERVICE_LAYER
                 'answer': u'cont'
             }
             return context
+    @staticmethod
+    def temp_permit(request,pk):
+        person = PersonGateway.find_by_id(_id=pk)
+        lastname = person.lastname
+        firstname = person.firstname
+        patronymic = person.patronymic
+        registration_date = datetime.date.today()
+        end_date = datetime.date.today()
+        position_id = person.position_id
+        department_id = person.department_id
 
+        permit = TemporaryPermitEmplementation.create_permit(person.id, registration_date,
+                                                              end_date,
+                                                              lastname, firstname, patronymic,
+                                                              position_id, department_id)
+        permit.position = PositionGateway.find_by_id(_id=permit.position_id).name
+        permit.department = DepartGateway.find_by_id(_id=permit.department_id).full_name()
+
+
+
+        context = {
+
+            'permit': permit,
+            'answer': u'cont'
+        }
+        return context
 
 class PermitSystemServiceLayerPerson(object):
     @staticmethod
@@ -78,17 +105,28 @@ class PermitSystemServiceLayerPerson(object):
     def person(request, pk):
         if request.method == 'POST':
             form = PersonForm(request.POST)
+            person = Person.objects.get(id=pk)
             if form.is_valid():
-                position_id = pk
-                position = PersonGateway.find_by_id(position_id)
-                position.name = form.cleaned_data['name']
-                position.info = form.cleaned_data['info']
-                position.save()
+
+                person.lastname = form.cleaned_data['lastname']
+                person.firstname = form.cleaned_data['firstname']
+                person.patronymic = form.cleaned_data['patronymic']
+                dep = form.cleaned_data['department']
+                pos = form.cleaned_data['position']
+                person.department = dep
+                person.position = pos
+                person.passport_serial = form.cleaned_data['passport_serial']
+                person.passport_number = form.cleaned_data['passport_number']
+                person.phone_number = form.cleaned_data['phone_number']
+                person.save()
+
+                new_form = PersonForm(instance = person)
+
                 context = {
-                    # 'name': position.name,
-                    # 'info': position.info,
-                    'form': form,
-                    'error': 0
+                    'form': new_form,
+                    'error':8,
+                    'method': 'post'
+
                 }
                 return  context
 
@@ -98,23 +136,17 @@ class PermitSystemServiceLayerPerson(object):
                 }
                 return context
         else:
-            position_id = pk
-            position = PersonGateway.find_by_id(position_id)
-            data = {
-                'id': pk,
-                'name': position.name,
-                'info': position.info
-            }
-            form = PersonForm(data)
-            position.save()
+            person = PersonGateway.find_by_id(_id=pk)
+            person.id = pk
+            form = PersonForm(instance=Person.objects.get(id=pk))
             context = {
-                # 'name': position.name,
-                # 'info': position.info,
+                'person':person,
                 'form': form,
-                'id': pk,
-                'error':0
+                'error':0,
+                'method': 'get'
             }
             return  context
+
 
 class PermitSystemSLRequests:
 
@@ -143,6 +175,68 @@ class PermitSystemSLPermits:
             'permits': permits,
         }
         return context
+
+    @staticmethod
+    def print(request,pk):
+        permit = PermitGateway.find_by_id(_id=pk)
+        permit.status = u'PRI'
+        permit.save()
+        context = {
+            'permit': permit,
+        }
+        return context
+
+
+    @staticmethod
+    def print_permit(pk):
+        permit = PermitGateway.find_by_id(_id=pk)
+        permit.position = PositionGateway.find_by_id(_id=permit.position_id).name
+        permit.department = DepartGateway.find_by_id(_id=permit.department_id).full_name()
+        permit.id= pk
+        context = {
+            'permit': permit,
+        }
+        return context
+
+    @staticmethod
+    def show_permit(request,pk):
+        id = pk
+        if request.method == 'POST':
+            form = PermitForm(request.POST)
+            permit = PermitGateway.find_by_id(_id=pk)
+            if form.is_valid():
+                permit.update_info(form)
+                permit.save()
+                perm= Permit.objects.get(id=id)
+
+                permit_form = PermitForm(instance=perm)
+
+                context = {
+                    'permit': permit,
+                    'form': permit_form,
+                    'error': 0,
+                    'method': 'post',
+                    'id': id
+                }
+            else:
+                context = {
+                     'error': 1
+                }
+            return context
+        else:
+            permit = PermitGateway.find_by_id(_id=pk)
+            permit_form = PermitForm(instance=Permit.objects.get(id=id))
+            context = {
+                'reqobject':  permit,
+                'form':  permit_form,
+                'error': 0,
+                'method': 'get',
+                'id': id
+
+                }
+            return context
+
+
 class PermitSystemSLPersons:
     @staticmethod
     def persons(request):
@@ -155,6 +249,17 @@ class PermitSystemSLPersons:
             'persons': persons,
         }
         return context
+
+    @staticmethod
+    def person_delete(pk):
+        person = Person.objects.get(id=pk)
+        permits = Permit.objects.filter(person=person)
+        for per in permits:
+            per.person = None
+            per.status = u'OLD'
+        Person.delete(person)
+
+        return 1
 
 
 b = PermitSystemSLRequests.requests(None)

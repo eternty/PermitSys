@@ -238,7 +238,6 @@ class RequestSystemSLRequest(object):
     @staticmethod
     def request(request, pk):
         id=pk
-
         if request.method == 'POST':
             form = RequestForm(request.POST)
             our_request = RequestGateway.find_by_id(_id = pk)

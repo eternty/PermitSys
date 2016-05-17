@@ -7,5 +7,11 @@ class PersonForm(ModelForm):
     class Meta:
 
         model = Person
-        fields = ['firstname', 'lastname', 'patronymic', 'passport_serial', 'passport_number', 'phone_number',
-                  'position', 'department']
+        fields = ['lastname','firstname',  'patronymic', 'passport_serial', 'passport_number', 'phone_number',
+                  'position', 'department','is_active']
+class PermitForm(ModelForm):
+    class Meta:
+
+        model= Permit
+        fields = ['person', 'department', 'position',
+                  'end_date',  'status', 'is_active']

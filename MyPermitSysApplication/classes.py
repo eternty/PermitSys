@@ -109,6 +109,22 @@ class PersonGateway(Gateway):
         'is_active'
     }
 
+    def update_info(self, our_form):
+        self.lastname =  our_form.cleaned_data['lastname']
+        self.firstname = our_form.cleaned_data['firstname']
+        self.patronymic = our_form.cleaned_data['patronymic']
+        dep = our_form.cleaned_data['department']
+        pos = our_form.cleaned_data['position']
+        self.department_id = dep.id
+        self.position_id = pos.id
+        self.passport_serial = our_form.cleaned_data['passport_serial']
+        self.passport_number = our_form.cleaned_data['passport_number']
+        self.phone_number = our_form.cleaned_data['phone_number']
+        self.save()
+        return self
+
+
+
 
 
 class PermitGateway(Gateway):
@@ -127,4 +143,16 @@ class PermitGateway(Gateway):
         'status',
         'type'
     }
+    def update_info(self, our_form):
+
+        per = our_form.cleaned_data['person']
+        self.person_id = per.id
+        dep = our_form.cleaned_data['department']
+        pos = our_form.cleaned_data['position']
+        self.department_id = dep.id
+        self.position_id = pos.id
+        self.end_date = our_form.cleaned_data['end_date']
+        self.status = our_form.cleaned_data['status']
+        self.save()
+        return self
 

@@ -22,18 +22,18 @@
 {% block trow %}
     {% for per in persons %}
     <tr >
-            <td >{{ per.id }}</td>
+            <td style="cursor: pointer" onclick="window.location.replace('/permitsystem/person/{{ per.id }}')">{{ per.id }}</td>
             <td>{{ per.lastname }}</td>
             <td>{{ per.firstname }}</td>
             <td>{{ per.patronymic }}</td>
             <td>{{ per.position }}</td>
-            <td>{{ per.department }}</td>
+            <!--<td>{{ per.department }}</td> -->
             {% if per.is_active %}
                 <td>Активен</td>
             {% else %}
                 <td>Нективен</td>
             {% endif %}
-            <td><a class="btn btn-default" href='/permitsystem/permits_of_person/{{ per.id }}' role="button">Показать пропуск</a></td>
+            <td><a class="btn btn-default" href='/permitsystem/temp_permit/{{ per.id }}' role="button">Создать временный пропуск</a></td>
             <td><a class="btn btn-default" href='/permitsystem/person_delete/{{ per.id }}' role="button">Удалить</a></td>
     </tr>
     {% empty %}

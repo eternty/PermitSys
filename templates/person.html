@@ -2,21 +2,16 @@
 {% block title  %}АСУ заявок и пропусков{% endblock %}
 {% block nav_brand %}Подсистема подготовки пропусков{% endblock %}
 {% block navbar-menu %}
-    <li class="active"><a href="permit_sys_req">Заявки</a></li>
-    <li><a href="permit_sys_permits">Пропуска</a></li>
-    <li><a href="permit_sys_persons">Персоны</a></li>
+    <li class="active"><a href="/permitsystem/permit_sys_req">Заявки</a></li>
+    <li><a href="/permitsystem/permit_sys_permits">Пропуска</a></li>
+    <li><a href="/permitsystem/permit_sys_persons">Персоны</a></li>
 {% endblock %}
 {% block bodycontent %}
     <br/><br/><br/>
-    {% if permit.type == 'TEM'  %}
-    <p>Временный пропуск</p>
-    {% endif %}
-    {% if permit.type == 'CON' %}
-    <p>Постоянный пропуск</p>
-    {% endif %}
 
 
-     <form action="/permitsystem/permit/{{ id }}/" method="post">
+
+     <form action="/permitsystem/person/{{ person.id }}" method="post">
          <table class="table table-responsive">
              {% csrf_token %}
              {{ form.as_table }}

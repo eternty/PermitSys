@@ -16,6 +16,7 @@
     <th>Срок действия</th>
     <th>Тип пропуска</th>
     <th>Статус</th>
+    <th></th>
 
 
 {% endblock %}
@@ -23,7 +24,8 @@
 {% block trow %}
     {% for per in permits %}
     <tr >
-            <td >{{ per.id }}</td>
+
+            <td  style="cursor: pointer" onclick="window.location.replace('permit/{{ per.id }}/')">{{ per.id }}</td>
             <td>{{ per.lastname }}</td>
             <td>{{ per.firstname }}</td>
             <td>{{ per.patronymic }}</td>
@@ -32,6 +34,7 @@
             <td>{{ per.end_date }}</td>
             <td>{{ per.type }}</td>
             <td>{{ per.status }}</td>
+            <td><a class="btn btn-default" href='/permitsystem/print_permit/{{ per.id }}' role="button">Предпоказ и печать</a></td>
 
 
 

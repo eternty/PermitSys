@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'position_delete/(?P<pk>[0-9]+)?$', views.position_delete, name="position_delete"),
     url(r'^position/(?P<pk>[0-9]+)/?$', views.position, name = "position"),
     url(r'request_proceed/(?P<pk>[0-9]+)/(?P<choice>[a-z]+)/request_sys?$', views.request_sys, name="request_sys"),
+
 ]

@@ -37,12 +37,12 @@ def parse_form(request, our_form):
 
 
 def permit_console(request,pk,choice):
-    print(0)
+
     context = PermitSystemServiceLayer.show_createcont(choice, pk)
     if context['answer'] == 1:
         return render(request, 'request_for_permit.html', context)
     else:
-        return render(request, 'permit.html', context)
+        return render(request, 'print_permit.html', context)
 
 def request_for_permit(request, pk):
 
@@ -50,13 +50,16 @@ def request_for_permit(request, pk):
     return render(request, 'request_for_permit.html', context)
 
 def person(request,pk):
-    context = PermitSystemServiceLayerPerson.person(request,pk)
-
+    context = PermitSystemServiceLayerPerson.person(request, pk)
     if context['error'] == 1:
         return HttpResponse("Error!")
     else:
-        return render(request, 'new_person.html', context)
+        return render(request, 'person.html', context)
 
+def temp_permit(request,pk):
+    context = PermitSystemServiceLayer.temp_permit(request, pk)
+
+    return render(request, 'print_permit.html', context)
 
 def permit_sys_req(request):
     context = PermitSystemSLRequests.requests(request)
@@ -77,5 +80,20 @@ def permits_of_person(request,pk):
     return render(request, 'permits_of_person.html', context)
 
 def person_delete(request,pk):
-    context = PermitSystemSLPersons.peson_delete(pk)
-    return HttpResponseRedirect('/permitsystem/persons')
+    PermitSystemSLPersons.person_delete(pk)
+    return HttpResponseRedirect('/permitsystem/permit_sys_persons')
+
+def show_permit(request, pk):
+    context = PermitSystemSLPermits.show_permit(request,pk)
+    if context['error'] == 1:
+        return HttpResponse("Error!")
+    else:
+        return render(request, 'permit.html', context)
+
+def print_permit(request,pk):
+    context = PermitSystemSLPermits.print_permit(pk)
+    return render(request, 'print_permit.html',context)
+
+def print(request,pk):
+    context = PermitSystemSLPermits.print(request,pk)
+    return HttpResponseRedirect('/permitsystem/permit_sys_permits')

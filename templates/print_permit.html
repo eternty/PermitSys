@@ -1,0 +1,48 @@
+{% extends "base_nav.html"%}
+{% block title  %}АСУ заявок и пропусков{% endblock %}
+{% block nav_brand %}Подсистема подготовки пропусков{% endblock %}
+{% block navbar-menu %}
+    <li class="active"><a href="/permitsystem/permit_sys_req">Заявки</a></li>
+    <li><a href="/permitsystem/permit_sys_permits">Пропуска</a></li>
+    <li><a href="/permitsystem/permit_sys_persons">Персоны</a></li>
+{% endblock %}
+{% block bodycontent %}
+
+    <br><br>
+    {% if permit.type == 'CON' %}
+        <p>Постоянный пропуск</p>
+    {% else %}
+        <p>Временный пропуск</p>
+    {% endif %}
+         <table class="table table-responsive ">
+             <tr>
+            <td>Фамилия</td>
+            <td>{{ permit.lastname }}</td>
+        </tr>
+        <tr>
+            <td>Имя</td>
+            <td>{{ permit.firstname }}</td>
+        </tr>
+        <tr>
+            <td>Отчество</td>
+            <td>{{ permit.patronymic }}</td>
+        </tr>
+         <tr>
+            <td>Должность</td>
+            <td>{{ permit.position }}</td>
+        </tr>
+        <tr>
+            <td>Отдел</td>
+            <td>{{ permit.department }}</td>
+        </tr>
+        <tr>
+            <td>Cрок действия</td>
+            <td>{{ permit.end_date }}</td>
+        </tr>
+         </table>
+
+        <a class="btn btn-default" href= '/permitsystem/print/{{ permit.id }}/'>Печать</a>
+    <ul></ul>
+
+
+{% endblock %}

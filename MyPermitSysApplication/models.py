@@ -30,9 +30,12 @@ class Person(models.Model):
     is_active = models.BooleanField(default=False)
 
     def __unicode__(self):
-        full_name = '%s %s %s' % (self.last_name, self.first_name, self.patronymic)
+        full_name = '%s %s %s' % (self.lastname, self.firstname, self.patronymic)
         return full_name.strip()
 
+    def __str__(self):
+        full_name = '%s %s %s' % (self.lastname, self.firstname, self.patronymic)
+        return full_name.strip()
 
 class Permit(models.Model):
     def __unicode__(self):
@@ -42,7 +45,7 @@ class Permit(models.Model):
         verbose_name = u'Пропуск'
         verbose_name_plural = u'Пропуска'
 
-    person = models.ForeignKey(Person, related_name="Персона")
+    person = models.ForeignKey(Person, related_name="Персона", null=True)
     begin_date = models.DateField(auto_now_add=True, verbose_name="Дата создания пропуска")
     end_date = models.DateField(verbose_name="Срок действия пропуска", default='2016-08-30')
     is_active = models.BooleanField(default=True)

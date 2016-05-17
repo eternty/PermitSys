@@ -88,7 +88,6 @@ class RequestGateway(Gateway):
         'status',
 
     }
-
     def done(self):
         self.status = 'DON'
         self.save()
