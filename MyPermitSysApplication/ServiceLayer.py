@@ -14,8 +14,16 @@ class PermitSystemServiceLayer(object):               #SERVICE_LAYER
         print(reqobject.lastname)
         if choice == u'show':
             print(0)
-            reqobject.department = DepartGateway.find_by_id(reqobject.department_id).full_name()
-            reqobject.position=PositionGateway.find_by_id(reqobject.position_id).name
+
+            #reqobject.department = DepartGateway.find_by_id(reqobject.department_id).full_name()
+            #reqobject.position=PositionGateway.find_by_id(reqobject.position_id).name
+            pos = PositionGateway.find_by_id(_id=reqobject.position_id)
+            dep = DepartGateway.find_by_id(_id=reqobject.department_id)
+            if pos != None:
+                reqobject.position = pos.name
+            if dep != None:
+                reqobject.depart = dep.full_name()
+
             context = {
                 'reqobject': reqobject,
                 'answer': 1
@@ -44,8 +52,14 @@ class PermitSystemServiceLayer(object):               #SERVICE_LAYER
             permit = ContinuousPermitEmplementation.create_permit(person.id, reqobject.registration_date, reqobject.end_date,
                                                                   lastname, firstname, patronymic,
                                                              position_id, department_id)
-            permit.position = PositionGateway.find_by_id(_id=permit.position_id).name
-            permit.department = DepartGateway.find_by_id(_id=permit.department_id).full_name()
+            pos = PositionGateway.find_by_id(_id=permit.position_id)
+            dep = DepartGateway.find_by_id(_id=permit.department_id)
+            if pos != None:
+                permit.position = pos.name
+            if dep != None:
+                permit.department = dep.full_name()
+
+
 
             reqobject.done()          #DOMAIN in request system
 
@@ -55,6 +69,7 @@ class PermitSystemServiceLayer(object):               #SERVICE_LAYER
                 'answer': u'cont'
             }
             return context
+
     @staticmethod
     def temp_permit(request,pk):
         person = PersonGateway.find_by_id(_id=pk)
@@ -70,15 +85,17 @@ class PermitSystemServiceLayer(object):               #SERVICE_LAYER
                                                               end_date,
                                                               lastname, firstname, patronymic,
                                                               position_id, department_id)
-        permit.position = PositionGateway.find_by_id(_id=permit.position_id).name
-        permit.department = DepartGateway.find_by_id(_id=permit.department_id).full_name()
-
-
+        pos = PositionGateway.find_by_id(_id=permit.position_id)
+        dep = DepartGateway.find_by_id(_id=permit.department_id)
+        if pos != None:
+            permit.position = pos.name
+        if dep != None:
+            permit.department = dep.full_name()
 
         context = {
 
             'permit': permit,
-            'answer': u'cont'
+            'answer': u'temp'
         }
         return context
 
@@ -95,8 +112,12 @@ class PermitSystemServiceLayer(object):               #SERVICE_LAYER
     @staticmethod
     def print_permit(pk):
         permit = PermitGateway.find_by_id(_id=pk)
-        permit.position = PositionGateway.find_by_id(_id=permit.position_id).name
-        permit.department = DepartGateway.find_by_id(_id=permit.department_id).full_name()
+        pos = PositionGateway.find_by_id(_id=permit.position_id)
+        dep = DepartGateway.find_by_id(_id=permit.department_id)
+        if pos != None:
+            permit.position = pos.name
+        if dep != None:
+            permit.department = dep.full_name()
         permit.id = pk
         context = {
             'permit': permit,
@@ -145,10 +166,12 @@ class PermitSystemServiceLayer(object):               #SERVICE_LAYER
     def permits(request):
         permits = PermitGateway.all()
         for permit in permits:
-            pos=PositionGateway.find_by_id(_id=permit.position_id)
-            permit.position = pos.name
+            pos = PositionGateway.find_by_id(_id=permit.position_id)
             dep = DepartGateway.find_by_id(_id=permit.department_id)
-            permit.department=dep.full_name()
+            if pos != None:
+                permit.position = pos.name
+            if dep != None:
+                permit.department = dep.full_name()
 
         context = {
             'permits': permits,
@@ -163,8 +186,12 @@ class PermitSystemServiceLayerPerson(object):
         person.position = PositionGateway.find_by_id(_id = person.position_id).name
         permits = PermitGateway.find_by_fields(person = person)
         for permit in permits:
-            permit.department = DepartGateway.find_by_id(_id= permit.department_id).full_name()
-            permit.position = PositionGateway.find_by_id(_id = permit.position_id).name
+            pos = PositionGateway.find_by_id(_id=permit.position_id)
+            dep = DepartGateway.find_by_id(_id=permit.department_id)
+            if pos != None:
+                permit.position = pos.name
+            if dep != None:
+                permit.department = dep.full_name()
 
         context = {
             'permits': permits,
@@ -186,8 +213,8 @@ class PermitSystemServiceLayerPerson(object):
                 person.patronymic = form.cleaned_data['patronymic']
                 dep = form.cleaned_data['department']
                 pos = form.cleaned_data['position']
-                person.department = dep
-                person.position = pos
+                person.department_id = dep.id
+                person.position_id = pos.id
                 person.passport_serial = form.cleaned_data['passport_serial']
                 person.passport_number = form.cleaned_data['passport_number']
                 person.phone_number = form.cleaned_data['phone_number']
@@ -241,6 +268,17 @@ class PermitSystemSLRequests:
     @staticmethod
     def request_for_permit(id):
         req = RequestGateway.find_by_id(_id=id)
+        position = PositionGateway.find_by_id(_id=req.position_id)
+        depart = DepartGateway.find_by_id(_id=req.department_id)
+        if position != None:
+            req.position = position.name
+        if depart != None:
+            req.depart = depart.full_name()
+        context = {
+            'request': req
+        }
+        return context
+
 
 
 class PermitSystemSLPersons:
@@ -249,9 +287,11 @@ class PermitSystemSLPersons:
         persons = PersonGateway.all()
         for per in persons:
             pos = PositionGateway.find_by_id(_id=per.position_id)
-            per.position = pos.name
+            if pos != None:
+                per.position = pos.name
             dep = DepartGateway.find_by_id(_id=per.department_id)
-            per.department = dep.full_name()
+            if dep !=None:
+                per.department = dep.full_name()
 
         context = {
             'persons': persons,

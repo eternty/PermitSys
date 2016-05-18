@@ -12,8 +12,8 @@ class RequestSystemSLPosition(object):
             form = PositionForm(request.POST)
             if form.is_valid():
                 MyPosition.create(form)
-                departs = DepartGateway.all()
-                positions = PositionGateway.all()
+                departs = MyDepartment.all()
+                positions = MyPosition.all()
                 context = {
                     'departs': departs,
                     'positions': positions,
@@ -265,7 +265,7 @@ class RequestSystemSLRequest(object):
     def request_creation(request, form):
         form = RequestForm(request.POST)
         if form.is_valid():
-            our_request = RequestGateway.create(lastname =form.cleaned_data['lastname'], firstname =  form.cleaned_data['firstname'],
+            our_request = MyRequestt(lastname =form.cleaned_data['lastname'], firstname =  form.cleaned_data['firstname'],
                             patronymic =form.cleaned_data['patronymic'],department = form.cleaned_data['department'],
                             position = form.cleaned_data['position'],end_date = form.cleaned_data['end_date'],
                             passport_number = form.cleaned_data['passport_number'],

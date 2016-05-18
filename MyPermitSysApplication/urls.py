@@ -20,7 +20,6 @@ urlpatterns = [
     url(r'permit/(?P<pk>[0-9]+)', views.show_permit, name="show_permit"),
     url(r'$', views.permit_sys_req, name="permit_sys_req"),
 
-
     #url(r'^issue_subsystem?$', views.issue_subsystem)
 
 ]
