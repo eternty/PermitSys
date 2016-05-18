@@ -74,7 +74,8 @@ class Gateway(object):
         desc = Connection.get_cursor_description(res)
         row = res.fetchone()
         if row is None:
-            raise cls().DoesNotExist(_id)
+            return None
+            #raise cls().DoesNotExist(_id)
         d = Connection.row_to_dict(row, desc)
         return cls(__exists__=True, **d)
 

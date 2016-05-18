@@ -143,7 +143,13 @@ class PermitSystemServiceLayer(object):               #SERVICE_LAYER
 
     @staticmethod
     def permits(request):
-        permits = Permit.objects.all()
+        permits = PermitGateway.all()
+        for permit in permits:
+            pos=PositionGateway.find_by_id(_id=permit.position_id)
+            permit.position = pos.name
+            dep = DepartGateway.find_by_id(_id=permit.department_id)
+            permit.department=dep.full_name()
+
         context = {
             'permits': permits,
         }
@@ -221,9 +227,12 @@ class PermitSystemSLRequests:
     def requests(request):
         requests = RequestGateway.all()
         for req in requests:
-            req.position = PositionGateway.find_by_id(_id= req.position_id)
+            position = PositionGateway.find_by_id(_id= req.position_id)
             depart = DepartGateway.find_by_id(_id = req.department_id)
-            req.depart = depart.full_name()
+            if position != None:
+                req.position = position.name
+            if depart != None:
+                req.depart = depart.full_name()
         context = {
             'requests': requests,
         }
@@ -238,9 +247,11 @@ class PermitSystemSLPersons:
     @staticmethod
     def persons(request):
         persons = PersonGateway.all()
-        #for per in persons:
-            #per.department = DepartGateway.find_by_id(per.department_id).full_name()
-            #per.position = PositionGateway.find_by_id(per.position_id).name
+        for per in persons:
+            pos = PositionGateway.find_by_id(_id=per.position_id)
+            per.position = pos.name
+            dep = DepartGateway.find_by_id(_id=per.department_id)
+            per.department = dep.full_name()
 
         context = {
             'persons': persons,

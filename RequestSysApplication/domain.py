@@ -3,10 +3,10 @@ from RequestSysApplication.gateways import *
 
 
 class MyPosition(PositionGateway):
-    @staticmethod
-    def find_by_id(pk):
-        position = PositionGateway.find_by_id(_id = pk)
-        return position
+    #@staticmethod
+    #def find_by_id(_id=pk):
+     #   position = PositionGateway.find_by_id(_id = pk)
+      #  return position
 
     @staticmethod
     def update_info(position, form):
@@ -31,9 +31,9 @@ class MyPosition(PositionGateway):
         position = PositionGateway.find_by_id(_id = position_id)
 
         position.delete()
-        requests = RequestGateway.find_by_fields(department=department)
-        permits = PermitGateway.find_by_fields(depart=depart)
-        persons = PersonGateway.find_by_fields(depart=depart)
+        requests = RequestGateway.find_by_fields(position_id=position_id)
+        permits = PermitGateway.find_by_fields(position_id=position_id)
+        persons = PersonGateway.find_by_fields(position_id=position_id)
         for per in permits:
             per.department_id = None
 
@@ -43,10 +43,6 @@ class MyPosition(PositionGateway):
         for per in persons:
             per.department_id = None
         return 1
-
-    @staticmethod
-    def all(cls):
-        return RequestGateway.all()
 
 
 class MyRequestt(RequestGateway):
@@ -60,7 +56,8 @@ class MyRequestt(RequestGateway):
 
     @staticmethod
     def deletion(pk):
-        reqobject = RequestGateway.find_by_id(pk)
+        reqobject = MyRequestt.find_by_id(_id=pk)
+
         reqobject.delete()
         return 0
 
@@ -94,10 +91,7 @@ class MyRequestt(RequestGateway):
 
 class MyDepartment(DepartGateway):
 
-    @staticmethod
-    def update_info(depart, form):
-        depart.update_info(form)     #DOMAIN
-        return depart
+
 
     @staticmethod
     def creation(our_form):
@@ -123,7 +117,8 @@ class MyDepartment(DepartGateway):
         for per in persons:
             per.department_id = None
 
-        MyRequestt.find_by_id(_id=pk).delete()
+        MyRequestt.find_by_id(_id=pk)\
+            .delete()
         return 1
 
 

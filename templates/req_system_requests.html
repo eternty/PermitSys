@@ -29,8 +29,9 @@
         {% if req.status != 'DON'%}
             <tr >
                     <td style="cursor: pointer" onclick="window.location.replace('request/{{ req.id }}/')">{{ req.id }}</td>
-                    <td>{{ req.firstname }}</td>
+
                     <td>{{ req.lastname }}</td>
+                    <td>{{ req.firstname }}</td>
                     <td>{{ req.patronymic }}</td>
                     <td>{{ req.registration_date}}</td>
                     <td>{{ req.position.name }}</td>

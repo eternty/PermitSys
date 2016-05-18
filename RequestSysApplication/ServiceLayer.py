@@ -1,13 +1,8 @@
-from RequestSysApplication.domain import PositionGateway,  RequestGateway, DepartGateway, MyRequestt, MyPosition, \
-    MyDepartment
+from RequestSysApplication.domain import PositionGateway,  RequestGateway, DepartGateway, MyRequestt, MyPosition, MyDepartment
 from RequestSysApplication.forms import PositionForm, DepartmentForm, RequestForm, NewRequestForm
 from RequestSysApplication.models import MyRequest, Department, Position
 from RequestSysApplication.prototype import Prototype
 from RequestSysApplication.values import kafedras, prot_for_kafedra
-
-
-class RequestSystemServiceLayer(object):
-   pass
 
 
 class RequestSystemSLPosition(object):
@@ -91,6 +86,9 @@ class RequestSystemSLPosition(object):
     @staticmethod
     def position_delete(request, pk):
         MyPosition.delete(pk)
+        requests = MyRequestt.find_by_fields(position_id=pk)
+        for req in requests:
+            req.position_id = None
         return 1
 
 
@@ -107,13 +105,18 @@ class RequestSystemSLDepart(object):
                     print('need kaf')
                     prototype = Prototype()  # PROTOTYPE FOR Kafedra Department
                     prototype.register_object('kafedra', prot_for_kafedra)
-                    depart_obj = prototype.clone('kafedra', number=number,
-                                                 phone_number=our_form.cleaned_data['phone_number'])
-                    depart_obj.save()
+                    phone_number = our_form.cleaned_data['phone_number']
+                    depart_obj = prototype.clone('kafedra', number=number, phone_number=phone_number)
+                    print(depart_obj.number)
+                    print(depart_obj.phone_number)
+                    print(depart_obj)
+                    depart = MyDepartment(name=depart_obj.name, number=depart_obj.number, phone_number=depart_obj.phone_number, info=depart_obj.info)
+                    depart.save()
+
                 else:
                     print ('dont need kaf')
                     depart_obj = MyDepartment.creation(our_form)
-                    depart_obj.save()
+                    #depart_obj.save()
                 departs = Department.objects.all()
                 positions = Position.objects.all()
                 context = {
@@ -151,7 +154,7 @@ class RequestSystemSLDepart(object):
 
             if form.is_valid():
                 depart = MyDepartment.find_by_id(depart_id)
-                MyDepartment.update_info(depart, form)
+                depart.update_info(form)
                 context = {
                     'form': form,
                     'error': 0,
@@ -214,7 +217,8 @@ class RequestSystemSLRequest(object):
         for req in requests:
             req.position = MyPosition.find_by_id(req.position_id)
             depart = MyDepartment.find_by_id(req.department_id)
-            req.depart = depart.full_name()
+            if depart != None:
+                req.depart = depart.full_name()
         context = {
             'requests': requests,
         }
